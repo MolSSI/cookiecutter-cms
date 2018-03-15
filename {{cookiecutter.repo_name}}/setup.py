@@ -17,7 +17,7 @@ setup(
     long_description="\n".join(DOCLINES[2:]),
     version=__version__,
     license='{{cookiecutter.open_source_license}}',
-    packages=['{{cookiecutter.repo_name}}']
+    packages=['{{cookiecutter.repo_name}}', "{{cookiecutter.repo_name}}.tests"]
     # Additional entries you may want simply uncomment the lines you want and fill in the data
     # author_email='me@place.org',      # Author email
     # url='http://www.my_package.com',  # Website
@@ -28,4 +28,6 @@ setup(
     #            'Windows'],            # Valid platforms your code works on, adjust to your flavor
     # zip_safe=False,                   # Compress final package or not
     # python_requires=">=3.5",          # Python version restrictions
+    # Optional include package data to ship with your package
+    # package_data=['{{cookiecutter.repo_name}}:["data/*.dat"]]
 )

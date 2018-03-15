@@ -1,0 +1,34 @@
+environment:
+
+  matrix:
+    - PYTHON: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7"
+      PYTHON_ARCH: "64"
+
+    - PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5"
+      PYTHON_ARCH: "64"
+
+    - PYTHON: "C:\\Python36-x64"
+      PYTHON_VERSION: "3.6"
+      PYTHON_ARCH: "64"
+
+install:
+  {% if (cookiecutter.dependency_source == 'conda-forge' or cookiecutter.dependency_source == 'conda') %}
+  # This installs the appropriate Miniconda (Py2/Py3, 32/64 bit),
+  # as well as pip, conda-build
+  - ps: . ".\\devtools\\appveyor\\install_conda.ps1"
+  - conda build --quiet devtools\\conda-recipe
+  - conda install --yes --use-local {{cookiecutter.repo_name}}
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  {% elif cookiecutter.dependency_source == 'pip' %}
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - pip install --upgrade pip setuptools
+  - pip install pytest pytest-cov codecov
+  - pip install -e .
+  {% endif %}
+
+build: false
+
+test_script:
+  - pytest -v --cov={{cookiecutter.repo_name}} {{cookiecutter.repo_name}}\\tests

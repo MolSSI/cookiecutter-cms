@@ -1,0 +1,49 @@
+language: python
+
+# Run jobs on container-based infrastructure, can be overridden per job
+sudo: false
+
+python:
+    - 2.7
+    - 3.5
+    - 3.6
+
+matrix:
+  include:
+    # Extra includes for OSX since python language is not available by default
+    - os: osx
+      language: generic
+      env: PYTHON_VER=2.7
+    - os: osx
+      language: generic
+      env: PYTHON_VER=3.5
+    - os: osx
+      language: generic
+      env: PYTHON_VER=3.6
+
+before_install:
+  # Additional info about the build
+  - uname -a
+  - df -h
+  - ulimit -a
+  # Install Pip or Conda and dependencies
+  - source devtools/travis-ci/install.sh
+  - python -V
+
+install:
+# Install the package locally
+{% if (cookiecutter.dependency_source == 'conda-forge' or cookiecutter.dependency_source == 'conda') %}
+  - conda build devtools/conda-recipe
+  - conda install --yes --use-local {{cookiecutter.repo_name}}
+{% elif cookiecutter.dependency_source == 'pip' %}
+  - pip install -e .
+{% endif %}
+
+script:
+  - pytest -v --cov={{cookiecutter.repo_name}} {{cookiecutter.repo_name}}/tests/
+
+notifications:
+    email: false
+
+after_success:
+  - codecov
