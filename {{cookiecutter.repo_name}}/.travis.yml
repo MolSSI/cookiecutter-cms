@@ -50,7 +50,7 @@ install:
 {% endif %}
 
 script:
-  - pytest -v --cov={{cookiecutter.repo_name}} --cov-config .coveragerc {{cookiecutter.repo_name}}/tests/
+  - pytest -v --cov={{cookiecutter.repo_name}} --cov-config setup.cfg {{cookiecutter.repo_name}}/tests/
 
 notifications:
     email: false

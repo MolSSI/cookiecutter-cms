@@ -1,5 +1,0 @@
-# .coveragerc to control coverage.py and pytest-cov
-
-[run]
-# Omit the test directory from test coverage
-omit = */tests/*
