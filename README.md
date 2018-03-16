@@ -48,7 +48,7 @@ upon setup.
 ├── appveyor.yml                    <- AppVeyor config file for Windows testing
 ├── {{repo_name}}
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── {{repo_name}}.py            <- Starting packge module
+│   ├── {{first_package_name}}.py   <- Starting packge module
 │   ├── data                        <- Sample additional data (non-code) which can be packaged
 │   │   ├── README.md
 │   │   └── look_and_say.dat
