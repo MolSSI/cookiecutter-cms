@@ -1,6 +1,19 @@
 environment:
 
   matrix:
+  {% if (cookiecutter.dependency_source == 'conda-forge' or cookiecutter.dependency_source == 'conda') %}
+    - PYTHON: "C:\\Miniconda-x64"
+      PYTHON_VERSION: "2.7"
+      PYTHON_ARCH: "64"
+
+    - PYTHON: "C:\\Miniconda35-x64"
+      PYTHON_VERSION: "3.5"
+      PYTHON_ARCH: "64"
+
+    - PYTHON: "C:\\Miniconda36-x64"
+      PYTHON_VERSION: "3.6"
+      PYTHON_ARCH: "64"
+  {% elif cookiecutter.dependency_source == 'pip' %}
     - PYTHON: "C:\\Python27-x64"
       PYTHON_VERSION: "2.7"
       PYTHON_ARCH: "64"
@@ -12,17 +25,30 @@ environment:
     - PYTHON: "C:\\Python36-x64"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
+  {% endif %}
 
 install:
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   {% if (cookiecutter.dependency_source == 'conda-forge' or cookiecutter.dependency_source == 'conda') %}
-  # This installs the appropriate Miniconda (Py2/Py3, 32/64 bit),
-  # as well as pip, conda-build
-  - ps: . ".\\devtools\\appveyor\\install_conda.ps1"
-  - conda build --quiet devtools\\conda-recipe
+  {% if cookiecutter.dependency_source == 'conda-forge' %}
+  # Add conda-forge channel
+  - conda config --add channels conda-forge
+  {% endif %}
+  # Try to update conda first to avoid odd dependency clashes
+  - conda update --yes --all
+  - conda install --yes conda-build
+  # Set up the conda environment with the correct python version
+  - conda create --yes -n test python=%PYTHON_VERSION% pip pytest pytest-cov
+  # Switch to test environment
+  - activate test
+    {% if cookiecutter.dependency_source == 'conda-forge' %}
+  - conda install --yes codecov
+    {% else %}
+  - pip install codecov  # Only available on Pip and Conda-forge
+    {% endif %}
+  - conda build --quiet --python=%PYTHON_VERSION% devtools\\conda-recipe
   - conda install --yes --use-local {{cookiecutter.repo_name}}
-  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   {% elif cookiecutter.dependency_source == 'pip' %}
-  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   - pip install --upgrade pip setuptools
   - pip install pytest pytest-cov codecov
   - pip install -e .
