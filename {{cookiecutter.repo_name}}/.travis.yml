@@ -3,6 +3,7 @@ language: python
 # Run jobs on container-based infrastructure, can be overridden per job
 sudo: false
 
+# Will only test on Linux be default, special includes are needed for OSX
 python:
     - 2.7
     - 3.5
@@ -49,7 +50,7 @@ install:
 {% endif %}
 
 script:
-  - pytest -v --cov={{cookiecutter.repo_name}} {{cookiecutter.repo_name}}/tests/
+  - pytest -v --cov={{cookiecutter.repo_name}} --cov-config .coveragerc {{cookiecutter.repo_name}}/tests/
 
 notifications:
     email: false

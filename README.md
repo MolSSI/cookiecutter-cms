@@ -75,6 +75,7 @@ upon setup.
 ├── .github                         <- GitHub hooks for user contrubtion and pull request guides
 │   ├── CONTRIBUTING.md
 │   └── PULL_REQUEST_TEMPLATE.md
+├── .coveragerc                     <- PyTest + Coverage config file for ignoring test directory itself in coverage
 ├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding 
 └── .travis.yml                     <- Travis-CI config file for Linux and OSX testing
 ```
