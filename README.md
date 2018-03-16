@@ -66,16 +66,18 @@ upon setup.
 │       └── install.sh
 ├── docs                            <- Documentation template folder with many settings already filled in
 │   ├── Makefile
+│   ├── README.md                   <- Instructions on how to build the docs
 │   ├── _static
 │   ├── _templates
 │   ├── conf.py
 │   ├── index.rst
 │   └── make.bat
+├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
 ├── .github                         <- GitHub hooks for user contrubtion and pull request guides
 │   ├── CONTRIBUTING.md
 │   └── PULL_REQUEST_TEMPLATE.md
-├── .coveragerc                     <- PyTest + Coverage config file for ignoring test directory itself in coverage
+├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
 ├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding 
 └── .travis.yml                     <- Travis-CI config file for Linux and OSX testing
 ```
