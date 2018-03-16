@@ -89,4 +89,5 @@ Directory structure template based on recommendation from the
 [Chodera Lab's Software Development Guidelines](https://github.com/choderalab/software-development/blob/master/STRUCTURING_YOUR_PROJECT.md).
 
 Elements of this repository drawn from the 
-[cookiecutter-data-science](https://github.com/drivendata/cookiecutter-data-science) by Driven Data.
+[cookiecutter-data-science](https://github.com/drivendata/cookiecutter-data-science) by Driven Data
+and the [MolSSI Python Template](https://github.com/MolSSI/python_template)
