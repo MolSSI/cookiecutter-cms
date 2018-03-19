@@ -30,7 +30,7 @@ With [`cookiecutter` installed](https://cookiecutter.readthedocs.io/en/latest/in
 execute the following command inside the folder you want to create the skeletal repository. 
 
 ```bash
-cookiecutter gh:choderalab/cookiecutter-python-comp-chem
+cookiecutter gh:choderalab/cookiecutter-compchem
 ```
 
 Which fetches this repository from github automatically and prompts the user for some simple information such as 
