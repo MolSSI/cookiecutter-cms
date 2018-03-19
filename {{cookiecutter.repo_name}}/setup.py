@@ -3,19 +3,17 @@
 {{cookiecutter.description}}
 """
 from setuptools import setup
-DOCLINES = __doc__.split("\n")
+import versioneer
 
-########################
-VERSION = "0.0.0"  # Primary base version of the build
-__version__ = VERSION
-########################
+DOCLINES = __doc__.split("\n")
 
 setup(
     name='{{cookiecutter.repo_name}}',
     author='{{cookiecutter.author_name}}',
     description=DOCLINES[0],
     long_description="\n".join(DOCLINES[2:]),
-    version=__version__,
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     license='{{cookiecutter.open_source_license}}',
     packages=['{{cookiecutter.repo_name}}', "{{cookiecutter.repo_name}}.tests"],
     # Optional include package data to ship with your package
