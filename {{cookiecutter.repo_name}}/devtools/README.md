@@ -37,10 +37,9 @@ This directory contains the files to build and deploy on [Conda](https://conda.i
 
 
 ## Checklist for updates
-- [ ] Update `setup.py` version number (see specific update type for details)
 - [ ] Make sure there is an/are issue(s) opened for your specific update
 - [ ] Create the PR, referencing the issue
 - [ ] Debug the PR as needed until tests pass
-- [ ] Tag the final, debugged version as the one in `setup.py`
+- [ ] Tag the final, debugged version 
    *  `git tag -a X.Y.Z [latest pushed commit] && git push --follow-tags`
 - [ ] Get the PR merged in

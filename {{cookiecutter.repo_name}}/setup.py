@@ -19,7 +19,6 @@ setup(
     license='{{cookiecutter.open_source_license}}',
     packages=['{{cookiecutter.repo_name}}', "{{cookiecutter.repo_name}}.tests"],
     # Optional include package data to ship with your package
-    # We include the package version data
     package_data={'{{cookiecutter.repo_name}}': []  # + ["data/*.dat"]
                   },
     # Additional entries you may want simply uncomment the lines you want and fill in the data
