@@ -39,6 +39,38 @@ cookiecutter gh:choderalab/cookiecutter-compchem
 Which fetches this repository from github automatically and prompts the user for some simple information such as 
 package name, author(s), and licences. 
 
+## Next steps and web integrations
+The repository contains a number of "hooks" that integrate with a variety of web services. To fully integrate the project
+with these web services and to get started developing your project please proceed through the following directions.
+
+### Local installation
+For development work it is often recommended to do a "local" python install via `pip install -e .`. This command will insert your
+new project into your Python site-packages folder so that it can be found in any directory on your computer.
+
+### Setting up with GitHub
+...
+
+### Testing
+The Python testing framework was chosen to be [pytest](https://pytest.org) for this project. Other testing frameworks are available;
+however, the authors believe the combination of easy [parametrization of tests](https://docs.pytest.org/en/latest/parametrize.html),
+[fixtures](https://docs.pytest.org/en/latest/fixture.html), and [test marking](https://docs.pytest.org/en/latest/example/markers.html)
+make `pytest` particularly suited for computational chemistry.
+
+To get started additional tests can be added to the `project/tests/` folder. Any function starting with `test_*` will automatically be
+included in the testing framework. While these can be added in anywhere in your directory structure, it is highly recommended to keep them
+contained within the `project/tests/` folder.
+
+Tests can be run with the `py.test -v` command. There are a number of additional command line arguments to [explore](https://docs.pytest.org/en/latest/usage.html).
+
+### Continuous Integration
+Testing is accomplished with both [Appveyor](https://www.appveyor.com) (for Windows testing) and [Travis-CI](https://travis-ci.org) (for Linux testing). These frameworks are chosen as they
+are completely free for open source projects and allow you to automatically verify that your project works under a variety of OS's and
+Python versions. To begin please register with both Appveyor and Travis-CI and turn on the git hooks under the project tabs.
+
+### Documentation 
+Make a [ReadTheDocs](https://readthedocs.org) account and turn on the git hook...
+
+
 ## Output Skeleton
 
 This will be the skeleton made by this `cookiecutter`, the items marked in `{{ }}` will be replaced by your choices 
