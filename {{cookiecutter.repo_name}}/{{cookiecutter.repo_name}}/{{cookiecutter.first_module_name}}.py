@@ -1,5 +1,5 @@
 """
-{{cookiecutter.first_package_name}}.py
+{{cookiecutter.first_module_name}}.py
 {{cookiecutter.description}}
 
 Handles the primary functions

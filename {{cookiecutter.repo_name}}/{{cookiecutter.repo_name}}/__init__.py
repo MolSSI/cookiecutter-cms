@@ -7,4 +7,4 @@
 # Safe to remove with Python 3-only code
 from __future__ import absolute_import
 
-from .{{cookiecutter.first_package_name}} import *
+from .{{cookiecutter.first_module_name}} import *

@@ -14,7 +14,9 @@ remove deployment platforms, or test with a different suite.
 * Pre-configured Window, Linux, and OSX continuous integration on AppVeyor and Travis-CI
 * Choice of dependency locations through `conda-forge`, default `conda`, or `pip` 
 * Basic testing structure with PyTest
+* Automatic `git` initialization + tag
 * GitHub Hooks
+* Automatic package version control with [Versioneer](https://github.com/warner/python-versioneer)
 * Sample data inclusion with packaging instructions
 * Basic documentation structure powered by [Sphinx](http://www.sphinx-doc.org/en/master/)
 * Automatic license file inclusion from several common Open Source licenses or none at all 
@@ -23,6 +25,7 @@ remove deployment platforms, or test with a different suite.
 
 * Python 2.7, 3.5, or 3.6
 * [Cookiecutter](http://cookiecutter.readthedocs.io/en/latest/installation.html)
+* [Git](https://git-scm.com/)
 
 ## Usage
 
@@ -48,13 +51,14 @@ upon setup.
 ├── appveyor.yml                    <- AppVeyor config file for Windows testing
 ├── {{repo_name}}
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── {{first_package_name}}.py   <- Starting packge module
+│   ├── {{first_module_name}}.py   <- Starting packge module
 │   ├── data                        <- Sample additional data (non-code) which can be packaged
 │   │   ├── README.md
 │   │   └── look_and_say.dat
-│   └── tests                       <- Unit test directory with sample tests
-│       ├── __init__.py
-│       └── test_{{repo_name}}.py
+│   ├── tests                       <- Unit test directory with sample tests
+│   │   ├── __init__.py
+│   │   └── test_{{repo_name}}.py
+│   └── _version.py                 <- Automatic version control with Versioneer
 ├── devtools                        <- Deployment, packaging, and CI helpers directory 
 │   ├── README.md
 │   ├── appveyor
@@ -74,6 +78,7 @@ upon setup.
 │   └── make.bat
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
+├── versioneer.py                   <- Automatic version control with Versioneer
 ├── .github                         <- GitHub hooks for user contrubtion and pull request guides
 │   ├── CONTRIBUTING.md
 │   └── PULL_REQUEST_TEMPLATE.md
