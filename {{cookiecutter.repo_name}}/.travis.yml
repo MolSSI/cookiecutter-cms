@@ -33,11 +33,11 @@ before_install:
 
 install:
 # Install the package locally
-{% if (cookiecutter.dependency_source == 'Prefer conda-forge over default the anaconda channel, pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
+{% if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
     # Create test environment for package
   - conda create --yes -n test python=$PYTHON_VER pip pytest pytest-cov
   - source activate test
-    {% if cookiecutter.dependency_source == "Prefer conda-forge over default the anaconda channel, pip fallback" %}
+    {% if cookiecutter.dependency_source == "Prefer conda-forge over the default anaconda channel with pip fallback" %}
   - conda install --yes codecov  # Only available in conda-forge channel or pip
     {% else %}
   - pip install codecov  # Only available in conda-forge channel or pip

@@ -6,7 +6,7 @@
     "description": "A short description of the project.",
     "open_source_license": ["MIT", "BSD-3-Clause", "LGPLv3", "Not Open Source"],
     "dependency_source": [
-        "Prefer conda-forge over default the anaconda channel, pip fallback",
+        "Prefer conda-forge over the default anaconda channel with pip fallback",
         "Prefer default anaconda channel with pip fallback",
         "Dependencies from pip only (no conda)"],
     "Include_Windows_continuous_integration": ["y","n"]

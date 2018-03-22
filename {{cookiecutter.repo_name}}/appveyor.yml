@@ -1,7 +1,7 @@
 environment:
 
   matrix:
-  {% if (cookiecutter.dependency_source == 'Prefer conda-forge over default the anaconda channel, pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
+  {% if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
     - PYTHON: "C:\\Miniconda-x64"
       PYTHON_VERSION: "2.7"
       PYTHON_ARCH: "64"
@@ -29,8 +29,8 @@ environment:
 
 install:
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-  {% if (cookiecutter.dependency_source == 'Prefer conda-forge over default the anaconda channel, pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
-  {% if cookiecutter.dependency_source == 'Prefer conda-forge over default the anaconda channel, pip fallback' %}
+  {% if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
+  {% if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
   # Add conda-forge channel
   - conda config --add channels conda-forge
   {% endif %}
@@ -41,7 +41,7 @@ install:
   - conda create --yes -n test python=%PYTHON_VERSION% pip pytest pytest-cov
   # Switch to test environment
   - activate test
-    {% if cookiecutter.dependency_source == 'Prefer conda-forge over default the anaconda channel, pip fallback' %}
+    {% if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
   - conda install --yes codecov
     {% else %}
   - pip install codecov  # Only available on Pip and Conda-forge
