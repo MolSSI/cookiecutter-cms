@@ -74,7 +74,7 @@ Testing is accomplished with both [Appveyor](https://www.appveyor.com) (for Wind
 are completely free for open source projects and allow you to automatically verify that your project works under a 
 variety of OS's and
 Python versions. To begin please register with both Appveyor and Travis-CI and turn on the git hooks under the project 
-tabs.
+tabs. You will also want to correct the badges which appear on the output README file to point to the correct links
 
 ### Documentation 
 Make a [ReadTheDocs](https://readthedocs.org) account and turn on the git hook...
