@@ -9,5 +9,5 @@
         "Prefer conda-forge over default the anaconda channel, pip fallback",
         "Prefer default anaconda channel with pip fallback",
         "Dependencies from pip only (no conda)"],
-    "Include Windows Continuous Integration and Tests": ["y","n"]
+    "Include_Windows_continuous_integration": ["y","n"]
 }

@@ -111,7 +111,6 @@ upon setup.
 │   └── _version.py                 <- Automatic version control with Versioneer
 ├── devtools                        <- Deployment, packaging, and CI helpers directory 
 │   ├── README.md
-│   ├── appveyor                    <- Appveyor config folder (if Windows testing chosen)
 │   ├── conda-recipe                <- Conda build and deployment skeleton
 │   │   ├── bld.bat
 │   │   ├── build.sh
