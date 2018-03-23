@@ -1,7 +1,7 @@
 # Temporarily change directory to $HOME to install software
 pushd .
 cd $HOME
-{% if (cookiecutter.dependency_source == 'conda-forge' or cookiecutter.dependency_source == 'conda') %}
+{% if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
 # Install Miniconda
 if [ "$TRAVIS_OS_NAME" == "osx" ]; then
     # Make OSX md5 mimic md5sum from linux, alias does not work
@@ -25,12 +25,12 @@ bash $MINICONDA -b -p $MINICONDA_HOME
 # Configure miniconda
 export PIP_ARGS="-U"
 export PATH=$MINICONDA_HOME/bin:$PATH
-    {% if cookiecutter.dependency_source == "conda-forge" %}
+    {% if cookiecutter.dependency_source == "Prefer conda-forge over the default anaconda channel with pip fallback" %}
 conda config --add channels conda-forge
     {% endif %}
 conda install --yes conda conda-build jinja2 anaconda-client
 conda update --quiet --yes --all
-{% elif cookiecutter.dependency_source == 'pip' %}
+{% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
 if [ "$TRAVIS_OS_NAME" == "osx" ]; then
     brew upgrade pyenv
     # Pyenv requires minor revision, get the latest

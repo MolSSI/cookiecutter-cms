@@ -5,5 +5,9 @@
     "author_name": "Your name (or your organization/company/team)",
     "description": "A short description of the project.",
     "open_source_license": ["MIT", "BSD-3-Clause", "LGPLv3", "Not Open Source"],
-    "dependency_source": ["conda-forge", "conda", "pip"]
+    "dependency_source": [
+        "Prefer conda-forge over the default anaconda channel with pip fallback",
+        "Prefer default anaconda channel with pip fallback",
+        "Dependencies from pip only (no conda)"],
+    "Include_Windows_continuous_integration": ["y","n"]
 }

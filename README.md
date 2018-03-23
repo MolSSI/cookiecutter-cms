@@ -23,7 +23,7 @@ remove deployment platforms, or test with a different suite.
 
 ## Requirements
 
-* Python 2.7, 3.5, or 3.6
+* Python 3.5, or 3.6
 * [Cookiecutter](http://cookiecutter.readthedocs.io/en/latest/installation.html)
 * [Git](https://git-scm.com/)
 
@@ -48,7 +48,13 @@ For development work it is often recommended to do a "local" python install via 
 new project into your Python site-packages folder so that it can be found in any directory on your computer.
 
 ### Setting up with GitHub
-...
+Upon creation, this project will initialize the output as a `git` repository compatible with 
+[Versioneer](https://github.com/warner/python-versioneer). However, this does not automatically register the 
+repository with GitHub. To do this, follow the instructions for 
+[Adding an existing project to GitHub using the command line](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/). 
+Follow the first step to create the repository on GitHub, but ignore the warnings about the README, license, and 
+`.gitignore` files as this repo creates them. From there, you can skip to after the "first commit" instructions and 
+proceed from there.
 
 ### Testing
 The Python testing framework was chosen to be [pytest](https://pytest.org) for this project. Other testing frameworks are available;
@@ -63,12 +69,24 @@ contained within the `project/tests/` folder.
 Tests can be run with the `py.test -v` command. There are a number of additional command line arguments to [explore](https://docs.pytest.org/en/latest/usage.html).
 
 ### Continuous Integration
-Testing is accomplished with both [Appveyor](https://www.appveyor.com) (for Windows testing) and [Travis-CI](https://travis-ci.org) (for Linux testing). These frameworks are chosen as they
-are completely free for open source projects and allow you to automatically verify that your project works under a variety of OS's and
-Python versions. To begin please register with both Appveyor and Travis-CI and turn on the git hooks under the project tabs.
+Testing is accomplished with both [Appveyor](https://www.appveyor.com) (for Windows testing) and 
+[Travis-CI](https://travis-ci.org) (for Linux testing). These frameworks are chosen as they
+are completely free for open source projects and allow you to automatically verify that your project works under a 
+variety of OS's and
+Python versions. To begin please register with both Appveyor and Travis-CI and turn on the git hooks under the project 
+tabs. You will also want to correct the badges which appear on the output README file to point to the correct links
 
 ### Documentation 
 Make a [ReadTheDocs](https://readthedocs.org) account and turn on the git hook...
+
+## Why is Python 2.X not on the supported versions?
+New projects generally should not be built with Python 2.7 support in mind, see the 
+[Python 3 Statement](https://python3statement.org/). Although the final Python 2.7 release will be 
+[supported through 2020](http://legacy.python.org/dev/peps/pep-0373/) and is the default on many legacy systems, Python 
+3 has been released for almost a decade and projects long term usage should not be shacked by legacy methods that will 
+have to be replaced in very short order as Python 2 support is retired.
+
+
 
 
 ## Output Skeleton
@@ -80,10 +98,10 @@ upon setup.
 .
 ├── LICENSE                         <- License file
 ├── README.md                       <- Description of project which GitHub will render
-├── appveyor.yml                    <- AppVeyor config file for Windows testing
+├── appveyor.yml                    <- AppVeyor config file for Windows testing (if chosen)
 ├── {{repo_name}}
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── {{first_module_name}}.py   <- Starting packge module
+│   ├── {{first_module_name}}.py    <- Starting packge module
 │   ├── data                        <- Sample additional data (non-code) which can be packaged
 │   │   ├── README.md
 │   │   └── look_and_say.dat
@@ -93,7 +111,6 @@ upon setup.
 │   └── _version.py                 <- Automatic version control with Versioneer
 ├── devtools                        <- Deployment, packaging, and CI helpers directory 
 │   ├── README.md
-│   ├── appveyor
 │   ├── conda-recipe                <- Conda build and deployment skeleton
 │   │   ├── bld.bat
 │   │   ├── build.sh
