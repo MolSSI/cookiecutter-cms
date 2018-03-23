@@ -39,7 +39,7 @@ cookiecutter gh:choderalab/cookiecutter-compchem
 Which fetches this repository from github automatically and prompts the user for some simple information such as 
 package name, author(s), and licences. 
 
-[![The cookiecutter in action](http://img.youtube.com/vi/DYzkvRfg4qo/0.jpg)](http://www.youtube.com/watch?v=DYzkvRfg4qo "Computational Chemistry Cookieucutter Example")
+[![The cookiecutter in action](http://img.youtube.com/vi/_E7AlaG8zbk/0.jpg)](http://www.youtube.com/watch?v=_E7AlaG8zbk "Computational Chemistry Cookieucutter Example")
 
 ## Next steps and web integrations
 The repository contains a number of "hooks" that integrate with a variety of web services. To fully integrate the project
