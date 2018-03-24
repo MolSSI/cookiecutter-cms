@@ -43,7 +43,6 @@ if [ "$TRAVIS_OS_NAME" == "osx" ]; then
     eval "$(pyenv init -)"
 fi
 pip install --upgrade pip setuptools
-pip install pytest pytest-cov
 {% endif %}
 # Restore original directory
 popd

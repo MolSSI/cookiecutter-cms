@@ -139,7 +139,7 @@ upon setup.
 ## Acknowledgments
 
 This cookiecutter is developed by Levi N. Naden of Memorial Sloan Kettering Cancer Center in conjunction with 
-the [Molecular Sciences Software Institute (MolSSI)](http://molssi.org/). Copyright (c) 2018.
+Daniel G. A. Smith from the [Molecular Sciences Software Institute (MolSSI)](http://molssi.org/). Copyright (c) 2018.
 
 Directory structure template based on recommendation from the 
 [Chodera Lab's Software Development Guidelines](https://github.com/choderalab/software-development/blob/master/STRUCTURING_YOUR_PROJECT.md).

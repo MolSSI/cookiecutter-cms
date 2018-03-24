@@ -1,20 +1,11 @@
 language: python
 
 # Run jobs on container-based infrastructure, can be overridden per job
-sudo: false
-
-# Will only test on Linux be default, special includes are needed for OSX
-python:
-    - 2.7
-    - 3.5
-    - 3.6
+dist: trusty
 
 matrix:
   include:
     # Extra includes for OSX since python language is not available by default on OSX
-    - os: osx
-      language: generic
-      env: PYTHON_VER=2.7
     - os: osx
       language: generic
       env: PYTHON_VER=3.5
@@ -22,35 +13,43 @@ matrix:
       language: generic
       env: PYTHON_VER=3.6
 
+    - os: linux
+      python: 3.5
+      env: PYTHON_VER=3.5
+    - os: linux
+      python: 3.6
+      env: PYTHON_VER=3.6
+
 before_install:
   # Additional info about the build
   - uname -a
   - df -h
   - ulimit -a
-  # Install Pip or Conda and dependencies
-  - source devtools/travis-ci/install.sh
+
+  # Install the Python environemt
+  - source devtools/travis-ci/before_install.sh
   - python -V
 
 install:
-# Install the package locally
-{% if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
+{% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+    # Install the package locally
+  - pip install pytest pytest-cov codecov
+  - pip install -e .
+{% else %}
     # Create test environment for package
   - conda create --yes -n test python=$PYTHON_VER pip pytest pytest-cov
   - source activate test
-    {% if cookiecutter.dependency_source == "Prefer conda-forge over the default anaconda channel with pip fallback" %}
-  - conda install --yes codecov  # Only available in conda-forge channel or pip
-    {% else %}
-  - pip install codecov  # Only available in conda-forge channel or pip
-    {% endif %}
+
+    # Install pip only modules
+  - pip install codecov
+
     # Build and install package
   - conda build --python=$PYTHON_VER devtools/conda-recipe
   - conda install --yes --use-local {{cookiecutter.repo_name}}
-{% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
-  - pip install -e .
 {% endif %}
 
 script:
-  - pytest -v --cov={{cookiecutter.repo_name}} --cov-config setup.cfg {{cookiecutter.repo_name}}/tests/
+  - pytest -v --cov={{cookiecutter.repo_name}} {{cookiecutter.repo_name}}/tests/
 
 notifications:
     email: false
