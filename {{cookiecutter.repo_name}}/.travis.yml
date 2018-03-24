@@ -1,7 +1,7 @@
 language: python
 
 # Run jobs on container-based infrastructure, can be overridden per job
-sudo: false
+dist: trusty
 
 # Will only test on Linux be default, special includes are needed for OSX
 python:
@@ -22,13 +22,33 @@ matrix:
       language: generic
       env: PYTHON_VER=3.6
 
+    - os: linux
+{% if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
+      env: PYTHON_VER=3.6
+{% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+      python: 3.6
+{% endif %}
+    - os: linux
+{% if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
+      env: PYTHON_VER=3.5
+{% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+      python: 3.5
+{% endif %}
+    - os: linux
+{% if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
+      env: PYTHON_VER=2.7
+{% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+      python: 2.7
+{% endif %}
+
 before_install:
   # Additional info about the build
   - uname -a
   - df -h
   - ulimit -a
-  # Install Pip or Conda and dependencies
-  - source devtools/travis-ci/install.sh
+
+  # Install the Python environemt
+  - source devtools/travis-ci/before_install.sh
   - python -V
 
 install:
@@ -37,15 +57,13 @@ install:
     # Create test environment for package
   - conda create --yes -n test python=$PYTHON_VER pip pytest pytest-cov
   - source activate test
-    {% if cookiecutter.dependency_source == "Prefer conda-forge over the default anaconda channel with pip fallback" %}
-  - conda install --yes codecov  # Only available in conda-forge channel or pip
-    {% else %}
-  - pip install codecov  # Only available in conda-forge channel or pip
-    {% endif %}
+  - pip install codecov  # Install pip only modules
+
     # Build and install package
   - conda build --python=$PYTHON_VER devtools/conda-recipe
   - conda install --yes --use-local {{cookiecutter.repo_name}}
 {% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+  - pip install pytest pytest-cov codecov
   - pip install -e .
 {% endif %}
 
