@@ -8,32 +8,17 @@ matrix:
     # Extra includes for OSX since python language is not available by default on OSX
     - os: osx
       language: generic
-      env: PYTHON_VER=2.7
-    - os: osx
-      language: generic
       env: PYTHON_VER=3.5
     - os: osx
       language: generic
       env: PYTHON_VER=3.6
 
     - os: linux
-{% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
-      python: 3.6
-{% else %}
-      env: PYTHON_VER=3.6
-{% endif %}
-    - os: linux
-{% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
       python: 3.5
-{% else %}
       env: PYTHON_VER=3.5
-{% endif %}
     - os: linux
-{% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
-      python: 2.7
-{% else %}
-      env: PYTHON_VER=2.7
-{% endif %}
+      python: 3.6
+      env: PYTHON_VER=3.6
 
 before_install:
   # Additional info about the build
@@ -46,15 +31,17 @@ before_install:
   - python -V
 
 install:
-# Install the package locally
-{% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+{% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+    # Install the package locally
   - pip install pytest pytest-cov codecov
   - pip install -e .
 {% else %}
     # Create test environment for package
   - conda create --yes -n test python=$PYTHON_VER pip pytest pytest-cov
   - source activate test
-  - pip install codecov  # Install pip only modules
+
+    # Install pip only modules
+  - pip install codecov
 
     # Build and install package
   - conda build --python=$PYTHON_VER devtools/conda-recipe
