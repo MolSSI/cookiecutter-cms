@@ -1,11 +1,7 @@
 environment:
 
   matrix:
-  {% if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
-    - PYTHON: "C:\\Miniconda-x64"
-      PYTHON_VERSION: "2.7"
-      PYTHON_ARCH: "64"
-
+  {%- if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
     - PYTHON: "C:\\Miniconda35-x64"
       PYTHON_VERSION: "3.5"
       PYTHON_ARCH: "64"
@@ -14,10 +10,6 @@ environment:
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
   {% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
-    - PYTHON: "C:\\Python27-x64"
-      PYTHON_VERSION: "2.7"
-      PYTHON_ARCH: "64"
-
     - PYTHON: "C:\\Python35-x64"
       PYTHON_VERSION: "3.5"
       PYTHON_ARCH: "64"
@@ -30,30 +22,30 @@ environment:
 install:
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   {% if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
-  {% if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
-  # Add conda-forge channel
+  {%- if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
+    # Add conda-forge channel
   - conda config --add channels conda-forge
   {% endif %}
-  # Try to update conda first to avoid odd dependency clashes
+    # Try to update conda first to avoid odd dependency clashes
   - conda update --yes --all
   - conda install --yes conda-build
-  # Set up the conda environment with the correct python version
+
+    # Create test environment for package
   - conda create --yes -n test python=%PYTHON_VERSION% pip pytest pytest-cov
-  # Switch to test environment
   - activate test
-    {% if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
-  - conda install --yes codecov
-    {% else %}
-  - pip install codecov  # Only available on Pip and Conda-forge
-    {% endif %}
+    
+    # Install any pip only modules
+  - pip install codecov
+
+    # Build and install package
   - conda build --quiet --python=%PYTHON_VERSION% devtools\\conda-recipe
   - conda install --yes --use-local {{cookiecutter.repo_name}}
   {% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+    # Install the package locally
   - pip install --upgrade pip setuptools
   - pip install pytest pytest-cov codecov
   - pip install -e .
   {% endif %}
-
 build: false
 
 test_script:
