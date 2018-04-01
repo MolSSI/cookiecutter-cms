@@ -10,6 +10,9 @@ from __future__ import absolute_import
 # Add imports here
 from .{{cookiecutter.first_module_name}} import *
 
+# Move any desired extra features up
+from .extras import test
+
 # Handle versioneer
 from ._version import get_versions
 versions = get_versions()
