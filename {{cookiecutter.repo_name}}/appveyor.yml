@@ -26,12 +26,16 @@ install:
     # Add conda-forge channel
   - conda config --add channels conda-forge
   {% endif %}
+
+    # Always run commands without asking
+  - conda config --set always_yes yes
+
     # Try to update conda first to avoid odd dependency clashes
-  - conda update --yes --all
-  - conda install --yes conda-build
+  - conda update --all
+  - conda install conda-build
 
     # Create test environment for package
-  - conda create --yes -n test python=%PYTHON_VERSION% pip pytest pytest-cov
+  - conda create -n test python=%PYTHON_VERSION% pip pytest pytest-cov
   - activate test
     
     # Install any pip only modules
@@ -39,7 +43,7 @@ install:
 
     # Build and install package
   - conda build --quiet --python=%PYTHON_VERSION% devtools\\conda-recipe
-  - conda install --yes --use-local {{cookiecutter.repo_name}}
+  - conda install --use-local {{cookiecutter.repo_name}}
   {% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
     # Install the package locally
   - pip install --upgrade pip setuptools
