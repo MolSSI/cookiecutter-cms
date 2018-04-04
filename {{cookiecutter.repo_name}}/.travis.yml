@@ -37,7 +37,7 @@ install:
   - pip install -e .
 {% else %}
     # Create test environment for package
-  - conda create --yes -n test python=$PYTHON_VER pip pytest pytest-cov
+  - conda create -n test python=$PYTHON_VER pip pytest pytest-cov
   - source activate test
 
     # Install pip only modules
@@ -45,7 +45,7 @@ install:
 
     # Build and install package
   - conda build --python=$PYTHON_VER devtools/conda-recipe
-  - conda install --yes --use-local {{cookiecutter.repo_name}}
+  - conda install --use-local {{cookiecutter.repo_name}}
 {% endif %}
 
 script:
