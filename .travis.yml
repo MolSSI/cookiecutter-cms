@@ -1,0 +1,43 @@
+language: python
+
+python:
+    - 3.6
+
+matrix:
+  include:
+    - env:
+       - LICENSE=1
+       - DEPEND_SOURCE=1
+       - PYTHON_VER=3.6
+    - env:
+       - LICENSE=1
+       - DEPEND_SOURCE=2
+       - PYTHON_VER=3.6
+    - env:
+       - LICENSE=2
+       - DEPEND_SOURCE=3
+       - PYTHON_VER=3.6
+
+before_install:
+    # Install a few requirements
+  - pip install pyyaml
+
+    # Build out the cookiecutter from settings
+  - python tests/setup_cookiecutter.py default_project $LICENSE $DEPEND_SOURCE
+
+    # Change into new project directory
+  - cd default_project
+
+install:
+  - python ../tests/run_yaml.py .travis.yml before_install
+  - python ../tests/run_yaml.py .travis.yml install
+
+script:
+  - python ../tests/run_yaml.py .travis.yml script
+
+after_install:
+
+    # Build the docs
+  - cd docs
+  - make html
+  
