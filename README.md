@@ -13,13 +13,13 @@ remove deployment platforms, or test with a different suite.
 * Pre-configured `setup.py` for installation and packaging
 * Pre-configured Window, Linux, and OSX continuous integration on AppVeyor and Travis-CI
 * Choice of dependency locations through `conda-forge`, default `conda`, or `pip` 
-* Basic testing structure with PyTest
+* Basic testing structure with [PyTest](https://docs.pytest.org/en/latest/)
 * Automatic `git` initialization + tag
 * GitHub Hooks
 * Automatic package version control with [Versioneer](https://github.com/warner/python-versioneer)
 * Sample data inclusion with packaging instructions
 * Basic documentation structure powered by [Sphinx](http://www.sphinx-doc.org/en/master/)
-* Automatic license file inclusion from several common Open Source licenses or none at all 
+* Automatic license file inclusion from several common Open Source licenses (optional)
 
 ## Requirements
 
@@ -79,7 +79,19 @@ Python versions. To begin please register with both Appveyor and Travis-CI and t
 tabs. You will also want to correct the badges which appear on the output README file to point to the correct links
 
 ### Documentation 
-Make a [ReadTheDocs](https://readthedocs.org) account and turn on the git hook...
+Make a [ReadTheDocs](https://readthedocs.org) account and turn on the git hook. Although you can manually make the 
+documentation yourself through [Sphinx](http://www.sphinx-doc.org/en/master/usage/quickstart.html), you can also 
+configure [ReadTheDocs](https://docs.readthedocs.io/en/latest/getting_started.html) to automatically build and 
+publish the documentation for you. The initial skeleton of the documentation can be found in the `docs` folder 
+of your output.
+
+### Additional Python Settings in `setup.py`
+
+This Cookiecutter generates the package, but there are a several package-specific Python settings you can tune to your 
+package's installation needs. These are settings in the `setup.py` file which contains instructions for Python on 
+how to install your package. Each of the options in the file are commented with what it does and when it should be 
+used. 
+
 
 ## Why is Python 2.X not on the supported versions?
 New projects generally should not be built with Python 2.7 support in mind, see the 
