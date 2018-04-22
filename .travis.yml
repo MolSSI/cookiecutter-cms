@@ -11,5 +11,5 @@ install:
     - pip install cookiecutter
 
 script:
-    - cookiecutter gh:choderalab/cookiecutter-compchem
+    - cookiecutter . --no-input
     - cd project_name; py.test -vv; cd ..
