@@ -20,7 +20,7 @@ matrix:
 
 before_install:
     # Install a few requirements
-  - pip install pyyaml
+  - pip install pyyaml cookiecutter
 
     # Build out the cookiecutter from settings
   - python tests/setup_cookiecutter.py default_project $LICENSE $DEPEND_SOURCE

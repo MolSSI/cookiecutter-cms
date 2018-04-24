@@ -1,0 +1,36 @@
+environment:
+
+  matrix:
+    - PYTHON: "C:\\Miniconda36-x64"
+      LICENSE: 1
+      DEPEND_SOURCE: 1
+      PYTHON_ARCH: "64"
+    - PYTHON: "C:\\Miniconda35-x64"
+      LICENSE: 1
+      DEPEND_SOURCE: 2
+      PYTHON_ARCH: "64"
+    - PYTHON: "C:\\Miniconda35-x64"
+      LICENSE: 2
+      DEPEND_SOURCE: 3
+      PYTHON_ARCH: "64"
+
+
+install:
+    # Install a few requirements
+  - pip install pyyaml
+
+    # Build out the cookiecutter from settings
+  - python tests/setup_cookiecutter.py default_project $LICENSE $DEPEND_SOURCE
+
+    # Change into new project directory
+  - cd default_project
+
+    # Run appveyor YAML
+  - python ../tests/run_yaml.py appveyor.yml install
+
+test_script:
+  - python ../tests/run_yaml.py appveyor.yml test_script
+
+    # Build the docs
+  - cd docs
+  - make html
