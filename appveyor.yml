@@ -47,7 +47,3 @@ test_script:
   - pip install pyyaml
   - python ../tests/run_yaml.py appveyor.yml test_script script.appveyor.bat
   - .\script.appveyor.bat
-
-    # Build the docs
-  - cd docs
-  - make html

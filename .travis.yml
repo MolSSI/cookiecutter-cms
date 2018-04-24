@@ -31,6 +31,8 @@ before_install:
 install:
   - python ../tests/run_yaml.py .travis.yml before_install before_install.travis
   - source before_install.travis
+
+  - pip install pyyaml
   - python ../tests/run_yaml.py .travis.yml install install.travis
   - source install.travis
 
