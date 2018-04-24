@@ -2,7 +2,6 @@
 Runs arbitrary YAML commands
 """
 
-from subprocess import check_output 
 import os
 import sys
 import yaml
@@ -19,19 +18,27 @@ def parse_yaml(filename, key):
     return ret[key]
 
 
-def run_commands(commands):
+def gen_commands(name, commands):
     """
     Runs YAML commands and prints their output
     """
-    
+  
+    print("Generating bash file to run the following:") 
+    ret = []
     for command in commands:
-        command_list = [os.path.expandvars(x) for x in command.split()]
-        print("Running command: %s\n" % " ".join(command_list))
-        print(check_output(command_list).decode("UTF-8"))
+        command = " ".join([os.path.expandvars(x) for x in command.split()])
+        print("  %s" % command)
+        ret.append(command)
+
+    ret = "\n".join(ret)
+    with open(name, "w") as ofile:
+        ofile.write(ret)
+    
 
 if __name__ == "__main__":
     filename = sys.argv[1]
     key = sys.argv[2]
+    out_name = sys.argv[3]
 
     commands = parse_yaml(filename, key)
-    run_commands(commands)
+    gen_commands(out_name, commands)

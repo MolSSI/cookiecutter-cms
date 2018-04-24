@@ -29,15 +29,20 @@ before_install:
   - cd default_project
 
 install:
-  - python ../tests/run_yaml.py .travis.yml before_install
-  - python ../tests/run_yaml.py .travis.yml install
+  - python ../tests/run_yaml.py .travis.yml before_install before_install.travis
+  - source before_install.travis
+  - python ../tests/run_yaml.py .travis.yml install install.travis
+  - source install.travis
 
 script:
-  - python ../tests/run_yaml.py .travis.yml script
+  - pip install pyyaml
+  - python ../tests/run_yaml.py .travis.yml script script.travis
+  - source script.travis
+
 
 after_install:
 
     # Build the docs
   - cd docs
   - make html
-  
+
