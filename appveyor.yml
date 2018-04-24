@@ -1,12 +1,11 @@
 environment:
 
   matrix:
-       # Takes a very long time
-#    - PYTHON: "C:\\Miniconda35-x64"
-#      LICENSE: 1
-#      DEPEND_SOURCE: 1
-#      PYTHON_VERSION: "3.5"
-#      PYTHON_ARCH: "64"
+    - PYTHON: "C:\\Miniconda35-x64"
+      LICENSE: 1
+      DEPEND_SOURCE: 1
+      PYTHON_VERSION: "3.5"
+      PYTHON_ARCH: "64"
 
     - PYTHON: "C:\\Miniconda36-x64"
       LICENSE: 2
