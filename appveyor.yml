@@ -1,0 +1,48 @@
+environment:
+
+  matrix:
+    - PYTHON: "C:\\Miniconda35-x64"
+      LICENSE: 1
+      DEPEND_SOURCE: 1
+      PYTHON_VERSION: "3.5"
+      PYTHON_ARCH: "64"
+
+    - PYTHON: "C:\\Miniconda36-x64"
+      LICENSE: 2
+      DEPEND_SOURCE: 2
+      PYTHON_VERSION: "3.6"
+      PYTHON_ARCH: "64"
+
+    - PYTHON: "C:\\Python36-x64"
+      LICENSE: 1
+      DEPEND_SOURCE: 3
+      PYTHON_VERSION: "3.5"
+      PYTHON_ARCH: "64"
+
+
+
+install:
+    # Install a few requirements
+  - pip install pyyaml cookiecutter
+
+    # Dont ask
+  - git config --global user.email "monster@cookie.com"
+  - git config --global user.name "Cookie Monster"
+  - git config --global core.autocrlf true
+
+    # Build out the cookiecutter from settings
+  - python tests/setup_cookiecutter.py default_project %LICENSE% %DEPEND_SOURCE%
+
+    # Change into new project directory
+  - ps: cd default_project
+
+    # Run appveyor YAML
+  - python ../tests/run_yaml.py appveyor.yml install install.appveyor.bat
+  - .\install.appveyor.bat
+
+build: false
+
+test_script:
+  - pip install pyyaml
+  - python ../tests/run_yaml.py appveyor.yml test_script script.appveyor.bat
+  - .\script.appveyor.bat

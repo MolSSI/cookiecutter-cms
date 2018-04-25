@@ -21,12 +21,12 @@ matrix:
       env: PYTHON_VER=3.6
 
 before_install:
-  # Additional info about the build
+    # Additional info about the build
   - uname -a
   - df -h
   - ulimit -a
 
-  # Install the Python environemt
+    # Install the Python environemt
   - source devtools/travis-ci/before_install.sh
   - python -V
 
