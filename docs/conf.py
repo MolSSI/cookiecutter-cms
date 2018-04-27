@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Computational Chemistry Cookiecutter'
-copyright = '2018, Levi N. Naden, Daniel A. G. Smith'
-author = 'Levi N. Naden, Daniel A. G. Smith'
+copyright = '2018, Levi N. Naden, Daniel G. A. Smith'
+author = 'Levi N. Naden, Daniel G. A. Smith'
 
 # The short X.Y version
 version = ''
@@ -130,7 +130,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'ComputationalChemistryCookiecutter.tex', 'Computational Chemistry Cookiecutter Documentation',
-     'Levi N. Naden, Daniel A. G. Smith', 'manual'),
+     'Levi N. Naden, Daniel G. A. Smith', 'manual'),
 ]
 
 
