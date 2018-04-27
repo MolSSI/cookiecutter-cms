@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Computational Chemistry Cookiecutter'
-copyright = '2018, Levi N. Naden, Daniel A. G. Smith'
-author = 'Levi N. Naden, Daniel A. G. Smith'
+copyright = '2018, Levi N. Naden, Daniel G. A. Smith'
+author = 'Levi N. Naden, Daniel G. A. Smith'
 
 # The short X.Y version
 version = ''
@@ -75,7 +75,7 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -130,7 +130,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'ComputationalChemistryCookiecutter.tex', 'Computational Chemistry Cookiecutter Documentation',
-     'Levi N. Naden, Daniel A. G. Smith', 'manual'),
+     'Levi N. Naden, Daniel G. A. Smith', 'manual'),
 ]
 
 
