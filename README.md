@@ -1,6 +1,11 @@
 # Cookiecutter for Computational Chemistry Python Packages
+[//]: # (Badges)
+[![Travis Build Status](https://travis-ci.org/choderalab/cookiecutter-compchem.png)](https://travis-ci.org/choderalab/cookiecutter-compchem)
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/plygjybxqxy04rad/branch/master?svg=true)](https://ci.appveyor.com/project/choderalab/cookiecutter-compchem/branch/master)
+[![Documentation Status](https://readthedocs.org/projects/compchem-cookiecutter/badge/?version=latest)](http://compchem-cookiecutter.readthedocs.io/en/latest/?badge=latest)
 
-An [cookiecutter](https://github.com/audreyr/cookiecutter) template for those interested in developing computational 
+
+A [cookiecutter](https://github.com/audreyr/cookiecutter) template for those interested in developing computational 
 chemistry packages in Python. Skeletal starting repositories can be created from this template to create the 
 file structure semi-autonomously so you can focus on what's important: the science!
 
