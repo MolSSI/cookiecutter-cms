@@ -1,7 +1,7 @@
 # Cookiecutter for Computational Chemistry Python Packages
 [//]: # (Badges)
 [![Travis Build Status](https://travis-ci.org/choderalab/cookiecutter-compchem.png)](https://travis-ci.org/choderalab/cookiecutter-compchem)
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/plygjybxqxy04rad/branch/master?svg=true)](https://ci.appveyor.com/project/choderalab/cookiecutter-compchem/branch/master)
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/plygjybxqxy04rad/branch/master?svg=true)](https://ci.appveyor.com/project/lnaden/cookiecutter-compchem/branch/master)
 [![Documentation Status](https://readthedocs.org/projects/compchem-cookiecutter/badge/?version=latest)](http://compchem-cookiecutter.readthedocs.io/en/latest/?badge=latest)
 
 
