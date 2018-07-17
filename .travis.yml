@@ -97,7 +97,7 @@ matrix:
 
 before_install:
     # Make sure pip is around
-  - if [[ "$TRAVIS_OS_NAME" == "osx" && ! $(command -v pip) ]]; then echo $(which pip2); echo $(which python); mkdir -p $HOME/bin && ln -s $(which pip2) $HOME/bin/pip; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" && ! $(command -v pip) ]]; then ls -l $(which pip2); ls -l $(which python); mkdir -p $HOME/bin && ln -s $(which pip2) $HOME/bin/pip; fi
     # Make sure pip is around (works on > 3.4 which the cookiecutter is)
   # - sudo python -m ensurepip
 
