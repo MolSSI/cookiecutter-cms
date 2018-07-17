@@ -127,8 +127,3 @@ after_install:
     # Build the docs
   - cd docs
   - make html
-
-branches:
-  only:
-  - master
-  - newtravis
