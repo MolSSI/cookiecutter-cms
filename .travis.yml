@@ -1,3 +1,5 @@
+language: python
+
 matrix:
   include:
     - env:
@@ -96,6 +98,9 @@ matrix:
         - PYTHON_VER=3.5
 
 before_install:
+    # Configure the fact that travis is missing some things
+  - if [[ $TRAVIS_OS_NAME == 'osx' && $(command -v pip) ]]; then ln -s pip3 pip; fi
+
     # Install a few requirements
   - pip install pyyaml cookiecutter
 
