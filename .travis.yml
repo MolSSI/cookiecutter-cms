@@ -97,13 +97,13 @@ matrix:
 
 before_install:
     # Make sure pip is around
-  # - if [[ "$TRAVIS_OS_NAME" == "osx" && ! $(command -v pip) ]]; then ls -l $(which pip2); ls -l $(which python); mkdir -p $HOME/bin && ln -s $(which pip2) $HOME/bin/pip; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" && ! $(command -v pip) ]]; then sudo easy_install pip; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" && ! $(command -v pip) ]]; then mkdir -p $HOME/bin && ln -s $(which pip2) $HOME/bin/pip; fi
+  # - if [[ "$TRAVIS_OS_NAME" == "osx" && ! $(command -v pip) ]]; then easy_install pip --user; fi
     # Make sure pip is around (works on > 3.4 which the cookiecutter is)
   # - sudo python -m ensurepip
 
     # Install a few requirements
-  - sudo pip install pyyaml cookiecutter
+  - pip install --user pyyaml cookiecutter
 
     # Build out the cookiecutter from settings
   - python tests/setup_cookiecutter.py default_project $LICENSE $DEPEND_SOURCE
