@@ -54,21 +54,18 @@ matrix:
         - PYTHON_VER=3.5
 
     - os: linux
-      language: python
       python: 3.6
       env:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.6
     - os: linux
-      language: python
       python: 3.6
       env:
         - LICENSE=1
         - DEPEND_SOURCE=2
         - PYTHON_VER=3.6
     - os: linux
-      language: python
       python: 3.6
       env:
         - LICENSE=2
@@ -76,21 +73,18 @@ matrix:
         - PYTHON_VER=3.6
 
     - os: linux
-      language: python
       python: 3.5
       env:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.5
     - os: linux
-      language: python
       python: 3.5
       env:
         - LICENSE=1
         - DEPEND_SOURCE=2
         - PYTHON_VER=3.5
     - os: linux
-      language: python
       python: 3.5
       env:
         - LICENSE=2
@@ -99,8 +93,8 @@ matrix:
 
 before_install:
     # Make sure pip is around (works on > 3.4 which the cookiecutter is)
-  # - if [[ $TRAVIS_OS_NAME == 'osx' && ! $(command -v pip) ]]; then ln -s pip3 pip; fi
-  - sudo python -m ensurepip
+  - if [[ $TRAVIS_OS_NAME == 'osx' && ! $(command -v pip) ]]; then mkdir -p $HOME/bin && ln -s $(which pip3) $HOME/bin/pip; fi
+  # - sudo python -m ensurepip
 
     # Install a few requirements
   - pip install pyyaml cookiecutter
