@@ -103,7 +103,7 @@ before_install:
   # - sudo python -m ensurepip
 
     # Install a few requirements
-  - pip install --user pyyaml cookiecutter
+  - pip install pyyaml cookiecutter
 
     # Build out the cookiecutter from settings
   - python tests/setup_cookiecutter.py default_project $LICENSE $DEPEND_SOURCE
