@@ -26,7 +26,7 @@ before_install:
   - df -h
   - ulimit -a
 
-    # Install the Python environemt
+    # Install the Python environment
   - source devtools/travis-ci/before_install.sh
   - python -V
 

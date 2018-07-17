@@ -98,8 +98,9 @@ matrix:
         - PYTHON_VER=3.5
 
 before_install:
-    # Configure the fact that travis is missing some things
-  - if [[ $TRAVIS_OS_NAME == 'osx' && $(command -v pip) ]]; then ln -s pip3 pip; fi
+    # Make sure pip is around (works on > 3.4 which the cookiecutter is)
+  # - if [[ $TRAVIS_OS_NAME == 'osx' && $(command -v pip) ]]; then ln -s pip3 pip; fi
+  - python -m ensurepip
 
     # Install a few requirements
   - pip install pyyaml cookiecutter
