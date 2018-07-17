@@ -22,82 +22,82 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.6
-    - os: osx
-      language: generic
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=2
-        - PYTHON_VER=3.6
-    - os: osx
-      language: generic
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.6
-    - os: osx
-      language: generic
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=1
-        - PYTHON_VER=3.5
-    - os: osx
-      language: generic
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=2
-        - PYTHON_VER=3.5
-    - os: osx
-      language: generic
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.5
-
-    - os: linux
-      python: 3.6
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=1
-        - PYTHON_VER=3.6
-
-    - os: linux
-      python: 3.6
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=2
-        - PYTHON_VER=3.6
-
-    - os: linux
-      python: 3.6
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.6
-
-    - os: linux
-      python: 3.5
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=1
-        - PYTHON_VER=3.5
-
-    - os: linux
-      python: 3.5
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=2
-        - PYTHON_VER=3.5
-
-    - os: linux
-      python: 3.5
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.5
+#    - os: osx
+#      language: generic
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=2
+#        - PYTHON_VER=3.6
+#    - os: osx
+#      language: generic
+#      env:
+#        - LICENSE=2
+#        - DEPEND_SOURCE=3
+#        - PYTHON_VER=3.6
+#    - os: osx
+#      language: generic
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=1
+#        - PYTHON_VER=3.5
+#    - os: osx
+#      language: generic
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=2
+#        - PYTHON_VER=3.5
+#    - os: osx
+#      language: generic
+#      env:
+#        - LICENSE=2
+#        - DEPEND_SOURCE=3
+#        - PYTHON_VER=3.5
+#
+#    - os: linux
+#      python: 3.6
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=1
+#        - PYTHON_VER=3.6
+#
+#    - os: linux
+#      python: 3.6
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=2
+#        - PYTHON_VER=3.6
+#
+#    - os: linux
+#      python: 3.6
+#      env:
+#        - LICENSE=2
+#        - DEPEND_SOURCE=3
+#        - PYTHON_VER=3.6
+#
+#    - os: linux
+#      python: 3.5
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=1
+#        - PYTHON_VER=3.5
+#
+#    - os: linux
+#      python: 3.5
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=2
+#        - PYTHON_VER=3.5
+#
+#    - os: linux
+#      python: 3.5
+#      env:
+#        - LICENSE=2
+#        - DEPEND_SOURCE=3
+#        - PYTHON_VER=3.5
 
 before_install:
     # Make sure pip is around (works on > 3.4 which the cookiecutter is)
-  - if [[ "$TRAVIS_OS_NAME" == "osx" && ! $(command -v pip) ]]; then mkdir -p $HOME/bin && ln -s $(which pip3) $HOME/bin/pip && export PATH=$PATH:$HOME/bin; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" && ! $(command -v pip) ]]; echo $PATH; then mkdir -p $HOME/bin && ln -s $(which pip3) $HOME/bin/pip && export PATH=$PATH:$HOME/bin; fi
   # - sudo python -m ensurepip
 
     # Install a few requirements
