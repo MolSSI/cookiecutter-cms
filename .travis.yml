@@ -22,78 +22,78 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.6
-    - os: osx
-      language: generic
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=2
-        - PYTHON_VER=3.6
-    - os: osx
-      language: generic
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.6
-    - os: osx
-      language: generic
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=1
-        - PYTHON_VER=3.5
-    - os: osx
-      language: generic
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=2
-        - PYTHON_VER=3.5
-    - os: osx
-      language: generic
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.5
-
-    - os: linux
-      python: 3.6
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=1
-        - PYTHON_VER=3.6
-
-    - os: linux
-      python: 3.6
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=2
-        - PYTHON_VER=3.6
-
-    - os: linux
-      python: 3.6
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.6
-
-    - os: linux
-      python: 3.5
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=1
-        - PYTHON_VER=3.5
-
-    - os: linux
-      python: 3.5
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=2
-        - PYTHON_VER=3.5
-
-    - os: linux
-      python: 3.5
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.5
+#    - os: osx
+#      language: generic
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=2
+#        - PYTHON_VER=3.6
+#    - os: osx
+#      language: generic
+#      env:
+#        - LICENSE=2
+#        - DEPEND_SOURCE=3
+#        - PYTHON_VER=3.6
+#    - os: osx
+#      language: generic
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=1
+#        - PYTHON_VER=3.5
+#    - os: osx
+#      language: generic
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=2
+#        - PYTHON_VER=3.5
+#    - os: osx
+#      language: generic
+#      env:
+#        - LICENSE=2
+#        - DEPEND_SOURCE=3
+#        - PYTHON_VER=3.5
+#
+#    - os: linux
+#      python: 3.6
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=1
+#        - PYTHON_VER=3.6
+#
+#    - os: linux
+#      python: 3.6
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=2
+#        - PYTHON_VER=3.6
+#
+#    - os: linux
+#      python: 3.6
+#      env:
+#        - LICENSE=2
+#        - DEPEND_SOURCE=3
+#        - PYTHON_VER=3.6
+#
+#    - os: linux
+#      python: 3.5
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=1
+#        - PYTHON_VER=3.5
+#
+#    - os: linux
+#      python: 3.5
+#      env:
+#        - LICENSE=1
+#        - DEPEND_SOURCE=2
+#        - PYTHON_VER=3.5
+#
+#    - os: linux
+#      python: 3.5
+#      env:
+#        - LICENSE=2
+#        - DEPEND_SOURCE=3
+#        - PYTHON_VER=3.5
 
 before_install:
     # Make sure pip is around
@@ -102,7 +102,7 @@ before_install:
   # - sudo python -m ensurepip
 
     # Install a few requirements
-  - pip install pyyaml cookiecutter
+  - sudo pip install pyyaml cookiecutter
 
     # Build out the cookiecutter from settings
   - python tests/setup_cookiecutter.py default_project $LICENSE $DEPEND_SOURCE
