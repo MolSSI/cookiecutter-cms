@@ -1,24 +1,104 @@
 language: python
 
-python:
-    - 3.6
-
 matrix:
   include:
-    - env:
-       - LICENSE=1
-       - DEPEND_SOURCE=1
-       - PYTHON_VER=3.6
-    - env:
-       - LICENSE=1
-       - DEPEND_SOURCE=2
-       - PYTHON_VER=3.6
-    - env:
-       - LICENSE=2
-       - DEPEND_SOURCE=3
-       - PYTHON_VER=3.6
+#    - env:
+#       - LICENSE=1
+#       - DEPEND_SOURCE=1
+#       - PYTHON_VER=3.6
+#    - env:
+#       - LICENSE=1
+#       - DEPEND_SOURCE=2
+#       - PYTHON_VER=3.6
+#    - env:
+#       - LICENSE=2
+#       - DEPEND_SOURCE=3
+#       - PYTHON_VER=3.6
+
+    # Extra includes for OSX since python language is not available by default on OSX
+    - os: osx
+      language: generic
+      env:
+        - LICENSE=1
+        - DEPEND_SOURCE=1
+        - PYTHON_VER=3.6
+    - os: osx
+      language: generic
+      env:
+        - LICENSE=1
+        - DEPEND_SOURCE=2
+        - PYTHON_VER=3.6
+    - os: osx
+      language: generic
+      env:
+        - LICENSE=2
+        - DEPEND_SOURCE=3
+        - PYTHON_VER=3.6
+    - os: osx
+      language: generic
+      env:
+        - LICENSE=1
+        - DEPEND_SOURCE=1
+        - PYTHON_VER=3.5
+    - os: osx
+      language: generic
+      env:
+        - LICENSE=1
+        - DEPEND_SOURCE=2
+        - PYTHON_VER=3.5
+    - os: osx
+      language: generic
+      env:
+        - LICENSE=2
+        - DEPEND_SOURCE=3
+        - PYTHON_VER=3.5
+
+    - os: linux
+      python: 3.6
+      env:
+        - LICENSE=1
+        - DEPEND_SOURCE=1
+        - PYTHON_VER=3.6
+
+    - os: linux
+      python: 3.6
+      env:
+        - LICENSE=1
+        - DEPEND_SOURCE=2
+        - PYTHON_VER=3.6
+
+    - os: linux
+      python: 3.6
+      env:
+        - LICENSE=2
+        - DEPEND_SOURCE=3
+        - PYTHON_VER=3.6
+
+    - os: linux
+      python: 3.5
+      env:
+        - LICENSE=1
+        - DEPEND_SOURCE=1
+        - PYTHON_VER=3.5
+
+    - os: linux
+      python: 3.5
+      env:
+        - LICENSE=1
+        - DEPEND_SOURCE=2
+        - PYTHON_VER=3.5
+
+    - os: linux
+      python: 3.5
+      env:
+        - LICENSE=2
+        - DEPEND_SOURCE=3
+        - PYTHON_VER=3.5
 
 before_install:
+    # Make sure pip is around, on OSX Travis we have to do some shenanigans
+  - if [[ "$TRAVIS_OS_NAME" == "osx" && ! $(command -v pip) ]]; then source cihelpers/osx_travis_py_helper.sh; fi
+
     # Install a few requirements
   - pip install pyyaml cookiecutter
 
@@ -47,4 +127,3 @@ after_install:
     # Build the docs
   - cd docs
   - make html
-

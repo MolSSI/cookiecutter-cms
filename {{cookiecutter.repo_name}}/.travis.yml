@@ -26,7 +26,7 @@ before_install:
   - df -h
   - ulimit -a
 
-    # Install the Python environemt
+    # Install the Python environment
   - source devtools/travis-ci/before_install.sh
   - python -V
 
@@ -38,7 +38,7 @@ install:
 {% else %}
     # Create test environment for package
   - conda create -n test python=$PYTHON_VER pip pytest pytest-cov
-  - source activate test
+  - conda activate test
 
     # Install pip only modules
   - pip install codecov
