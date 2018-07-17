@@ -2,18 +2,18 @@ language: python
 
 matrix:
   include:
-    - env:
-       - LICENSE=1
-       - DEPEND_SOURCE=1
-       - PYTHON_VER=3.6
-    - env:
-       - LICENSE=1
-       - DEPEND_SOURCE=2
-       - PYTHON_VER=3.6
-    - env:
-       - LICENSE=2
-       - DEPEND_SOURCE=3
-       - PYTHON_VER=3.6
+#    - env:
+#       - LICENSE=1
+#       - DEPEND_SOURCE=1
+#       - PYTHON_VER=3.6
+#    - env:
+#       - LICENSE=1
+#       - DEPEND_SOURCE=2
+#       - PYTHON_VER=3.6
+#    - env:
+#       - LICENSE=2
+#       - DEPEND_SOURCE=3
+#       - PYTHON_VER=3.6
 
     # Extra includes for OSX since python language is not available by default on OSX
     - os: osx
@@ -59,12 +59,14 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.6
+
     - os: linux
       python: 3.6
       env:
         - LICENSE=1
         - DEPEND_SOURCE=2
         - PYTHON_VER=3.6
+
     - os: linux
       python: 3.6
       env:
@@ -78,12 +80,14 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.5
+
     - os: linux
       python: 3.5
       env:
         - LICENSE=1
         - DEPEND_SOURCE=2
         - PYTHON_VER=3.5
+
     - os: linux
       python: 3.5
       env:
@@ -93,7 +97,7 @@ matrix:
 
 before_install:
     # Make sure pip is around (works on > 3.4 which the cookiecutter is)
-  - if [[ $TRAVIS_OS_NAME == 'osx' && ! $(command -v pip) ]]; then mkdir -p $HOME/bin && ln -s $(which pip3) $HOME/bin/pip; fi
+  - if [[ $TRAVIS_OS_NAME == 'osx' && ! $(command -v pip) ]]; then mkdir -p $HOME/bin && ln -s $(which pip3) $HOME/bin/pip && export PATH=$PATH:$HOME/bin; fi
   # - sudo python -m ensurepip
 
     # Install a few requirements
