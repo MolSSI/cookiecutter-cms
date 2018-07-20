@@ -20,7 +20,7 @@ Windows testing if you only plan to deploy on specific platforms. These are just
 
 This directory contains the files to build and deploy on [Conda](https://conda.io/).
 
-* `conda-recipie`: directory containing all the build objects required for Conda. All files in this folder must have their given names
+* `conda-recipe`: directory containing all the build objects required for Conda. All files in this folder must have their given names
   * `meta.yaml`: The yaml file needed by Conda to construct the build
   * `build.sh`: Unix-based instructions for how to install the software interpreted by Conda
   * `bld.bat`: Windows-based instructions for how to install the software interpreted by Conda
@@ -47,7 +47,7 @@ This directory contains the files to build and deploy on [Conda](https://conda.i
 ## Versioneer Auto-version
 [Versioneer](https://github.com/warner/python-versioneer) will automatically infer what version 
 is installed by looking at the `git` tags and how many commits ahead this version is. The format follows 
-[PEP 400](https://www.python.org/dev/peps/pep-0440/) and has the regular expression of:
+[PEP 440](https://www.python.org/dev/peps/pep-0440/) and has the regular expression of:
 ```regexp
 \d+.\d+.\d+(?\+\d+-[a-z0-9]+)
 ```
