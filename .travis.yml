@@ -2,18 +2,6 @@ language: python
 
 matrix:
   include:
-#    - env:
-#       - LICENSE=1
-#       - DEPEND_SOURCE=1
-#       - PYTHON_VER=3.6
-#    - env:
-#       - LICENSE=1
-#       - DEPEND_SOURCE=2
-#       - PYTHON_VER=3.6
-#    - env:
-#       - LICENSE=2
-#       - DEPEND_SOURCE=3
-#       - PYTHON_VER=3.6
 
     # Extra includes for OSX since python language is not available by default on OSX
     - os: osx

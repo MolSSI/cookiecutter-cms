@@ -73,7 +73,8 @@ To get started additional tests can be added to the `project/tests/` folder. Any
 included in the testing framework. While these can be added in anywhere in your directory structure, it is highly recommended to keep them
 contained within the `project/tests/` folder.
 
-Tests can be run with the `py.test -v` command. There are a number of additional command line arguments to [explore](https://docs.pytest.org/en/latest/usage.html).
+Tests can be run with the `py.test -v` command. There are a number of additional command line arguments to 
+[explore](https://docs.pytest.org/en/latest/usage.html).
 
 ### Continuous Integration
 Testing is accomplished with both [Appveyor](https://www.appveyor.com) (for Windows testing) and 
@@ -82,6 +83,56 @@ are completely free for open source projects and allow you to automatically veri
 variety of OS's and
 Python versions. To begin please register with both Appveyor and Travis-CI and turn on the git hooks under the project 
 tabs. You will also want to correct the badges which appear on the output README file to point to the correct links
+
+You may notice that our scripts 
+[check the MD5 hash for the Miniconda installer](%7B%7Bcookiecutter.repo_name%7D%7D/devtools/travis-ci/before_install.sh) 
+before installing. In general, it is often good idea to check the MD5 of any file which you are pulling from the net
+automatically, 
+especially if there are mirrors, as a simple (but not fool-proof) method of ensuring you got the expected file for 
+effectively free.
+However, there are a couple other reasons we check the MD5 for the Miniconda installer:
+
+* Prevent getting the wrong Miniconda version. Sometimes the Miniconda maintainers will update their download links for 
+  `latest` version before updating the MD5 hashes on the site. This can lead to some unexpected behavior, 
+  especially on major Conda version upgrades. Thus, the MD5 check helps trap that.
+* Should Miniconda ever change their distribution method, this check will fail and you the maintainer can find out 
+  what has changed to update your code as needed. 
+* Some projects may need to pin to very specific, or maximum Conda versions. This helps ensure version expectations. 
+  It should be noted this is a very rare case. 
+  
+#### Pre-caching common build data
+
+Some continuous integration platforms allow for caching of build data, which you may, or may not, find advantageous. 
+The general purpose of the caches are to store and fetch files and folders which may take a long time to either 
+generate or download every time you want to run a CI build; often because build (and developer) time is limited. 
+However, if the cached data changes any time during a build, then the whole targeted cache is updated and uploaded. 
+So, you should only cache things you do not expect to change. 
+
+You may be tempted to cache the Conda installer or Python dependencies fetched from `conda` or `pip`, however, this 
+is an ill advised idea for two main reasons:
+
+1. Your package's dependencies are constantly updating,  
+   so you want catch things which break due to dependencies before your user does. Having CI automatically trigger when 
+   you make changes and at scheduled intervals helps catch these things as soon as possible.
+    * Because you should expect dependencies updating, you will have to upload a new cache each build anyways, somewhat 
+      invalidating one of the advantages of a cache. 
+2. It is a good idea to make sure your testing emulates the most basic user of your code if possible. 
+   If your target users include people who will try to download your package and have it "just work" for their project, 
+   then your CI testing should try to do this as well. This would include getting newest, updated installer and 
+   dependencies. One example 
+   of this may be industry, non-developer users, who do not know all the nuances and inner workings of package 
+   dependencies or versions. It is not reasonable to expect them to know these nuances either, its why you are the 
+   developer.
+
+There may be some times where the caching feature is helpful for you. One example: including test data which is too 
+large to store on GitHub, but also has a slow mirror hosting it. A cache will help speed up the test since you 
+ wont have to download from the slower mirror. If you this sounds like a helpful feature, you can check out the 
+links below. We do not implement them for this Cookiecutter, but they can be added to your package as needed.
+
+* [Travis-CI Caching](https://docs.travis-ci.com/user/caching/)
+* [AppVeyor Caching](https://www.appveyor.com/docs/build-cache/)
+ 
+  
 
 ### Documentation 
 Make a [ReadTheDocs](https://readthedocs.org) account and turn on the git hook. Although you can manually make the 
@@ -105,6 +156,44 @@ New projects generally should not be built with Python 2.7 support in mind, see 
 3 has been released for almost a decade and projects long term usage should not be shacked by legacy methods that will 
 have to be replaced in very short order as Python 2 support is retired.
 
+
+## Conda and PyPI (`pip`)
+
+Should you deploy and/or develop on Conda (with the `conda-build` tool) or PyPI (with the `pip` tool)? Good question, 
+both have their own advantages and weaknesses as they both are designed to do very different things. Fortunately, 
+many of the features you will need for this Cookiecutter overlap.
+We will not advocate here for one or the other, nor will we cover all the differences. We can however recommend some 
+additional resources where you can read and find out more at the end of this section.
+
+We will cover the major differences you the developer will see between the two as they relate to this Cookiecutter. 
+
+The first major difference is the dependency sources. Both [Conda](https://anaconda.org) and [PyPI](https://pypi.org/) 
+have different packages which individually choose to deploy on one or the other (often both), so its important to keep 
+that in mind when choosing a dependency source. 
+
+For testing purpose, the PyPi tool, `pip`, is much faster about 
+building your packages than the Conda tool, `conda-build`, will be. Depending on the number of dependencies, you may 
+have conditions where `conda-build` takes 10-20 min to resolve, download, configure, and install all dependencies 
+*before your tests start*, whereas `pip` would do the same in about 5 min. It is also important to note that both 
+`pip` and `conda-build` are not *testing tools* in and of themselves, they are deployment and dependency resolution 
+tools.  For pure testing, we include other packages like [pytest](https://pytest.org).
+
+From a deployment perspective, it is possible to deploy your package on both platforms, although doing so is beyond 
+the scope of this Cookiecutter. 
+
+Lastly, these are optional features! You could choose to not rely on either Conda or PyPI, assuming your package 
+does not need dependencies. We do highly recommend you pick one of them for dependency resolution so you (and your 
+potential users) are not having to manually find and install all the dependencies you may have. To put some historical 
+perspective on this, NumPy and SciPy used to ask the users to install the [BLAS](http://www.netlib.org/blas/) and 
+[LAPACK](http://www.netlib.org/lapack/) libraries on their own, and 
+then also make sure they were linked correctly to use in Python. These hurdles are no longer required through the 
+package managers, Huzzah!
+
+### Additional reading for Conda and PyPI
+
+* [Author of the Python Data Science Handbook from O'Rilley's Blog on Conda Myths and Misconceptions](https://jakevdp.github.io/blog/2016/08/25/conda-myths-and-misconceptions/)
+* [Conda's Package Management docs](https://conda.io/docs/user-guide/tasks/manage-pkgs.html)
+* [`pip` User Guide](https://pip.pypa.io/en/stable/user_guide/)
 
 
 
