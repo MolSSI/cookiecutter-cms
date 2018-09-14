@@ -73,7 +73,7 @@ To get started additional tests can be added to the `project/tests/` folder. Any
 included in the testing framework. While these can be added in anywhere in your directory structure, it is highly recommended to keep them
 contained within the `project/tests/` folder.
 
-Tests can be run with the `py.test -v` command. There are a number of additional command line arguments to 
+Tests can be run with the `pytest -v` command. There are a number of additional command line arguments to 
 [explore](https://docs.pytest.org/en/latest/usage.html).
 
 ### Continuous Integration
