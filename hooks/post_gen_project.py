@@ -36,7 +36,7 @@ def git_init_and_tag():
     invoke_shell("git init")
     # Add files
     invoke_shell("git add .")
-    invoke_shell("git commit -m \"Initial commit after Comp. Chem. Cookiecutter creation\"")
+    invoke_shell("git commit -m \"Initial commit after CMS Cookiecutter creation\"")
     # Set the 0.0.0 tag
     invoke_shell("git tag 0.0.0")
 

@@ -17,4 +17,4 @@ Copyright (c) {% now 'utc', '%Y' %}, {{cookiecutter.author_name}}
 #### Acknowledgements
  
 Project based on the 
-[Computational Chemistry Python Cookiecutter](https://github.com/choderalab/cookiecutter-python-comp-chem)
+[Computational Molecular Science Python Cookiecutter](https://github.com/molssi/cookiecutter-cms)
