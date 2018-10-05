@@ -1,12 +1,12 @@
-# Cookiecutter for Computational Chemistry Python Packages
+# Cookiecutter for Computational Molecular Sciences (CMS) Python Packages
 [//]: # (Badges)
-[![Travis Build Status](https://travis-ci.org/choderalab/cookiecutter-compchem.png)](https://travis-ci.org/choderalab/cookiecutter-compchem)
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/plygjybxqxy04rad/branch/master?svg=true)](https://ci.appveyor.com/project/lnaden/cookiecutter-compchem/branch/master)
-[![Documentation Status](https://readthedocs.org/projects/compchem-cookiecutter/badge/?version=latest)](http://compchem-cookiecutter.readthedocs.io/en/latest/?badge=latest)
+[![Travis Build Status](https://travis-ci.org/MolSSI/cookiecutter-cms.svg?branch=master)](https://travis-ci.org/MolSSI/cookiecutter-cms)
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/yxb39cib8osqg41l/branch/master?svg=true)](https://ci.appveyor.com/project/Lnaden/cookiecutter-cms/branch/master)
+[![Documentation Status](https://readthedocs.org/projects/cookiecutter-cms/badge/?version=latest)](https://cookiecutter-cms.readthedocs.io/en/latest/?badge=latest)
 
 
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for those interested in developing computational 
-chemistry packages in Python. Skeletal starting repositories can be created from this template to create the 
+molecular packages in Python. Skeletal starting repositories can be created from this template to create the 
 file structure semi-autonomously so you can focus on what's important: the science!
 
 The skeletal structure is designed to help you get started, but do not feel limited by the skeleton's features 
@@ -38,13 +38,13 @@ With [`cookiecutter` installed](https://cookiecutter.readthedocs.io/en/latest/in
 execute the following command inside the folder you want to create the skeletal repository. 
 
 ```bash
-cookiecutter gh:choderalab/cookiecutter-compchem
+cookiecutter gh:molssi/cookiecutter-cms
 ```
 
 Which fetches this repository from github automatically and prompts the user for some simple information such as 
 package name, author(s), and licences. 
 
-[![The cookiecutter in action](http://img.youtube.com/vi/_E7AlaG8zbk/0.jpg)](http://www.youtube.com/watch?v=_E7AlaG8zbk "Computational Chemistry Cookieucutter Example")
+[![The cookiecutter in action](http://img.youtube.com/vi/_E7AlaG8zbk/0.jpg)](http://www.youtube.com/watch?v=_E7AlaG8zbk "Computational Molecular Sciences Cookieucutter Example")
 
 ## Next steps and web integrations
 The repository contains a number of "hooks" that integrate with a variety of web services. To fully integrate the project
@@ -67,7 +67,7 @@ proceed from there.
 The Python testing framework was chosen to be [pytest](https://pytest.org) for this project. Other testing frameworks are available;
 however, the authors believe the combination of easy [parametrization of tests](https://docs.pytest.org/en/latest/parametrize.html),
 [fixtures](https://docs.pytest.org/en/latest/fixture.html), and [test marking](https://docs.pytest.org/en/latest/example/markers.html)
-make `pytest` particularly suited for computational chemistry.
+make `pytest` particularly well suited for molecular software packages.
 
 To get started additional tests can be added to the `project/tests/` folder. Any function starting with `test_*` will automatically be
 included in the testing framework. While these can be added in anywhere in your directory structure, it is highly recommended to keep them
@@ -246,11 +246,13 @@ upon setup.
 
 ## Acknowledgments
 
-This cookiecutter is developed by Levi N. Naden of Memorial Sloan Kettering Cancer Center in conjunction with 
+This cookiecutter is developed by Levi N. Naden and 
 Daniel G. A. Smith from the [Molecular Sciences Software Institute (MolSSI)](http://molssi.org/). Copyright (c) 2018.
 
 Directory structure template based on recommendation from the 
 [Chodera Lab's Software Development Guidelines](https://github.com/choderalab/software-development/blob/master/STRUCTURING_YOUR_PROJECT.md).
+
+Original hosting of repository owned by the [Chodera Lab](https://github.com/choderalab)
 
 Elements of this repository drawn from the 
 [cookiecutter-data-science](https://github.com/drivendata/cookiecutter-data-science) by Driven Data

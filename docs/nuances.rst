@@ -1,7 +1,7 @@
 Warnings and Caveats from the Cookiecutter
 ==========================================
 
-We encourage users to look at the parent Computational Chemistry Cookiecutter as ways to template their own output
+We encourage users to look at the parent Computational Molecular Sciences Cookiecutter as ways to template their own output
 projects from the `Cookiecutter <https://github.com/audreyr/cookiecutter>`_. However, there are a few things the
 parent does to make the illustration work, but should probably not be followed in your projects. These are mostly
 because the parent has to simulate an output, then test the output of the cookiecutter, which is something you will

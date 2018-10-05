@@ -1,10 +1,10 @@
-.. Computational Chemistry Cookiecutter documentation master file, created by
+.. Computational Molecular Sciences Cookiecutter documentation master file, created by
    sphinx-quickstart on Fri Apr 27 10:12:46 2018.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Cookiecutter for Computational Chemistry Python Packages
-========================================================
+Cookiecutter for Computational Molecular Sciences Python Packages
+=================================================================
 
 .. note::
 
@@ -13,7 +13,7 @@ Cookiecutter for Computational Chemistry Python Packages
 
 
 A `cookiecutter <https://github.com/audreyr/cookiecutter>`_ template for those interested in developing computational
-chemistry packages in Python. Skeletal starting repositories can be created from this template to create the
+molecular sciences packages in Python. Skeletal starting repositories can be created from this template to create the
 file structure semi-autonomously so you can focus on what's important: the science!
 
 The skeletal structure is designed to help you get started, but do not feel limited by the skeleton's features
@@ -51,7 +51,7 @@ execute the following command inside the folder you want to create the skeletal 
 
 .. code:: bash
 
-   cookiecutter gh:choderalab/cookiecutter-compchem
+   cookiecutter gh:molssi/cookiecutter-cms
 
 
 Which fetches this repository from github automatically and prompts the user for some simple information such as
@@ -90,13 +90,13 @@ Testing
 The Python testing framework was chosen to be `pytest <https://pytest.org>`_ for this project. Other testing frameworks are available;
 however, the authors believe the combination of easy `parametrization of tests <https://docs.pytest.org/en/latest/parametrize.html>`_,
 `fixtures <https://docs.pytest.org/en/latest/fixture.html>`_, and `test marking <https://docs.pytest.org/en/latest/example/markers.html>`_
-make ``pytest`` particularly suited for computational chemistry.
+make ``pytest`` particularly well suited for molecular software packages.
 
 To get started additional tests can be added to the ``project/tests/`` folder. Any function starting with ``test_*`` will automatically be
 included in the testing framework. While these can be added in anywhere in your directory structure, it is highly recommended to keep them
 contained within the ``project/tests/`` folder.
 
-Tests can be run with the ``py.test -v`` command. There are a number of additional command line arguments to 
+Tests can be run with the ``pytest -v`` command. There are a number of additional command line arguments to
 `explore <https://docs.pytest.org/en/latest/usage.html>`_.
 
 Continuous Integration
@@ -197,11 +197,13 @@ Additional Pages
 Acknowledgments
 ===============
 
-This cookiecutter is developed by Levi N. Naden of Memorial Sloan Kettering Cancer Center in conjunction with
+This cookiecutter is developed by Levi N. Naden and
 Daniel G. A. Smith from the `Molecular Sciences Software Institute (MolSSI) <http://molssi.org/>`_. Copyright (c) 2018.
 
 Directory structure template based on recommendation from the
 `Chodera Lab's Software Development Guidelines <https://github.com/choderalab/software-development/blob/master/STRUCTURING_YOUR_PROJECT.md>`_.
+
+Original hosting of repository owned by the `Chodera Lab <https://github.com/choderalab>`_
 
 Elements of this repository drawn from the
 `cookiecutter-data-science <https://github.com/drivendata/cookiecutter-data-science>`_ by Driven Data
