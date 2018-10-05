@@ -102,7 +102,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ComputationalMolecularScienceCookiecutterdoc'
+htmlhelp_basename = 'ComputationalMolecularSciencesCookiecutterdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -130,7 +130,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc,
-     'ComputationalMolecularScienceCookiecutter.tex',
+     'ComputationalMolecularSciencesCookiecutter.tex',
      'Computational Molecular Sciences Cookiecutter Documentation',
      'Levi N. Naden, Daniel G. A. Smith', 'manual'),
 ]
@@ -141,7 +141,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'computationalmolecularsciencecookiecutter',
+    (master_doc, 'computationalmolecularsciencescookiecutter',
      'Computational Molecular Sciences Cookiecutter Documentation',
      [author], 1)
 ]
@@ -153,10 +153,10 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'ComputationalMolecularScienceCookiecutter',
+    (master_doc, 'ComputationalMolecularSciencesCookiecutter',
      'Computational Molecular Sciences Cookiecutter Documentation',
-     author, 'ComputationalMolecularScienceCookiecutter',
-     'A Cookiecutter which provides skeletal packages of Computational Molecular Science Software.',
+     author, 'ComputationalMolecularSciencesCookiecutter',
+     'A Cookiecutter which provides skeletal packages of Computational Molecular Sciences Software.',
      'Miscellaneous'),
 ]
 

@@ -13,7 +13,7 @@ Cookiecutter for Computational Molecular Sciences Python Packages
 
 
 A `cookiecutter <https://github.com/audreyr/cookiecutter>`_ template for those interested in developing computational
-molecular science packages in Python. Skeletal starting repositories can be created from this template to create the
+molecular sciences packages in Python. Skeletal starting repositories can be created from this template to create the
 file structure semi-autonomously so you can focus on what's important: the science!
 
 The skeletal structure is designed to help you get started, but do not feel limited by the skeleton's features

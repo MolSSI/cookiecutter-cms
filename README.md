@@ -1,4 +1,4 @@
-# Cookiecutter for Computational Molecular Science (CMS) Python Packages
+# Cookiecutter for Computational Molecular Sciences (CMS) Python Packages
 [//]: # (Badges)
 [![Travis Build Status](https://travis-ci.org/MolSSI/cookiecutter-cms.svg?branch=master)](https://travis-ci.org/MolSSI/cookiecutter-cms)
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/yxb39cib8osqg41l/branch/master?svg=true)](https://ci.appveyor.com/project/Lnaden/cookiecutter-cms/branch/master)
