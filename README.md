@@ -28,7 +28,7 @@ remove deployment platforms, or test with a different suite.
 
 ## Requirements
 
-* Python 3.5, or 3.6
+* Python 3.6, or 3.7
 * [Cookiecutter](http://cookiecutter.readthedocs.io/en/latest/installation.html)
 * [Git](https://git-scm.com/)
 
@@ -99,6 +99,7 @@ However, there are a couple other reasons we check the MD5 for the Miniconda ins
   what has changed to update your code as needed. 
 * Some projects may need to pin to very specific, or maximum Conda versions. This helps ensure version expectations. 
   It should be noted this is a very rare case. 
+
   
 #### Pre-caching common build data
 
@@ -140,6 +141,11 @@ documentation yourself through [Sphinx](http://www.sphinx-doc.org/en/master/usag
 configure [ReadTheDocs](https://docs.readthedocs.io/en/latest/getting_started.html) to automatically build and 
 publish the documentation for you. The initial skeleton of the documentation can be found in the `docs` folder 
 of your output.
+
+### Static Code Analysis
+Make a [LGTM](https://lgtm.com) account and add your project. If desired you can add code review integration by clicking the large green button!
+
+Static code analysis dramatically enhances the quality of your code by finding a large number of common mistakes that both novice and advanced programmers make. There are many static analysis codes on the market, but we have seen that LGTM is a delicate balance between verbosity and catching true errors.
 
 ### Additional Python Settings in `setup.py`
 
