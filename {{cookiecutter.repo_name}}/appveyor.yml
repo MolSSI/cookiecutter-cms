@@ -2,20 +2,20 @@ environment:
 
   matrix:
   {%- if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
-    - PYTHON: "C:\\Miniconda35-x64"
-      PYTHON_VERSION: "3.5"
-      PYTHON_ARCH: "64"
-
     - PYTHON: "C:\\Miniconda36-x64"
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
-  {% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
-    - PYTHON: "C:\\Python35-x64"
-      PYTHON_VERSION: "3.5"
-      PYTHON_ARCH: "64"
 
+    - PYTHON: "C:\\Miniconda37-x64"
+      PYTHON_VERSION: "3.7"
+      PYTHON_ARCH: "64"
+  {% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
     - PYTHON: "C:\\Python36-x64"
       PYTHON_VERSION: "3.6"
+      PYTHON_ARCH: "64"
+
+    - PYTHON: "C:\\Python37-x64"
+      PYTHON_VERSION: "3.7"
       PYTHON_ARCH: "64"
   {% endif %}
 
