@@ -5,14 +5,22 @@
 from setuptools import setup
 import versioneer
 
-DOCLINES = __doc__.split("\n")
+short_description = __doc__.split("\n")
+
+try:
+    with open("README.md", "r") as handle:
+        long_description = handle.read()
+except:
+    long_description = "\n".join(short_description[2:]),
+
 
 setup(
     # Self-descriptive entries which should always be present
     name='{{cookiecutter.repo_name}}',
     author='{{cookiecutter.author_name}}',
-    description=DOCLINES[0],
-    long_description="\n".join(DOCLINES[2:]),
+    description=short_description[0],
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     license='{{cookiecutter.open_source_license}}',
