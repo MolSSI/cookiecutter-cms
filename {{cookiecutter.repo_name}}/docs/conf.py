@@ -20,7 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = '{{cookiecutter.description}}'
-copyright = "{% now 'utc', '%Y' %}, {{cookiecutter.author_name}}"
+copyright = ("{% now 'utc', '%Y' %}, {{cookiecutter.author_name}}. Project structure based on the "
+             "Computational Molecular Science Python Cookiecutter version {{cookiecutter._cms_cc_version}}")
 author = '{{cookiecutter.author_name}}'
 
 # The short X.Y version

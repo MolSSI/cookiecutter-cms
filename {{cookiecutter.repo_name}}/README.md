@@ -17,4 +17,4 @@ Copyright (c) {% now 'utc', '%Y' %}, {{cookiecutter.author_name}}
 #### Acknowledgements
  
 Project based on the 
-[Computational Molecular Science Python Cookiecutter](https://github.com/molssi/cookiecutter-cms)
+[Computational Molecular Science Python Cookiecutter](https://github.com/molssi/cookiecutter-cms) version {{cookiecutter._cms_cc_version}}
