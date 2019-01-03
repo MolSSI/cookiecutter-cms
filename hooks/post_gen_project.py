@@ -46,6 +46,7 @@ def remove_windows_ci():
     if include_windows == "n":
         # Remove with appveyor to be a safe delete
         os.remove("appveyor.yml")
+        os.remove(os.path.join("devtools", "conda-recipe", "bld.bat"))
 
 
 remove_windows_ci()

@@ -226,7 +226,7 @@ upon setup.
 ├── devtools                        <- Deployment, packaging, and CI helpers directory 
 │   ├── README.md
 │   ├── conda-recipe                <- Conda build and deployment skeleton
-│   │   ├── bld.bat
+│   │   ├── bld.bat                 <- Win specific file, not present if Win CI not chosen
 │   │   ├── build.sh
 │   │   └── meta.yaml
 │   └── travis-ci
