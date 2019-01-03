@@ -34,18 +34,16 @@ install:
 
     # Try to update conda first to avoid odd dependency clashes
   - conda update --all
-  - conda install conda-build
 
     # Create test environment for package
-  - conda create -n test python=%PYTHON_VERSION% pip pytest pytest-cov
+  - python devtools\\scripts\\create_conda_env.py -n=test -p=%PYTHON_VERSION% devtools\\conda-envs\\test_env.yaml
+
+    # Activate the test environment
   - activate test
-    
-    # Install any pip only modules
-  - pip install codecov
 
     # Build and install package
-  - conda build --quiet --python=%PYTHON_VERSION% devtools\\conda-recipe
-  - conda install --use-local {{cookiecutter.repo_name}}
+  - python setup.py develop --no-deps
+
   {% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
     # Install the package locally
   - pip install --upgrade pip setuptools
@@ -56,3 +54,6 @@ build: false
 
 test_script:
   - pytest -v --cov={{cookiecutter.repo_name}} {{cookiecutter.repo_name}}\\tests
+
+on_success:
+  - codecov

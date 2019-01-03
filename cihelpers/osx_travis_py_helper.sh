@@ -11,7 +11,9 @@
 # ...
 # SIGH - LNN
 
-# Use PyEnv, dont let brew update EVERYTHING ELSE that we don't need it to
+# IMPORTANT: This should ONLY be used for OSX in Travis CI, not for local production builds of any kind
+
+# Use PyEnv, don't let brew update EVERYTHING ELSE that we don't need it to
 HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade pyenv
 # Pyenv requires minor revision, get the latest
 PYENV_VERSION=$(pyenv install --list |grep $PYTHON_VER | sed -n "s/^[ \t]*\(${PYTHON_VER}\.*[0-9]*\).*/\1/p" | tail -n 1)
