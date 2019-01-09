@@ -39,7 +39,7 @@ conda install conda conda-build jinja2 anaconda-client
 conda update --quiet --all
 {% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
 if [ "$TRAVIS_OS_NAME" == "osx" ]; then
-    brew upgrade pyenv
+    HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade pyenv
     # Pyenv requires minor revision, get the latest
     PYENV_VERSION=$(pyenv install --list |grep $PYTHON_VER | sed -n "s/^[ \t]*\(${PYTHON_VER}\.*[0-9]*\).*/\1/p" | tail -n 1)
     # Install version

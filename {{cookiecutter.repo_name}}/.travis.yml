@@ -1,7 +1,6 @@
 language: python
 
 # Run jobs on container-based infrastructure, can be overridden per job
-dist: xenial
 
 matrix:
   include:
@@ -33,19 +32,15 @@ before_install:
 install:
 {% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
     # Install the package locally
-  - pip install pytest pytest-cov codecov
+  - pip install -U pytest pytest-cov codecov
   - pip install -e .
 {% else %}
     # Create test environment for package
-  - conda create -n test python=$PYTHON_VER pip pytest pytest-cov
+  - python devtools/scripts/create_conda_env.py -n=test -p=$PYTHON_VER devtools/conda-envs/test_env.yaml
+    # Activate the test environment
   - conda activate test
-
-    # Install pip only modules
-  - pip install codecov
-
     # Build and install package
-  - conda build --python=$PYTHON_VER devtools/conda-recipe
-  - conda install --use-local {{cookiecutter.repo_name}}
+  - python setup.py develop --no-deps
 {% endif %}
 
 script:
