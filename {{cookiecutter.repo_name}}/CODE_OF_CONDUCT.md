@@ -57,7 +57,7 @@ project may be further defined and clarified by project maintainers.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at molssi@vt.edu. The project team will
+reported by contacting the project team at '{{cookiecutter.author_email}}'. The project team will
 review and investigate all complaints, and will respond in a way that it deems
 appropriate to the circumstances. The project team is obligated to maintain
 confidentiality with regard to the reporter of an incident. Further details of

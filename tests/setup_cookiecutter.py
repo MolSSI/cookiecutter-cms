@@ -15,6 +15,7 @@ options = [project, # Repo name
            project, # Project name
            project, # First module name
            "cookie monster", # Author name
+           "cookiemonster@trash.can", # Author email
            "", # Description
            lic, # License
            depend, # Dependency
