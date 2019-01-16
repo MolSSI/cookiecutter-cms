@@ -156,11 +156,13 @@ used.
 
 ### Versioneer
 Versioneer automatically provides a version string based on the `git` tag and
-commit hash and exposes it through a `project.__version__` attribute in your
-`project/__init__.py. For example, if a project is on a tag (a release)
-`project.__version__ == v0.1` otherwise a per-commit version is available which
-looks like `v0.3.0+81.g332bfc1` this string would correspond to version 0.3 plus
-81 commits on GitHub hash `332bfc1`.
+commit hash which is exposed through a `project.__version__` attribute in your
+`project/__init__.py`. For example, if you mint a tag (a release) for a project
+through `git tag -a v0.1 -m "Release v0.1."` (push to GitHub through `git push
+origin v0.1`), this tag will then relect in your project: `project.__version__
+== v0.1`.  Otherwise a per-commit version is available which looks like
+`v0.3.0+81.g332bfc1` this string would correspond to version 0.3 plus 81
+commits on git hash `332bfc1`.
 
 
 ## Why is Python 2.X not on the supported versions?
