@@ -154,6 +154,14 @@ package's installation needs. These are settings in the `setup.py` file which co
 how to install your package. Each of the options in the file are commented with what it does and when it should be 
 used. 
 
+### Versioneer
+Versioneer automatically provides a version string based on the `git` tag and
+commit hash and exposes it through a `project.__version__` attribute in your
+`project/__init__.py. For example, if a project is on a tag (a release)
+`project.__version__ == v0.1` otherwise a per-commit version is available which
+looks like `v0.3.0+81.g332bfc1` this string would correspond to version 0.3 plus
+81 commits on GitHub hash `332bfc1`.
+
 
 ## Why is Python 2.X not on the supported versions?
 New projects generally should not be built with Python 2.7 support in mind, see the 
