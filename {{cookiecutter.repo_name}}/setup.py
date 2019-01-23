@@ -18,6 +18,7 @@ setup(
     # Self-descriptive entries which should always be present
     name='{{cookiecutter.repo_name}}',
     author='{{cookiecutter.author_name}}',
+    author_email='{{cookiecutter.author_email}}',
     description=short_description[0],
     long_description=long_description,
     long_description_content_type="text/markdown",

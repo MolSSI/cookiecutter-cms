@@ -8,8 +8,6 @@ If any error is raised, the cookie cutter creation fails and crashes
 import os
 import subprocess as sp
 
-repo_name = '{{ cookiecutter.repo_name }}'
-
 
 def decode_string(string):
     """Helper function to covert byte-string to string, but allows normal strings"""
@@ -36,7 +34,9 @@ def git_init_and_tag():
     invoke_shell("git init")
     # Add files
     invoke_shell("git add .")
-    invoke_shell("git commit -m \"Initial commit after CMS Cookiecutter creation\"")
+    invoke_shell(
+        "git commit -m \"Initial commit after CMS Cookiecutter creation, version {}\"".format(
+            '{{ cookiecutter._cms_cc_version }}'))
     # Set the 0.0.0 tag
     invoke_shell("git tag 0.0.0")
 
