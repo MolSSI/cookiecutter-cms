@@ -161,8 +161,8 @@ commit hash which is exposed through a `project.__version__` attribute in your
 through `git tag -a v0.1 -m "Release v0.1."` (push to GitHub through `git push
 origin v0.1`), this tag will then relect in your project: `project.__version__
 == v0.1`.  Otherwise a per-commit version is available which looks like
-`v0.3.0+81.g332bfc1` this string would correspond to version 0.3 plus 81
-commits on git hash `332bfc1`.
+`v0.3.0+81.g332bfc1`. This string shows the current git (the "g") hash `332bfc1`
+is 81 commits beyond the version 0.3 tag.
 
 
 ## Why is Python 2.X not on the supported versions?
