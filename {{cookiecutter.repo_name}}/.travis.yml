@@ -12,12 +12,21 @@ matrix:
       language: generic
       env: PYTHON_VER=3.7
 
+{% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+    # Pip can use Travis build-in Python
     - os: linux
       python: 3.6
+    - os: linux
+      dist: xenial  # Travis Trusty image does not have Python 3.7, Xenial does
+      python: 3.7
+{% else %}
+    - os: linux
+      language: generic  # No need to set Python version since its conda
       env: PYTHON_VER=3.6
     - os: linux
-      python: 3.7
+      language: generic
       env: PYTHON_VER=3.7
+{% endif %}
 
 before_install:
     # Additional info about the build
