@@ -166,32 +166,28 @@ is 81 commits beyond the version 0.3 tag.
 
 
 ## Why is Python 2.X not on the supported versions?
-New projects generally should not be built with Python 2.7 support in mind, see the 
+New projects generally should not be built with Python 2.7 support in mind; see the 
 [Python 3 Statement](https://python3statement.org/). Although the final Python 2.7 release will be 
 [supported through 2020](http://legacy.python.org/dev/peps/pep-0373/) and is the default on many legacy systems, Python 
-3 has been released for almost a decade and projects long term usage should not be shacked by legacy methods that will 
+3 has been released for almost a decade and a project's long term usage should not be shackled by legacy methods that will 
 have to be replaced in very short order as Python 2 support is retired.
 
 
 ## Conda and PyPI (`pip`)
 
-Should you deploy and/or develop on Conda (with the `conda-build` tool) or PyPI (with the `pip` tool)? Good question, 
-both have their own advantages and weaknesses as they both are designed to do very different things. Fortunately, 
+Should you deploy and/or develop on [Conda](https://anaconda.org) (with the `conda-build` tool) or [PyPI](https://pypi.org/) (with the `pip` tool)? Good question, 
+both have their own advantages and weaknesses as they both are designed to do very different things. Fortunately,
 many of the features you will need for this Cookiecutter overlap.
 We will not advocate here for one or the other, nor will we cover all the differences. We can however recommend some 
 additional resources where you can read and find out more at the end of this section.
 
-We will cover the major differences you the developer will see between the two as they relate to this Cookiecutter. 
-
-The first major difference is the dependency sources. Both [Conda](https://anaconda.org) and [PyPI](https://pypi.org/) 
-have different packages which individually choose to deploy on one or the other (often both), so its important to keep 
-that in mind when choosing a dependency source. 
+We will cover the major differences that you the developer will see between the two as they relate to this Cookiecutter.
 
 For testing purpose, the PyPi tool, `pip`, is much faster about 
 building your packages than the Conda tool, `conda-build`, will be. Depending on the number of dependencies, you may 
 have conditions where `conda-build` takes 10-20 min to resolve, download, configure, and install all dependencies 
 *before your tests start*, whereas `pip` would do the same in about 5 min. It is also important to note that both 
-`pip` and `conda-build` are not *testing tools* in and of themselves, they are deployment and dependency resolution 
+`pip` and `conda-build` are not *testing tools* in and of themselves; they are deployment and dependency resolution 
 tools.  For pure testing, we include other packages like [pytest](https://pytest.org).
 
 From a deployment perspective, it is possible to deploy your package on both platforms, although doing so is beyond 
@@ -226,14 +222,14 @@ no dependency resolution for testing. This helps separate out the concepts of **
 are separate actions, even though deployment should only come after testing, and you should be ready to do both. 
 This should simplify and accelerate  the testing process, but 
 does mean maintaining two, albeit similar, files since a Conda Environment file has a different YAML syntax than 
-a Conda Build  `meta.yaml` file. We feel this benefits outweigh the costs and have adopted this model.
+a Conda Build  `meta.yaml` file. We feel these benefits outweigh the costs and have adopted this model.
 
 ## Deploying your code
 
-Simply testing your code is insufficient for good coding practices, you *should* be ready to deploy 
+Simply testing your code is insufficient for good coding practices; you *should* be ready to deploy 
 your code as well. Do not be afraid of deployment though; Python deployment over the last several years 
 has been getting easier, especially when there are others to manage your deployment for you. 
-There are several ways to handle this, we will cover a couple here, depending on the conditions 
+There are several ways to handle this. We will cover a couple here, depending on the conditions 
 which best suit your needs. The list below is neither exhaustive nor exclusive. There are times
 when you may want to build your packages yourself and upload them for developmental purposes, 
 but we recommend letting others handle (and help you) with deployment.
@@ -246,7 +242,7 @@ users or those looking to deploy themselves.
 
 ### Deployment Method 1: Conda Forge
 
-The [Conda Forge](https://conda-forge.org/) community is a great, and the recommended location to deploy your 
+The [Conda Forge](https://conda-forge.org/) community is great, and it is the recommended location to deploy your 
 packages. The community is highly active and many scientific developers have been moving here to access not 
 only Conda Forge's deployment tools, but also for easy access to all the other Python packages which have 
 been deployed on the platform. Even though they provide the deployment architecture, you need to still 
@@ -332,7 +328,7 @@ upon setup.
 ## Acknowledgments
 
 This cookiecutter is developed by Levi N. Naden and 
-Daniel G. A. Smith from the [Molecular Sciences Software Institute (MolSSI)](http://molssi.org/). Copyright (c) 2018.
+Daniel G. A. Smith from the [Molecular Sciences Software Institute (MolSSI)](http://molssi.org/). Copyright (c) 2018-2019.
 
 Directory structure template based on recommendation from the 
 [Chodera Lab's Software Development Guidelines](https://github.com/choderalab/software-development/blob/master/STRUCTURING_YOUR_PROJECT.md).
