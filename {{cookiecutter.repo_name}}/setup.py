@@ -2,10 +2,15 @@
 {{cookiecutter.project_name}}
 {{cookiecutter.description}}
 """
+import sys
 from setuptools import setup
 import versioneer
 
 short_description = __doc__.split("\n")
+
+# from https://github.com/pytest-dev/pytest-runner#conditional-requirement
+needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
+pytest_runner = ['pytest-runner'] if needs_pytest else []
 
 try:
     with open("README.md", "r") as handle:
@@ -34,6 +39,9 @@ setup(
     # Extend/modify the list to include/exclude other items as need be
     package_data={'{{cookiecutter.repo_name}}': ["data/*.dat"]
                   },
+
+    # Allows `setup.py test` to work correctly with pytest
+    setup_requires=[] + pytest_runner,
 
     # Additional entries you may want simply uncomment the lines you want and fill in the data
     # author_email='me@place.org',      # Author email
