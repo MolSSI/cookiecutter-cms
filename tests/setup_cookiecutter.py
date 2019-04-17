@@ -8,7 +8,8 @@ import sys
 project = sys.argv[1]
 lic = sys.argv[2]
 depend = sys.argv[3]
-print("Options: open_source_license=%s, dependency_source=%s" % (lic, depend)) 
+windows = sys.argv[4]
+print("Options: open_source_license=%s, dependency_source=%s, windows_ci=%s" % (lic, depend, windows))
 
 # Setup the options
 options = [project, # Repo name
@@ -19,7 +20,7 @@ options = [project, # Repo name
            "", # Description
            lic, # License
            depend, # Dependency
-           "1"] # Windows
+           windows] # Windows
 
 # Open a thread
 p = Popen(["cookiecutter", "."], stdin=PIPE, stdout=PIPE)
