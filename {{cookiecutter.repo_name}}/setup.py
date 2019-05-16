@@ -3,7 +3,7 @@
 {{cookiecutter.description}}
 """
 import sys
-from setuptools import setup
+from setuptools import setup, find_packages
 import versioneer
 
 short_description = __doc__.split("\n")
@@ -32,19 +32,19 @@ setup(
     license='{{cookiecutter.open_source_license}}',
 
     # Which Python importable modules should be included when your package is installed
-    packages=['{{cookiecutter.repo_name}}', "{{cookiecutter.repo_name}}.tests"],
+    # Handled automatically by setuptools. Use 'exclude' to prevent some specific
+    # subpackage(s) from being added, if needed
+    packages=find_packages(),
 
     # Optional include package data to ship with your package
+    # Customize MANIFEST.in if the general case does not suit your needs
     # Comment out this line to prevent the files from being packaged with your software
-    # Extend/modify the list to include/exclude other items as need be
-    package_data={'{{cookiecutter.repo_name}}': ["data/*.dat"]
-                  },
+    include_package_data=True,
 
     # Allows `setup.py test` to work correctly with pytest
     setup_requires=[] + pytest_runner,
 
     # Additional entries you may want simply uncomment the lines you want and fill in the data
-    # author_email='me@place.org',      # Author email
     # url='http://www.my_package.com',  # Website
     # install_requires=[],              # Required packages, pulls from pip if needed; do not use for Conda deployment
     # platforms=['Linux',

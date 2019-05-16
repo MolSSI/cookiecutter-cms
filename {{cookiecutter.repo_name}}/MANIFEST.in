@@ -1,0 +1,6 @@
+include LICENSE
+include MANIFEST.in
+include versioneer.py
+
+graft {{cookiecutter.repo_name}}
+global-exclude *.py[cod] __pycache__ *.so
