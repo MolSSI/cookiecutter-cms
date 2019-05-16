@@ -1,0 +1,2 @@
+graft {{cookiecutter.repo_name}}
+global-exclude *.py[cod] __pycache__ *.so

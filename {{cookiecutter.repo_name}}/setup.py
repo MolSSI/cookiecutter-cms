@@ -37,10 +37,9 @@ setup(
     packages=find_packages(),
 
     # Optional include package data to ship with your package
+    # Customize MANIFEST.in if the general case does not suit your needs
     # Comment out this line to prevent the files from being packaged with your software
-    # Extend/modify the list to include/exclude other items as need be
-    package_data={'{{cookiecutter.repo_name}}': ["data/*.dat"]
-                  },
+    include_package_data=True,
 
     # Allows `setup.py test` to work correctly with pytest
     setup_requires=[] + pytest_runner,
