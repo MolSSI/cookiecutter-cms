@@ -8,7 +8,13 @@ dependencies:
     # Testing
   - pytest
   - pytest-cov
-
-    # Pip-only installs
+{% if cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback' %}
+  # Pip-only installs
   - pip:
     - codecov
+{% else %}  - codecov
+
+    # Pip-only installs
+  #- pip:
+  #  - codecov
+{% endif %}
