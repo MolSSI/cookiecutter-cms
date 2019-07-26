@@ -35,6 +35,9 @@ install:
     # Try to update conda first to avoid odd dependency clashes
   - conda update --all
 
+    # Required for python 3.7 test, see https://github.com/matplotlib/matplotlib/pull/14649/files
+  - activate
+
     # Create test environment for package
   - python devtools\\scripts\\create_conda_env.py -n=test -p=%PYTHON_VERSION% devtools\\conda-envs\\test_env.yaml
 
