@@ -48,7 +48,7 @@ def git_init_and_tag():
     
     # Check for a tag
     version = invoke_shell("git tag", return_output=True)
-
+    # Tag if no tag exists
     if not version:
         invoke_shell("git tag 0.0.0")
 
