@@ -41,7 +41,7 @@ def git_init_and_tag():
         invoke_shell("git init")
 
     # Add files created by cookiecutter 
-    invoke_shell(F"git add .")
+    invoke_shell("git add .")
     invoke_shell(
         "git commit -m \"Initial commit after CMS Cookiecutter creation, version {}\"".format(
             '{{ cookiecutter._cms_cc_version }}'))
