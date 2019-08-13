@@ -4,4 +4,4 @@ API Documentation
 .. autosummary::
    :toctree: autosummary
 
-   projectname.canvas
+   {{cookiecutter.repo_name}}.canvas
