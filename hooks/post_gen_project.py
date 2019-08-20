@@ -17,40 +17,44 @@ def decode_string(string):
         return string
 
 
-def invoke_shell(command, return_output=False):
+def invoke_shell(command, expected_error=True):
+    
+    output = ''
+
     try:
         output = sp.check_output(command, shell=True, stderr=sp.STDOUT)
     except sp.CalledProcessError as e:
         # Trap and print the output in a helpful way
         print(decode_string(e.output), decode_string(e.returncode))
         print(e.output)
-        raise e
+        if not expected_error:
+            raise e
     print(decode_string(output))
-    if return_output:
-            return decode_string(output)
+    return decode_string(output)
 
 
 def git_init_and_tag():
     """Invoke the initial git and tag with 0.0.0 to make an initial version for Versioneer to ID"""
     
     # Check if we are in a git repository
-    directory_status = invoke_shell("git status", return_output=True)
+    directory_status = invoke_shell("git status", expected_error=True)
+    print(F"The directory status is {directory_status}.")
     # Create a repository if not already in one.
     if 'fatal' in directory_status:
         # Initialize git
         invoke_shell("git init")
 
-    # Add files created by cookiecutter 
-    invoke_shell("git add .")
-    invoke_shell(
-        "git commit -m \"Initial commit after CMS Cookiecutter creation, version {}\"".format(
-            '{{ cookiecutter._cms_cc_version }}'))
-    
-    # Check for a tag
-    version = invoke_shell("git tag", return_output=True)
-    # Tag if no tag exists
-    if not version:
-        invoke_shell("git tag 0.0.0")
+        # Add files created by cookiecutter 
+        invoke_shell("git add .")
+        invoke_shell(
+            "git commit -m \"Initial commit after CMS Cookiecutter creation, version {}\"".format(
+                '{{ cookiecutter._cms_cc_version }}'))
+        
+        # Check for a tag
+        version = invoke_shell("git tag", expected_error=True)
+        # Tag if no tag exists
+        if not version:
+            invoke_shell("git tag 0.0.0")
 
 
 def remove_windows_ci():
