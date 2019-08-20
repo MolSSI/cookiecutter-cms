@@ -11,5 +11,5 @@
         "Prefer default anaconda channel with pip fallback",
         "Dependencies from pip only (no conda)"],
     "Include_Windows_continuous_integration": ["y","n"],
-    "_cms_cc_version": 1.0
+    "_cms_cc_version": 1.1
 }
