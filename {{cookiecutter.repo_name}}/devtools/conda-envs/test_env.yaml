@@ -1,11 +1,8 @@
 name: test
 channels:
 dependencies:
-    # Base depends
   - python
   - pip
-
-    # Testing
   - pytest
   - pytest-cov
 {% if cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback' %}
