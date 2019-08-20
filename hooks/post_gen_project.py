@@ -17,9 +17,7 @@ def decode_string(string):
         return string
 
 
-def invoke_shell(command, expected_error=True):
-    
-    output = ''
+def invoke_shell(command, expected_error=True, print_output=True):
 
     try:
         output = sp.check_output(command, shell=True, stderr=sp.STDOUT)
@@ -27,19 +25,20 @@ def invoke_shell(command, expected_error=True):
         # Trap and print the output in a helpful way
         print(decode_string(e.output), decode_string(e.returncode))
         print(e.output)
+        output = e.output
         if not expected_error:
             raise e
-    print(decode_string(output))
+    if print_output:
+        print(decode_string(output))
     return decode_string(output)
 
 
 def git_init_and_tag():
-    """Invoke the initial git and tag with 0.0.0 to make an initial version for Versioneer to ID"""
+    """Invoke the initial git and tag with 0.0.0 to make an initial version for Versioneer to ID if not already in a git repository."""
     
     # Check if we are in a git repository
-    directory_status = invoke_shell("git status", expected_error=True)
-    print(F"The directory status is {directory_status}.")
-    # Create a repository if not already in one.
+    directory_status = invoke_shell("git status", expected_error=True, print_output=False)
+    # Create a repository and commit if not in one.
     if 'fatal' in directory_status:
         # Initialize git
         invoke_shell("git init")
@@ -55,6 +54,8 @@ def git_init_and_tag():
         # Tag if no tag exists
         if not version:
             invoke_shell("git tag 0.0.0")
+    else:
+        print("\ngit repository detected. CookieCutter files have been created in {{ cookiecutter.repo_name }} directory.")
 
 
 def remove_windows_ci():
