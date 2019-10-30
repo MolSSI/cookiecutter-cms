@@ -12,4 +12,4 @@ python:
       path: .
 
 conda:
-  environment: docs/rtd_env.yaml
+  environment: docs/requirements.yaml
