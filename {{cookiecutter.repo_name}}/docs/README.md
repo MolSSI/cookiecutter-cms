@@ -20,3 +20,5 @@ make html
 
 The compiled docs will be in the `_build` directory and can be viewed by opening `index.html` (which may itself 
 be inside a directory called `html/` depending on what version of Sphinx is installed).
+
+If you would like to use ReadTheDocs with `autodoc` (included automatically) and your package has dependencies, you will need to include those dependencies in your documentation yaml file (`rtd_env.yaml`).

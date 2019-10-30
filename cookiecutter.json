@@ -21,5 +21,6 @@
         "Travis+AppVeyor",
         "GitHub Actions (experimental)"
     ],
+    "Include_ReadTheDocs": ["y", "n"],
     "_cms_cc_version": 1.3
 }

@@ -89,6 +89,15 @@ def random_file_cleanup_removal():
             pass
 
 
+
+def remove_rtd():
+    include_rtd = '{{ cookiecutter.Include_ReadTheDocs }}'
+    if include_rtd == "n":
+        rtd_env = os.path.join("docs", "rtd_env.yaml")
+        os.remove('readthedocs.yml')
+        os.remove(rtd_env)
+
 select_continuous_integration_provider()
 random_file_cleanup_removal()
+remove_rtd()
 git_init_and_tag()
