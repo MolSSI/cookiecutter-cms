@@ -78,7 +78,7 @@ Tests can be run with the `pytest -v` command. There are a number of additional 
 
 ### Continuous Integration
 Testing is accomplished with both [Appveyor](https://www.appveyor.com) (for Windows testing) and 
-[Travis-CI](https://travis-ci.org) (for Linux testing). These frameworks are chosen as they
+[Travis-CI](https://travis-ci.com) (for Linux testing). These frameworks are chosen as they
 are completely free for open source projects and allow you to automatically verify that your project works under a 
 variety of OS's and
 Python versions. To begin please register with both Appveyor and Travis-CI and turn on the git hooks under the project 

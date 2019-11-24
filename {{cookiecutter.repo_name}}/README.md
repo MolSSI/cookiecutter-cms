@@ -1,7 +1,7 @@
 {{cookiecutter.project_name}}
 ==============================
 [//]: # (Badges)
-[![Travis Build Status](https://travis-ci.org/REPLACE_WITH_OWNER_ACCOUNT/{{cookiecutter.project_name}}.svg?branch=master)](https://travis-ci.org/REPLACE_WITH_OWNER_ACCOUNT/{{cookiecutter.project_name}})
+[![Travis Build Status](https://travis-ci.com/REPLACE_WITH_OWNER_ACCOUNT/{{cookiecutter.project_name}}.svg?branch=master)](https://travis-ci.com/REPLACE_WITH_OWNER_ACCOUNT/{{cookiecutter.project_name}})
 {% if cookiecutter.Include_Windows_continuous_integration == "y" -%}
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/REPLACE_WITH_APPVEYOR_LINK/branch/master?svg=true)](https://ci.appveyor.com/project/REPLACE_WITH_OWNER_ACCOUNT/{{cookiecutter.project_name}}/branch/master)
 {% endif -%}
