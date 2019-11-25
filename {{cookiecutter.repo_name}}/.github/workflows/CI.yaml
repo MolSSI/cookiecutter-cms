@@ -22,7 +22,7 @@ jobs:
     - name: Create environment for package
       run: |
         eval "$(${CONDA}/conda shell.bash hook)" && conda activate
-        python devtools/scripts/create_conda_env.py -n=test -p=${{ matrix.python-version }} devtools/conda-envs/test_env.yaml
+        python devtools/scripts/create_conda_env.py -n=test -p={{ '${{ matrix.python-version }}' }} devtools/conda-envs/test_env.yaml
     - name: Install package
       run: |
         eval "$(${CONDA}/conda shell.bash hook)" && conda activate test
