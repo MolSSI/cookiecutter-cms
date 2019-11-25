@@ -1,0 +1,45 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 4
+      matrix:
+        os: [macOS-latest, ubuntu-latest]
+        python-version: [3.6, 3.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Additional info about the build
+      run: |
+        uname -a
+        df -h
+        ulimit -a
+    - name: Create environment for package
+      run: |
+        eval "$(${CONDA}/conda shell.bash hook)" && conda activate
+        python devtools/scripts/create_conda_env.py -n=test -p=${{ matrix.python-version }} devtools/conda-envs/test_env.yaml
+    - name: Install package
+      run: |
+        eval "$(${CONDA}/conda shell.bash hook)" && conda activate test
+        pip install . --no-deps
+    - name: Lint with flake8
+      run: |
+        eval "$(${CONDA}/conda shell.bash hook)" && conda activate test
+        pip install flake8
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Run tests
+      run: |
+        eval "$(${CONDA}/bin/conda shell.bash hook)" && conda activate test
+        pytest -v --cov={{ cookiecutter.repo_name }} {{ cookiecutter.repo_name }}/tests/
+    - name: Code coverage
+      run: |
+        eval "$(${CONDA}/bin/conda shell.bash hook)" && conda activate test
+        codecov

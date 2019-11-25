@@ -16,7 +16,7 @@ remove deployment platforms, or test with a different suite.
 ## Features
 * Python-centric skeletal structure with initial module files
 * Pre-configured `setup.py` for installation and packaging
-* Pre-configured Window, Linux, and OSX continuous integration on AppVeyor and Travis-CI
+* Pre-configured Window, Linux, and OSX continuous integration on AppVeyor+Travis-CI and/or GitHub Actions.
 * Choice of dependency locations through `conda-forge`, default `conda`, or `pip` 
 * Basic testing structure with [PyTest](https://docs.pytest.org/en/latest/)
 * Automatic `git` initialization + tag
@@ -317,7 +317,9 @@ upon setup.
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
 ├── versioneer.py                   <- Automatic version control with Versioneer
-├── .github                         <- GitHub hooks for user contrubtion and pull request guides
+├── .github                         <- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
+│   ├── workflows
+│   │   └── CI.yaml
 │   ├── CONTRIBUTING.md
 │   └── PULL_REQUEST_TEMPLATE.md
 ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
