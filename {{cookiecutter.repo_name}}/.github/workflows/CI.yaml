@@ -22,11 +22,11 @@ jobs:
         ulimit -a
 
 {% if cookiecutter.dependency_source != 'Dependencies from pip only (no conda)' %}
-    - name: Setup conda
+    - name: Setup conda (Ubuntu, macOS)
       shell: bash
       if: startsWith(matrix.os, 'macOS') || startsWith(matrix.os, 'ubuntu')
       run: echo "::set-env name=CONDA_EXE::$CONDA/bin/conda"
-    - name: Setup conda
+    - name: Setup conda (Windows)
       shell: bash
       if: startsWith(matrix.os, 'windows')
       run: echo "::set-env name=CONDA_EXE::$CONDA/Scripts/conda.exe"
