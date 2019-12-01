@@ -21,17 +21,6 @@ jobs:
         df -h
         ulimit -a
 
-{% if cookiecutter.dependency_source != 'Dependencies from pip only (no conda)' %}
-    - name: Setup conda (Ubuntu, macOS)
-      shell: bash
-      if: startsWith(matrix.os, 'macOS') || startsWith(matrix.os, 'ubuntu')
-      run: echo "::set-env name=CONDA_EXE::$CONDA/bin/conda"
-    - name: Setup conda (Windows)
-      shell: bash
-      if: startsWith(matrix.os, 'windows')
-      run: echo "::set-env name=CONDA_EXE::$CONDA/Scripts/conda.exe"
-{% endif %}
-
 {% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
     - name: Install testing dependencies
       shell: bash
@@ -41,7 +30,7 @@ jobs:
     - name: Create environment for package
       shell: bash
       run: |
-        eval "$(${CONDA_EXE} shell.bash hook)" && conda activate
+        eval "$(conda shell.bash hook)" && conda activate
         conda info
         python devtools/scripts/create_conda_env.py -n=test -p={{ '${{ matrix.python-version }}' }} devtools/conda-envs/test_env.yaml
 {% endif %}
@@ -52,7 +41,7 @@ jobs:
 {% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
         python -m pip install .
 {% else %}
-        eval "$(${CONDA_EXE} shell.bash hook)" && conda activate test
+        eval "$(conda shell.bash hook)" && conda activate test
         python -m pip install . --no-deps
         conda list --show-channel-urls
 {% endif %}
@@ -61,7 +50,7 @@ jobs:
       shell: bash
       run: |
 {% if cookiecutter.dependency_source != 'Dependencies from pip only (no conda)' %}
-        eval "$(${CONDA_EXE} shell.bash hook)" && conda activate test
+        eval "$(conda shell.bash hook)" && conda activate test
 {% endif %}
         pytest -v --cov={{ cookiecutter.repo_name }} --cov-report=xml {{ cookiecutter.repo_name }}/tests/
 
