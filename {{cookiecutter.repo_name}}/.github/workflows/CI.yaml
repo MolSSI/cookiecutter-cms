@@ -42,6 +42,7 @@ jobs:
       shell: bash
       run: |
         eval "$(${CONDA_EXE} shell.bash hook)" && conda activate
+        conda info
         python devtools/scripts/create_conda_env.py -n=test -p={{ '${{ matrix.python-version }}' }} devtools/conda-envs/test_env.yaml
 {% endif %}
 
@@ -53,6 +54,7 @@ jobs:
 {% else %}
         eval "$(${CONDA_EXE} shell.bash hook)" && conda activate test
         python -m pip install . --no-deps
+        conda list --show-channel-urls
 {% endif %}
 
     - name: Run tests
