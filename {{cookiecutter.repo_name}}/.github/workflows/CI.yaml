@@ -63,12 +63,12 @@ jobs:
 {% if cookiecutter.dependency_source != 'Dependencies from pip only (no conda)' %}
         eval "$(${CONDA_EXE} shell.bash hook)" && conda activate test
 {% endif %}
-        pytest -v --cov={{ cookiecutter.repo_name }} {{ cookiecutter.repo_name }}/tests/
+        pytest -v --cov={{ cookiecutter.repo_name }} --cov-report=xml {{ cookiecutter.repo_name }}/tests/
 
-    - name: Code coverage
-      shell: bash
-      run: |
-{% if cookiecutter.dependency_source != 'Dependencies from pip only (no conda)' %}
-        eval "$(${CONDA_EXE} shell.bash hook)" && conda activate test
-{% endif %}
-        codecov
+    - name: CodeCov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.xml
+        flags: unittests
+        yml: ./.codecov.yml
