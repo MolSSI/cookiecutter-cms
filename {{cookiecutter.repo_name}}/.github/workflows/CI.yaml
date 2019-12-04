@@ -12,6 +12,7 @@ jobs:
         python-version: [3.6, 3.7]
     env:
       PYVER: {{ '${{ matrix.python-version }}' }}
+      CI_OS: {{ '${{ matrix.os }}' }}
 
     steps:
     - uses: actions/checkout@v1
@@ -32,7 +33,7 @@ jobs:
     - name: Create environment for package
       shell: bash
       run: |
-        eval "$(conda shell.bash hook)" && conda activate
+        . devtools/scripts/initialize_conda.sh
         conda info
         python devtools/scripts/create_conda_env.py -n=test -p=$PYVER devtools/conda-envs/test_env.yaml
 {% endif %}
@@ -43,7 +44,7 @@ jobs:
 {% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
         python -m pip install .
 {% else %}
-        eval "$(conda shell.bash hook)" && conda activate test
+        . devtools/scripts/initialize_conda.sh
         python -m pip install . --no-deps
         conda list --show-channel-urls
 {% endif %}
@@ -52,7 +53,7 @@ jobs:
       shell: bash
       run: |
 {% if cookiecutter.dependency_source != 'Dependencies from pip only (no conda)' %}
-        eval "$(conda shell.bash hook)" && conda activate test
+        . devtools/scripts/initialize_conda.sh
 {% endif %}
         pytest -v --cov={{ cookiecutter.repo_name }} --cov-report=xml --color=yes {{ cookiecutter.repo_name }}/tests/
 
