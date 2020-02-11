@@ -33,7 +33,8 @@ jobs:
     - name: Create environment for package
       shell: bash
       run: |
-        . devtools/scripts/initialize_conda.sh
+        . devtools/github-actions/initialize_conda.sh
+        conda activate
         conda info
         python devtools/scripts/create_conda_env.py -n=test -p=$PYVER devtools/conda-envs/test_env.yaml
 {% endif %}
@@ -44,7 +45,8 @@ jobs:
 {% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
         python -m pip install .
 {% else %}
-        . devtools/scripts/initialize_conda.sh
+        . devtools/github-actions/initialize_conda.sh
+        conda activate test
         python -m pip install . --no-deps
         conda list --show-channel-urls
 {% endif %}
@@ -53,7 +55,8 @@ jobs:
       shell: bash
       run: |
 {% if cookiecutter.dependency_source != 'Dependencies from pip only (no conda)' %}
-        . devtools/scripts/initialize_conda.sh
+        . devtools/github-actions/initialize_conda.sh
+        conda activate test
 {% endif %}
         pytest -v --cov={{ cookiecutter.repo_name }} --cov-report=xml --color=yes {{ cookiecutter.repo_name }}/tests/
 
