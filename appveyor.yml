@@ -46,6 +46,6 @@ install:
 build: false
 
 test_script:
-  - pip install pyyaml
+  - pip install pyyaml tox
   - python ../tests/run_yaml.py appveyor.yml test_script script.appveyor.bat
   - .\script.appveyor.bat

@@ -41,7 +41,7 @@ before_install:
 install:
 {% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
     # Install the package locally
-  - pip install -U pytest pytest-cov codecov
+  - pip install -U tox-travis tox pytest-cov codecov
   - pip install -e .
 {% else %}
     # Create test environment for package
@@ -53,7 +53,7 @@ install:
 {% endif %}
 
 script:
-  - pytest -v --cov={{cookiecutter.repo_name}} {{cookiecutter.repo_name}}/tests/
+  - tox
 
 notifications:
     email: false

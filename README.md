@@ -18,7 +18,7 @@ remove deployment platforms, or test with a different suite.
 * Pre-configured `setup.py` for installation and packaging
 * Pre-configured Window, Linux, and OSX continuous integration on AppVeyor and Travis-CI
 * Choice of dependency locations through `conda-forge`, default `conda`, or `pip` 
-* Basic testing structure with [PyTest](https://docs.pytest.org/en/latest/)
+* Basic testing structure with [tox](https://tox.readthedocs.io/en/latest/) and [PyTest](https://docs.pytest.org/en/latest/)
 * Automatic `git` initialization + tag
 * GitHub Hooks
 * Automatic package version control with [Versioneer](https://github.com/warner/python-versioneer)
@@ -73,7 +73,11 @@ To get started additional tests can be added to the `project/tests/` folder. Any
 included in the testing framework. While these can be added in anywhere in your directory structure, it is highly recommended to keep them
 contained within the `project/tests/` folder.
 
-Tests can be run with the `pytest -v` command. There are a number of additional command line arguments to 
+To tox have been added to allow us to test our packages in with various python versions
+and environments. The goal of tox is to allow us to isolate testing environment and make tests
+reproducible locally and on continuous integration.
+
+Tests can be run with the `tox` command. There are a number of additional command line arguments to
 [explore](https://docs.pytest.org/en/latest/usage.html).
 
 ### Continuous Integration
@@ -188,7 +192,7 @@ building your packages than the Conda tool, `conda-build`, will be. Depending on
 have conditions where `conda-build` takes 10-20 min to resolve, download, configure, and install all dependencies 
 *before your tests start*, whereas `pip` would do the same in about 5 min. It is also important to note that both 
 `pip` and `conda-build` are not *testing tools* in and of themselves; they are deployment and dependency resolution 
-tools.  For pure testing, we include other packages like [pytest](https://pytest.org).
+tools.  For pure testing, we include other packages like [tox](https://tox.readthedocs.io/en/latest/).
 
 From a deployment perspective, it is possible to deploy your package on both platforms, although doing so is beyond 
 the scope of this Cookiecutter. 

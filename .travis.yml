@@ -152,7 +152,7 @@ install:
   - source install.travis
 
 script:
-  - pip install pyyaml
+  - pip install pyyaml travis-tox tox
   - python ../tests/run_yaml.py .travis.yml script script.travis
   - source script.travis
 
