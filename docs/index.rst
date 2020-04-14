@@ -26,7 +26,7 @@ Features
 * Pre-configured ``setup.py`` for installation and packaging
 * Pre-configured Window, Linux, and OSX continuous integration on AppVeyor and Travis-CI
 * Choice of dependency locations through ``conda-forge``, default ``conda``, or ``pip``
-* Basic testing structure with `PyTest <https://docs.pytest.org/en/latest/>`_
+* Basic testing structure with `tox <https://tox.readthedocs.io/en/latest/>` and `PyTest <https://docs.pytest.org/en/latest/>`_
 * Automatic ``git`` initialization + tag
 * GitHub Hooks
 * Automatic package version control with `Versioneer <https://github.com/warner/python-versioneer>`_
@@ -96,7 +96,11 @@ To get started additional tests can be added to the ``project/tests/`` folder. A
 included in the testing framework. While these can be added in anywhere in your directory structure, it is highly recommended to keep them
 contained within the ``project/tests/`` folder.
 
-Tests can be run with the ``pytest -v`` command. There are a number of additional command line arguments to
+To tox have been added to allow us to test our packages in with various python versions
+and environments. The goal of tox is to allow us to isolate testing environment and make tests
+reproducible locally and on continuous integration.
+
+Tests can be run with the ``tox`` command. There are a number of additional command line arguments to
 `explore <https://docs.pytest.org/en/latest/usage.html>`_.
 
 Continuous Integration

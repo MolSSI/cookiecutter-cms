@@ -47,13 +47,13 @@ install:
   {% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
     # Install the package locally
   - pip install --upgrade pip setuptools
-  - pip install pytest pytest-cov codecov
+  - pip install tox pytest-cov codecov
   - pip install -e .
   {% endif %}
 build: false
 
 test_script:
-  - pytest -v --cov={{cookiecutter.repo_name}} {{cookiecutter.repo_name}}\\tests
+  - tox
 
 on_success:
   - codecov
