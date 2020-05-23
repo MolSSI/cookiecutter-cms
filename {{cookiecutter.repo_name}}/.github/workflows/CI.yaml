@@ -43,7 +43,9 @@ jobs:
       with:
         python-version: {{ '${{ matrix.python-version }}' }}
         environment-file: devtools/conda-envs/test_env.yaml
+{% if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
         channels: conda-forge,defaults
+{% endif %}
         activate-environment: test
         auto-update-conda: true
         auto-activate-base: false
