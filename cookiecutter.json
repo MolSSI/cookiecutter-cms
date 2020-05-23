@@ -11,5 +11,5 @@
         "Prefer default anaconda channel with pip fallback",
         "Dependencies from pip only (no conda)"],
     "continuous_integration_provider": ["GitHub Actions", "Travis", "Travis+AppVeyor"],
-    "_cms_cc_version": 1.1
+    "_cms_cc_version": 1.3
 }

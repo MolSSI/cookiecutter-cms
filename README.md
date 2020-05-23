@@ -10,7 +10,7 @@ molecular packages in Python. Skeletal starting repositories can be created from
 file structure semi-autonomously so you can focus on what's important: the science!
 
 The skeletal structure is designed to help you get started, but do not feel limited by the skeleton's features 
-included here. Just to name a few things you can alter to suite your needs: change continuous integration options, 
+included here. Just to name a few things you can alter to suit your needs: change continuous integration options, 
 remove deployment platforms, or test with a different suite.
 
 ## Features
@@ -204,7 +204,7 @@ package managers, Huzzah!
 ### Additional reading for Conda and PyPI
 
 * [Author of the Python Data Science Handbook from O'Rilley's Blog on Conda Myths and Misconceptions](https://jakevdp.github.io/blog/2016/08/25/conda-myths-and-misconceptions/)
-* [Conda's Package Management docs](https://conda.io/docs/user-guide/tasks/manage-pkgs.html)
+* [Conda's Package Management docs](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html)
 * [`pip` User Guide](https://pip.pypa.io/en/stable/user_guide/)
 
 ## Conda Build vs. Conda Environments
@@ -261,7 +261,7 @@ instructions and who else deploys to them before choosing this option to ensure 
 
 This method relies on the conda `meta.yaml` file.
 
-## Deployment Method 3: Upload package to PyPi
+### Deployment Method 3: Upload package to PyPi
 
 The [Python Package Index (PyPi)](https://pypi.org/) is another place to manage your package and have 
 dependencies resolve. This option typically relies on `pip` to create your packages and dependencies 
