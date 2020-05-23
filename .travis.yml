@@ -10,21 +10,21 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.7
-        - CI_PROVIDER=1
+        - CI_PROVIDER=3
     - os: osx
       language: generic
       env:
         - LICENSE=1
         - DEPEND_SOURCE=2
         - PYTHON_VER=3.7
-        - CI_PROVIDER=1
+        - CI_PROVIDER=3
     - os: osx
       language: generic
       env:
         - LICENSE=2
         - DEPEND_SOURCE=3
         - PYTHON_VER=3.7
-        - CI_PROVIDER=1
+        - CI_PROVIDER=3
     - os: osx
       language: generic
       env:
@@ -38,21 +38,21 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.6
-        - CI_PROVIDER=1
+        - CI_PROVIDER=3
     - os: osx
       language: generic
       env:
         - LICENSE=1
         - DEPEND_SOURCE=2
         - PYTHON_VER=3.6
-        - CI_PROVIDER=1
+        - CI_PROVIDER=3
     - os: osx
       language: generic
       env:
         - LICENSE=2
         - DEPEND_SOURCE=3
         - PYTHON_VER=3.6
-        - CI_PROVIDER=1
+        - CI_PROVIDER=3
     - os: osx
       language: generic
       env:
@@ -69,7 +69,7 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.7
-        - CI_PROVIDER=1
+        - CI_PROVIDER=3
 
     - os: linux
       dist: xenial
@@ -78,7 +78,7 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=2
         - PYTHON_VER=3.7
-        - CI_PROVIDER=1
+        - CI_PROVIDER=3
 
     - os: linux
       dist: xenial
@@ -87,7 +87,7 @@ matrix:
         - LICENSE=2
         - DEPEND_SOURCE=3
         - PYTHON_VER=3.7
-        - CI_PROVIDER=1
+        - CI_PROVIDER=3
 
     - os: linux
       dist: xenial
@@ -104,7 +104,7 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.6
-        - CI_PROVIDER=1
+        - CI_PROVIDER=3
 
     - os: linux
       python: 3.6
@@ -112,23 +112,7 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=2
         - PYTHON_VER=3.6
-        - CI_PROVIDER=1
-
-    - os: linux
-      python: 3.6
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.6
-        - CI_PROVIDER=1
-
-    - os: linux
-      python: 3.6
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.6
-        - CI_PROVIDER=2
+        - CI_PROVIDER=3
 
     - os: linux
       python: 3.6
@@ -137,6 +121,14 @@ matrix:
         - DEPEND_SOURCE=3
         - PYTHON_VER=3.6
         - CI_PROVIDER=3
+
+    - os: linux
+      python: 3.6
+      env:
+        - LICENSE=2
+        - DEPEND_SOURCE=3
+        - PYTHON_VER=3.6
+        - CI_PROVIDER=2
 
 before_install:
     # Make sure pip is around, on OSX Travis we have to do some shenanigans
