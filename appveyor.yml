@@ -6,21 +6,33 @@ environment:
       DEPEND_SOURCE: 1
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
+<<<<<<< HEAD
       CI_PROVIDER: 2  # Travis+Appveyor
+=======
+      CI_PROVIDER: 1
+>>>>>>> Change CI provider settings
 
     - PYTHON: "C:\\Miniconda37-x64"
       LICENSE: 2
       DEPEND_SOURCE: 2
       PYTHON_VERSION: "3.7"
       PYTHON_ARCH: "64"
+<<<<<<< HEAD
       CI_PROVIDER: 2
+=======
+      CI_PROVIDER: 1
+>>>>>>> Change CI provider settings
 
     - PYTHON: "C:\\Python36-x64"
       LICENSE: 1
       DEPEND_SOURCE: 3
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
+<<<<<<< HEAD
       CI_PROVIDER: 2
+=======
+      CI_PROVIDER: 1
+>>>>>>> Change CI provider settings
 
 
 
