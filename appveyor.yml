@@ -7,10 +7,14 @@ environment:
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
 <<<<<<< HEAD
+<<<<<<< HEAD
       CI_PROVIDER: 2  # Travis+Appveyor
 =======
       CI_PROVIDER: 1
 >>>>>>> Change CI provider settings
+=======
+      CI_PROVIDER: 2  # Travis+Appveyor
+>>>>>>> Change default options in CI providers
 
     - PYTHON: "C:\\Miniconda37-x64"
       LICENSE: 2
@@ -18,10 +22,14 @@ environment:
       PYTHON_VERSION: "3.7"
       PYTHON_ARCH: "64"
 <<<<<<< HEAD
+<<<<<<< HEAD
       CI_PROVIDER: 2
 =======
       CI_PROVIDER: 1
 >>>>>>> Change CI provider settings
+=======
+      CI_PROVIDER: 2
+>>>>>>> Change default options in CI providers
 
     - PYTHON: "C:\\Python36-x64"
       LICENSE: 1
@@ -29,10 +37,14 @@ environment:
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
 <<<<<<< HEAD
+<<<<<<< HEAD
       CI_PROVIDER: 2
 =======
       CI_PROVIDER: 1
 >>>>>>> Change CI provider settings
+=======
+      CI_PROVIDER: 2
+>>>>>>> Change default options in CI providers
 
 
 
