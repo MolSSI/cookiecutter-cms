@@ -10,21 +10,14 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.7
-        - CI_PROVIDER=3
+        - CI_PROVIDER=2  # Travis+Appveyor
     - os: osx
       language: generic
       env:
         - LICENSE=1
         - DEPEND_SOURCE=2
         - PYTHON_VER=3.7
-        - CI_PROVIDER=3
-    - os: osx
-      language: generic
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.7
-        - CI_PROVIDER=3
+        - CI_PROVIDER=2
     - os: osx
       language: generic
       env:
@@ -32,27 +25,27 @@ matrix:
         - DEPEND_SOURCE=3
         - PYTHON_VER=3.7
         - CI_PROVIDER=2
+    - os: osx
+      language: generic
+      env:
+        - LICENSE=2
+        - DEPEND_SOURCE=3
+        - PYTHON_VER=3.7
+        - CI_PROVIDER=1  # Travis only
     - os: osx
       language: generic
       env:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.6
-        - CI_PROVIDER=3
+        - CI_PROVIDER=2
     - os: osx
       language: generic
       env:
         - LICENSE=1
         - DEPEND_SOURCE=2
         - PYTHON_VER=3.6
-        - CI_PROVIDER=3
-    - os: osx
-      language: generic
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.6
-        - CI_PROVIDER=3
+        - CI_PROVIDER=2
     - os: osx
       language: generic
       env:
@@ -60,6 +53,13 @@ matrix:
         - DEPEND_SOURCE=3
         - PYTHON_VER=3.6
         - CI_PROVIDER=2
+    - os: osx
+      language: generic
+      env:
+        - LICENSE=2
+        - DEPEND_SOURCE=3
+        - PYTHON_VER=3.6
+        - CI_PROVIDER=1
 
     # Pin Xenial for 3.7
     - os: linux
@@ -69,7 +69,7 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.7
-        - CI_PROVIDER=3
+        - CI_PROVIDER=2
 
     - os: linux
       dist: xenial
@@ -78,16 +78,7 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=2
         - PYTHON_VER=3.7
-        - CI_PROVIDER=3
-
-    - os: linux
-      dist: xenial
-      python: 3.7
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.7
-        - CI_PROVIDER=3
+        - CI_PROVIDER=2
 
     - os: linux
       dist: xenial
@@ -97,6 +88,15 @@ matrix:
         - DEPEND_SOURCE=3
         - PYTHON_VER=3.7
         - CI_PROVIDER=2
+
+    - os: linux
+      dist: xenial
+      python: 3.7
+      env:
+        - LICENSE=2
+        - DEPEND_SOURCE=3
+        - PYTHON_VER=3.7
+        - CI_PROVIDER=1
 
     - os: linux
       python: 3.6
@@ -104,7 +104,7 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=1
         - PYTHON_VER=3.6
-        - CI_PROVIDER=3
+        - CI_PROVIDER=2
 
     - os: linux
       python: 3.6
@@ -112,15 +112,7 @@ matrix:
         - LICENSE=1
         - DEPEND_SOURCE=2
         - PYTHON_VER=3.6
-        - CI_PROVIDER=3
-
-    - os: linux
-      python: 3.6
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.6
-        - CI_PROVIDER=3
+        - CI_PROVIDER=2
 
     - os: linux
       python: 3.6
@@ -129,6 +121,14 @@ matrix:
         - DEPEND_SOURCE=3
         - PYTHON_VER=3.6
         - CI_PROVIDER=2
+
+    - os: linux
+      python: 3.6
+      env:
+        - LICENSE=2
+        - DEPEND_SOURCE=3
+        - PYTHON_VER=3.6
+        - CI_PROVIDER=1
 
 before_install:
     # Make sure pip is around, on OSX Travis we have to do some shenanigans
