@@ -19,7 +19,7 @@
     "continuous_integration_provider": [
         "Travis",
         "Travis+AppVeyor",
-        "GitHub Actions"
+        "GitHub Actions (experimental)"
     ],
     "_cms_cc_version": 1.3
 }

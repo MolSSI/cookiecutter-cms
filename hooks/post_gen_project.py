@@ -61,7 +61,7 @@ def git_init_and_tag():
 
 def select_continuous_integration_provider():
     provider = '{{ cookiecutter.continuous_integration_provider }}'.lower()
-    if provider == "github actions":
+    if provider == "github actions (experimental)":
         # Remove with appveyor to be a safe delete
         os.remove("appveyor.yml")
         os.remove(".travis.yml")
