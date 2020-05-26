@@ -16,7 +16,11 @@ remove deployment platforms, or test with a different suite.
 ## Features
 * Python-centric skeletal structure with initial module files
 * Pre-configured `setup.py` for installation and packaging
+<<<<<<< HEAD
 * Pre-configured Windows, Linux, and OSX continuous integration on AppVeyor+Travis-CI or GitHub Actions.
+=======
+* Pre-configured Window, Linux, and OSX continuous integration on AppVeyor+Travis-CI or GitHub Actions.
+>>>>>>> Label GH Actions as experimental
 * Choice of dependency locations through `conda-forge`, default `conda`, or `pip`
 * Basic testing structure with [PyTest](https://docs.pytest.org/en/latest/)
 * Automatic `git` initialization + tag
@@ -76,7 +80,11 @@ contained within the `project/tests/` folder.
 Tests can be run with the `pytest -v` command. There are a number of additional command line arguments to
 [explore](https://docs.pytest.org/en/latest/usage.html).
 
+<<<<<<< HEAD
 ### Continuous Integration (Travis & AppVeyor)
+=======
+### Continuous Integration
+>>>>>>> Label GH Actions as experimental
 Testing is accomplished with both [Appveyor](https://www.appveyor.com) (for Windows testing) and
 [Travis-CI](https://travis-ci.com) (for Linux testing). These frameworks are chosen as they
 are completely free for open source projects and allow you to automatically verify that your project works under a
@@ -133,11 +141,15 @@ links below. We do not implement them for this Cookiecutter, but they can be add
 * [Travis-CI Caching](https://docs.travis-ci.com/user/caching/)
 * [AppVeyor Caching](https://www.appveyor.com/docs/build-cache/)
 
+<<<<<<< HEAD
 ### Continuous Integration (GitHub Actions)
 
 _Note: Support for GitHub Actions is still experimental and not yet documented_.
 
 As of version 1.3, we provide preconfigured workflows for [GitHub Actions](https://github.com/features/actions), with support for Linux, MacOS and Windows. Conda support is possible thanks to the excellent [@conda-incubator's `setup-miniconda` action](https://github.com/conda-incubator/setup-miniconda). We encourage you read its documentation for further details.
+=======
+
+>>>>>>> Label GH Actions as experimental
 
 ### Documentation
 Make a [ReadTheDocs](https://readthedocs.org) account and turn on the git hook. Although you can manually make the

@@ -6,21 +6,10 @@
     "author_email": "Your email (or your organization/company/team)",
     "description": "A short description of the project.",
     "open_source_license": [
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         "MIT",
         "BSD-3-Clause",
         "LGPLv3",
-=======
-        "MIT", 
-        "BSD-3-Clause", 
-        "LGPLv3", 
->>>>>>> Change CI provider settings
-=======
-        "MIT",
-        "BSD-3-Clause",
-        "LGPLv3",
->>>>>>> Change default options in CI providers
         "Not Open Source"
     ],
     "dependency_source": [
@@ -28,23 +17,12 @@
         "Prefer default anaconda channel with pip fallback",
         "Dependencies from pip only (no conda)"
     ],
-<<<<<<< HEAD
-<<<<<<< HEAD
     "continuous_integration_provider": [
         "Travis",
         "Travis+AppVeyor",
         "GitHub Actions (experimental)"
     ],
-=======
-    "continuous_integration_provider": ["GitHub Actions", "Travis", "Travis+AppVeyor"],
->>>>>>> Change CI provider settings
-=======
-    "continuous_integration_provider": [
-        "Travis",
-        "Travis+AppVeyor",
-        "GitHub Actions"
-    ],
->>>>>>> Change default options in CI providers
+    
     "Include_ReadTheDocs": ["y", "n"],
     "_cms_cc_version": 1.3
 }
