@@ -7,6 +7,7 @@ If any error is raised, the cookie cutter creation fails and crashes
 
 import os
 import subprocess as sp
+import shutil
 
 
 def decode_string(string):
@@ -58,11 +59,19 @@ def git_init_and_tag():
         print("\ngit repository detected. CookieCutter files have been created in {{ cookiecutter.repo_name }} directory.")
 
 
-def remove_windows_ci():
-    include_windows = '{{ cookiecutter.Include_Windows_continuous_integration }}'
-    if include_windows == "n":
+def select_continuous_integration_provider():
+    provider = '{{ cookiecutter.continuous_integration_provider }}'.lower()
+    if provider == "github actions (experimental)":
         # Remove with appveyor to be a safe delete
         os.remove("appveyor.yml")
+        os.remove(".travis.yml")
+        shutil.rmtree("devtools/travis-ci")
+    elif provider == "travis":
+        shutil.rmtree(".github/workflows")
+        os.remove("appveyor.yml")
+    elif provider == "travis+appveyor":
+        shutil.rmtree(".github/workflows")
 
-remove_windows_ci()
+
+select_continuous_integration_provider()
 git_init_and_tag()
