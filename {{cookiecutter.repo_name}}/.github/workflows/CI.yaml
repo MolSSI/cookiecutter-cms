@@ -72,7 +72,7 @@ jobs:
       shell: bash -l {0}
 {% endif %}
       run: |
-        pytest -v --cov={{ cookiecutter.repo_name }} --cov-report=xml --color=yes {{ cookiecutter.repo_name }}/tests/
+        python -m pytest -v --cov={{ cookiecutter.repo_name }} --cov-report=xml --color=yes {{ cookiecutter.repo_name }}/tests/
 
     - name: CodeCov
       uses: codecov/codecov-action@v1
