@@ -97,7 +97,18 @@ def remove_rtd():
         os.remove('readthedocs.yml')
         os.remove(rtd_env)
 
+def random_file_cleanup_removal():
+    """Remove random files which can be generated under certain conditions"""
+    random_file_list = [
+        "default.profraw",  # Remove default.profraw files, see #105
+    ]
+    for random_file in random_file_list:
+        try:
+            os.remove(random_file)
+        except FileNotFoundError:
+            pass
+
+remove_rtd()
 select_continuous_integration_provider()
 random_file_cleanup_removal()
-remove_rtd()
 git_init_and_tag()
