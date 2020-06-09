@@ -21,8 +21,8 @@ environment:
 
 install:
     # Make sure pip is around
-  - python -m ensurepip
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - python -m ensurepip
   {% if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
   {%- if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
     # Add conda-forge channel
