@@ -132,7 +132,7 @@ matrix:
 
 before_install:
     # Make sure pip is around, on OSX Travis we have to do some shenanigans
-  - if [[ "$TRAVIS_OS_NAME" == "osx" && ! $(command -v pip) ]]; then source cihelpers/osx_travis_py_helper.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then source cihelpers/osx_travis_py_helper.sh; fi
 
     # Install a few requirements
   - pip install pyyaml cookiecutter
