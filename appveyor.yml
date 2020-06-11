@@ -25,6 +25,7 @@ environment:
 
 
 install:
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
     # Install a few requirements
   - pip install pyyaml cookiecutter
 

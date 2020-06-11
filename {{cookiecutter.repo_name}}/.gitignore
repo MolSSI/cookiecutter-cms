@@ -100,3 +100,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# profraw files from LLVM? Unclear exactly what triggers this
+# There are reports this comes from LLVM profiling, but also Xcode 9.
+*profraw
