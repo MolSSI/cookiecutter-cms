@@ -42,7 +42,7 @@ if [ "$TRAVIS_OS_NAME" == "osx" ]; then
     # Pyenv requires minor revision, get the latest
     PYENV_VERSION=$(pyenv install --list |grep $PYTHON_VER | sed -n "s/^[ \t]*\(${PYTHON_VER}\.*[0-9]*\).*/\1/p" | tail -n 1)
     # Install version
-    pyenv install $PYENV_VERSION
+    pyenv install -f $PYENV_VERSION
     # Use version for this
     pyenv global $PYENV_VERSION
     # Setup up path shims
