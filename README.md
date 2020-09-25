@@ -137,7 +137,7 @@ links below. We do not implement them for this Cookiecutter, but they can be add
 
 _Note: Support for GitHub Actions is still experimental and not yet documented_.
 
-As of version 1.3, we provide preconfigured workflows for [GitHub Actions](https://github.com/features/actions), with support for Linux, MacOS and Windows. Conda support is possible thanks to the excellent [@goanpeca's `setup-miniconda` action](https://github.com/goanpeca/setup-miniconda). We encourage you read its documentation for further details.
+As of version 1.3, we provide preconfigured workflows for [GitHub Actions](https://github.com/features/actions), with support for Linux, MacOS and Windows. Conda support is possible thanks to the excellent [@conda-incubator's `setup-miniconda` action](https://github.com/conda-incubator/setup-miniconda). We encourage you read its documentation for further details.
 
 ### Documentation
 Make a [ReadTheDocs](https://readthedocs.org) account and turn on the git hook. Although you can manually make the
