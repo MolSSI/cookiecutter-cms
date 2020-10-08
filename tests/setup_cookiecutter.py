@@ -9,6 +9,7 @@ project = sys.argv[1]
 lic = sys.argv[2]
 depend = sys.argv[3]
 provider = sys.argv[4]
+rtd = sys.argv[5]
 print("Options: open_source_license=%s, dependency_source=%s, ci_provider=%s" % (lic, depend, provider))
 
 # Setup the options
@@ -20,7 +21,8 @@ options = [project, # Repo name
            "", # Description
            lic, # License
            depend, # Dependency
-           provider] # ci_provider
+           provider, # ci_provider
+           rtd] 
 
 # Open a thread
 p = Popen(["cookiecutter", "."], stdin=PIPE, stdout=PIPE)

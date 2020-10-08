@@ -1,59 +1,52 @@
 environment:
 
       matrix:
-      {%- if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
         - PYTHON: "C:\\Miniconda36-x64"
+          LICENSE: 1
+          DEPEND_SOURCE: 1
           PYTHON_VERSION: "3.6"
           PYTHON_ARCH: "64"
+          CI_PROVIDER: 2  # Travis+Appveyor
     
         - PYTHON: "C:\\Miniconda37-x64"
+          LICENSE: 2
+          DEPEND_SOURCE: 2
           PYTHON_VERSION: "3.7"
           PYTHON_ARCH: "64"
-      {% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+          CI_PROVIDER: 2
+    
         - PYTHON: "C:\\Python36-x64"
+          LICENSE: 1
+          DEPEND_SOURCE: 3
           PYTHON_VERSION: "3.6"
           PYTHON_ARCH: "64"
+          CI_PROVIDER: 2
     
-        - PYTHON: "C:\\Python37-x64"
-          PYTHON_VERSION: "3.7"
-          PYTHON_ARCH: "64"
-      {% endif %}
+    
     
     install:
-        # Make sure pip is around
       - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-      - python -m ensurepip
-      {% if (cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' or cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback') %}
-      {%- if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
-        # Add conda-forge channel
-      - conda config --add channels conda-forge
-      {% endif %}
+        # Install a few requirements
+      - pip install pyyaml cookiecutter
     
-        # Always run commands without asking
-      - conda config --set always_yes yes
+        # Dont ask
+      - git config --global user.email "monster@cookie.com"
+      - git config --global user.name "Cookie Monster"
+      - git config --global core.autocrlf true
     
-        # Try to update conda first to avoid odd dependency clashes
-      - conda update --all
+        # Build out the cookiecutter from settings
+      - python tests/setup_cookiecutter.py default_project %LICENSE% %DEPEND_SOURCE% %CI_PROVIDER%
     
-        # Create test environment for package
-      - python devtools\\scripts\\create_conda_env.py -n=test -p=%PYTHON_VERSION% devtools\\conda-envs\\test_env.yaml
+        # Change into new project directory
+      - ps: cd default_project
     
-        # Activate the test environment
-      - activate test
+        # Run appveyor YAML
+      - python ../tests/run_yaml.py appveyor.yml install install.appveyor.bat
+      - .\install.appveyor.bat
     
-        # Build and install package
-      - python setup.py develop --no-deps
-    
-      {% elif cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
-        # Install the package locally
-      - pip install --upgrade pip setuptools
-      - pip install pytest pytest-cov codecov
-      - pip install -e .
-      {% endif %}
     build: false
     
     test_script:
-      - pytest -v --cov={{cookiecutter.repo_name}} {{cookiecutter.repo_name}}\\tests
-    
-    on_success:
-      - codecov
+      - pip install pyyaml
+      - python ../tests/run_yaml.py appveyor.yml test_script script.appveyor.bat
+      - .\script.appveyor.bat

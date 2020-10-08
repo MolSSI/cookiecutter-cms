@@ -93,7 +93,7 @@ def random_file_cleanup_removal():
 def remove_rtd():
     include_rtd = '{{ cookiecutter.Include_ReadTheDocs }}'
     if include_rtd == "n":
-        rtd_env = os.path.join("docs", "rtd_env.yaml")
+        rtd_env = os.path.join("docs", "requirements.yaml")
         os.remove('readthedocs.yml')
         os.remove(rtd_env)
 
