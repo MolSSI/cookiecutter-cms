@@ -1,0 +1,15 @@
+name: docs
+channels:
+dependencies:
+    # Base depends
+  - python
+  - pip
+
+{% if cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback' %}
+  # Pip-only installs
+  - pip:
+{% else %}
+
+    # Pip-only installs
+  #- pip:
+{% endif %}

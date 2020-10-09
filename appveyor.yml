@@ -7,6 +7,7 @@ environment:
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
       CI_PROVIDER: 2  # Travis+Appveyor
+      RTD: 1
 
     - PYTHON: "C:\\Miniconda37-x64"
       LICENSE: 2
@@ -14,6 +15,7 @@ environment:
       PYTHON_VERSION: "3.7"
       PYTHON_ARCH: "64"
       CI_PROVIDER: 2
+      RTD: 2
 
     - PYTHON: "C:\\Python36-x64"
       LICENSE: 1
@@ -21,6 +23,7 @@ environment:
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
       CI_PROVIDER: 2
+      RTD: 2
 
 
 
@@ -35,7 +38,7 @@ install:
   - git config --global core.autocrlf true
 
     # Build out the cookiecutter from settings
-  - python tests/setup_cookiecutter.py default_project %LICENSE% %DEPEND_SOURCE% %CI_PROVIDER%
+  - python tests/setup_cookiecutter.py default_project %LICENSE% %DEPEND_SOURCE% %CI_PROVIDER% %RTD%
 
     # Change into new project directory
   - ps: cd default_project

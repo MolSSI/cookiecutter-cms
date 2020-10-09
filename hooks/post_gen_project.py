@@ -76,6 +76,12 @@ def select_continuous_integration_provider():
     elif provider == "travis+appveyor":
         shutil.rmtree(".github/workflows")
 
+def remove_rtd():
+    include_rtd = '{{ cookiecutter.include_ReadTheDocs }}'
+    if include_rtd == "n":
+        rtd_env = os.path.join("docs", "requirements.yaml")
+        os.remove('readthedocs.yml')
+        os.remove(rtd_env)
 
 def random_file_cleanup_removal():
     """Remove random files which can be generated under certain conditions"""
@@ -88,7 +94,7 @@ def random_file_cleanup_removal():
         except FileNotFoundError:
             pass
 
-
+remove_rtd()
 select_continuous_integration_provider()
 random_file_cleanup_removal()
 git_init_and_tag()
