@@ -76,20 +76,6 @@ def select_continuous_integration_provider():
     elif provider == "travis+appveyor":
         shutil.rmtree(".github/workflows")
 
-
-def random_file_cleanup_removal():
-    """Remove random files which can be generated under certain conditions"""
-    random_file_list = [
-        "default.profraw",  # Remove default.profraw files, see #105
-    ]
-    for random_file in random_file_list:
-        try:
-            os.remove(random_file)
-        except FileNotFoundError:
-            pass
-
-
-
 def remove_rtd():
     include_rtd = '{{ cookiecutter.Include_ReadTheDocs }}'
     if include_rtd == "n":
