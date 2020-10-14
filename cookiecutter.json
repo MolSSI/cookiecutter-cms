@@ -20,7 +20,7 @@
     "continuous_integration_provider": [
         "Travis",
         "Travis+AppVeyor",
-        "GitHub Actions (experimental)"
+        "GitHub Actions"
     ],
     
     "include_ReadTheDocs": ["y", "n"],
