@@ -33,6 +33,11 @@ jobs:
         ulimit -a
 
 {% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+    - name: Set up Python {{ '${{ matrix.python-version }}' }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: {{ '${{ matrix.python-version }}' }}
+
     - name: Testing Dependencies
       shell: bash
       run: |
@@ -45,6 +50,8 @@ jobs:
         environment-file: devtools/conda-envs/test_env.yaml
 {% if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
         channels: conda-forge,defaults
+{% elif cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback' %}
+        channels: defaults
 {% endif %}
         activate-environment: test
         auto-update-conda: false

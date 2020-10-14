@@ -1,5 +1,9 @@
 name: test
 channels:
+{% if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
+  - conda-forge
+{% endif %}
+  - defaults
 dependencies:
     # Base depends
   - python

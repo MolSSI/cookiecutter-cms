@@ -36,6 +36,9 @@ p = Popen(["cookiecutter", cookie_path], stdin=PIPE, stdout=PIPE)
 # Communicate options
 opts = "\n".join(options).encode("UTF-8")
 output = p.communicate(opts)[0].decode()
-
-# Print the output for prosperity
-print("\n".join(output.split(": ")))
+try:
+    if p.returncode != 0:
+        raise RuntimeError("Cookiecutter did not run successfully!")
+finally:
+    # Print the output for prosperity
+    print("\n".join(output.split(": ")))
