@@ -40,7 +40,7 @@ jobs:
         environment-file: devtools/conda-envs/test_env.yaml
 
         activate-environment: test
-        auto-update-conda: true
+        auto-update-conda: false
         auto-activate-base: false
         show-channel-urls: true
 

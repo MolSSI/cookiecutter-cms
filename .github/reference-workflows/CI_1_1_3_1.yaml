@@ -42,7 +42,7 @@ jobs:
         channels: conda-forge,defaults
 
         activate-environment: test
-        auto-update-conda: true
+        auto-update-conda: false
         auto-activate-base: false
         show-channel-urls: true
 
