@@ -20,9 +20,9 @@
     "continuous_integration_provider": [
         "Travis",
         "Travis+AppVeyor",
-        "GitHub Actions (experimental)"
+        "GitHub Actions"
     ],
     
     "include_ReadTheDocs": ["y", "n"],
-    "_cms_cc_version": 1.3
+    "_cms_cc_version": 1.4
 }

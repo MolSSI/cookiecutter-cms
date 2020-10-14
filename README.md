@@ -135,9 +135,27 @@ links below. We do not implement them for this Cookiecutter, but they can be add
 
 ### Continuous Integration (GitHub Actions)
 
-_Note: Support for GitHub Actions is still experimental and not yet documented_.
+As of version 1.3, we provide preconfigured workflows for [GitHub Actions](https://github.com/features/actions), with 
+support for Linux, MacOS and Windows. Conda support is possible thanks to the excellent 
+[@conda-incubator's `setup-miniconda` action](https://github.com/conda-incubator/setup-miniconda). We encourage you 
+read its documentation for further details on GitHub Actions themselves.
 
-As of version 1.3, we provide preconfigured workflows for [GitHub Actions](https://github.com/features/actions), with support for Linux, MacOS and Windows. Conda support is possible thanks to the excellent [@conda-incubator's `setup-miniconda` action](https://github.com/conda-incubator/setup-miniconda). We encourage you read its documentation for further details.
+The Cookiecutter's GitHub Actions does a number of things differently than the output Actions. We detail those 
+differences below, but none of this is needed to understand the output GitHub Action Workflows, which are much simpler.
+
+The Cookiecutter ability to test GitHub Actions it generates has some limitations, but are still properly tested.
+This repository has a multi-job GitHub Action Workflow to do a few things:
+* Run the Cookiecutter and generate outputs.
+* Compare the output CI's to references.
+* Run an approximate implementation of the generated CI files.
+
+If the reference files need re-generated, there is a script to help with this.
+
+Ideally, the Cookiecutter would run the generated output files in real time. However, that is currently impossible with 
+GitHub Actions (as of October 14 2020). We Cookiecutter-CMS maintainers have also looked at reactive PR’s which 
+implement on different branches and make new PR’s and setting up dummy repositories and pushing to those and then 
+monitoring the test/return from that. This was all determined to be overly complicated, although we welcome suggestions 
+and ideas for improvements.
 
 ### Documentation
 Make a [ReadTheDocs](https://readthedocs.org) account and turn on the git hook. Although you can manually make the
