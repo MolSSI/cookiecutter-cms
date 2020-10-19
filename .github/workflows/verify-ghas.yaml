@@ -14,24 +14,29 @@ on:
     #   (from https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule)
     - cron: "0 0 * * *"
 
-# Custom global env block
-env:
-  licenses: [1, 2]
-  depend-sources: [1, 2, 3]
+# Custom global env block (Has to be recreated in each matrix, can't pass sequences to this)
+env:  # I want to share these between jobs, but I can't access the env from inside matrix, has to be on the steps.
+  licenses: "1 2"
+  depend-sources: "1 2 3"
   ci-providers: 3  # This should always be GHA and only GHA
-  rtd: [1, 2]
+  rtd: "1 2"
+
 
 jobs:
   generate-cookiecutter:
     name: "Cookiecutter Artifacts"
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        license: ${{ env.licenses }}
-        depend-source: ${{ env.depend-sources }}
-        ci-provider: ${{ env.ci-providers }}
-        rtd: ${{ env.rtd }}
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+        python-version: [3.7, 3.8]
     steps:
       - uses: actions/checkout@v1
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
 
       - name: "Install dependencies"
         shell: bash
@@ -41,23 +46,38 @@ jobs:
       - name: "Construct Cookiecutter"
         shell: bash
         run: |
-          python tests/setup_cookiecutter.py built_cookie_{{ '${{ matrix.license }}' }}_{{ '${{ matrix.depend-source }}' }}_{{ '${{ matrix.ci-provider }}' }}_{{ '${{ matrix.rtd }}' }} {{ '${{ matrix.license }}' }} {{ '${{ matrix.depend-source }}' }} {{ '${{ matrix.ci-provider }}' }} {{ '${{ matrix.rtd }}' }}
+          mkdir artifact_upload  # Uploading artifact directory uploads as "path/*" rather than "path", so stage the upload.
+          for LIC in ${{ env.licenses }}
+          do
+            for DEP in ${{ env.depend-sources }}
+            do
+              for RTD in ${{ env.rtd }}
+              do
+                CIP=${{ env.ci-providers }}  # Cant use this in the same line as normal env variables for some reason?
+                COMBO="$LIC"_"$DEP"_"$CIP"_"$RTD"
+                python tests/setup_cookiecutter.py prj_$COMBO $LIC $DEP ${{ env.ci-providers }} $RTD
+                mv prj_$COMBO artifact_upload/prj_$COMBO
+              done
+            done
+          done
 
       - name: "Upload artifacts"
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == 3.8 }}  # Upload only if ubuntu and latest python (only need to run once)
         uses: actions/upload-artifact@v2
         with:
           name: cookiecutter_outputs
-          path: built_cookie_{{ '${{ matrix.license }}' }}_{{ '${{ matrix.depend-source }}' }}_{{ '${{ matrix.ci-provider }}' }}_{{ '${{ matrix.rtd }}' }}
+          path: artifact_upload
 
   compare-action-output:
     name: "Compare GHA Output"
+    runs-on: ubuntu-latest
     needs: "generate-cookiecutter"
     strategy:
       matrix:
-        license: ${{ env.licenses }}
-        depend-source: ${{ env.depend-sources }}
-        ci-provider: ${{ env.ci-providers }}
-        rtd: ${{ env.rtd }}
+        license: [1, 2]
+        depend-source: [1, 2, 3]
+        ci-provider: [3]  # This should always be GHA and only GHA
+        rtd: [1, 2]
 
     steps:
       - uses: actions/checkout@v1
@@ -70,14 +90,15 @@ jobs:
       - name: "Compare Reference CI"
         shell: bash
         run: |
-          COMBO="{{ '${{ matrix.license }}' }}_{{ '${{ matrix.depend-source }}' }}_{{ '${{ matrix.ci-provider }}' }}_{{ '${{ matrix.rtd }}' }}"
-          mv built_cookie_$COMBO/.github/workflows/CI.yaml CI_$COMBO.yaml
+          COMBO="${{ matrix.license }}_${{ matrix.depend-source }}_${{ matrix.ci-provider }}_${{ matrix.rtd }}"
+          mv prj_$COMBO/.github/workflows/CI.yaml CI_$COMBO.yaml
           COMPARE=$(diff CI_$COMBO.yaml .github/reference-workflows/CI_$COMBO.yaml)
           if [[ ! -z $COMPARE ]]
           then
               echo "CI_$COMBO.yaml differs from reference!"
               echo $COMPARE
               exit 1
+          fi
 
 
   conda-forge-dep:
@@ -86,10 +107,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:  # Approximate strategy, uses a few other options
       matrix:
-        os: [macOS-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest , macOS-latest, windows-latest]
         python-version: [3.6, 3.7]
-        license: 1  # Nonstandard
-        rtd: ${{ env.rtd }}  # Nonstandard
+        license: [1]  # Nonstandard
+        rtd: [1, 2]  # Nonstandard
     steps:
       # - uses: actions/checkout@v1  # This isn't necessary here
 
@@ -105,16 +126,16 @@ jobs:
           df -h
           ulimit -a
 
-      - name: "Change directory"  # Have to CD here to make sure this works
-        shell: bash
-        run: |
-          cd built_cookie_{{ '${{ matrix.license }}' }}_1_3_{{ '${{ matrix.rtd }}' }}
+#      - name: "Change directory"  # Have to CD here to make sure this works
+#        shell: bash
+#        run: |
+#          cd prj_${{ matrix.license }}_1_${{ env.ci-providers }}_${{ matrix.rtd }}
 
       # More info on options: https://github.com/conda-incubator/setup-miniconda
       - uses: conda-incubator/setup-miniconda@v1
         with:
           python-version: ${{ matrix.python-version }}
-          environment-file: devtools/conda-envs/test_env.yaml
+          environment-file: prj_${{ matrix.license }}_1_${{ env.ci-providers }}_${{ matrix.rtd }}/devtools/conda-envs/test_env.yaml
 
           channels: conda-forge,defaults
 
@@ -127,6 +148,7 @@ jobs:
 
         # conda setup requires this special shell
         shell: bash -l {0}
+        working-directory: prj_${{ matrix.license }}_1_${{ env.ci-providers }}_${{ matrix.rtd }}  # Nonstandard
         run: |
           python -m pip install . --no-deps
           conda list
@@ -136,13 +158,14 @@ jobs:
 
         # conda setup requires this special shell
         shell: bash -l {0}
+        working-directory: prj_${{ matrix.license }}_1_${{ env.ci-providers }}_${{ matrix.rtd }}  # Nonstandard
         run: |
-          pytest -v --cov=built_cookie_{ '${{ matrix.license }}' }}_1_${{ env.ci-providers }}_{{ '${{ matrix.rtd }}' }} --cov-report=xml --color=yes built_cookie_{{ '${{ matrix.license }}' }}_1_${{ env.ci-providers }}_{{ '${{ matrix.rtd }}' }}/tests/
+          pytest -v --cov=prj_${{ matrix.license }}_1_${{ env.ci-providers }}_${{ matrix.rtd }} --cov-report=xml --color=yes prj_${{ matrix.license }}_1_${{ env.ci-providers }}_${{ matrix.rtd }}/tests/
 
       - name: CodeCov
         uses: codecov/codecov-action@v1
         with:
-          file: ./coverage.xml
+          file: ./prj_${{ matrix.license }}_1_${{ env.ci-providers }}_${{ matrix.rtd }}/coverage.xml
           flags: unittests
           name: codecov-${{ matrix.os }}-py${{ matrix.python-version }}
 
@@ -153,10 +176,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:  # Approximate strategy, uses a few other options
       matrix:
-        os: [macOS-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest , macOS-latest, windows-latest]
         python-version: [3.6, 3.7]
-        license: 1  # Nonstandard
-        rtd: ${{ env.rtd }}  # Nonstandard
+        license: [1]  # Nonstandard
+        rtd: [1, 2]  # Nonstandard
 
     steps:
       # - uses: actions/checkout@v1  # This isn't necessary here
@@ -173,16 +196,16 @@ jobs:
         with:
           name: cookiecutter_outputs
 
-      - name: "Change directory"  # Have to CD here to make sure this works
-        shell: bash
-        run: |
-          cd built_cookie_{{ '${{ matrix.license }}' }}_2_${{ env.ci-providers }}_{{ '${{ matrix.rtd }}' }}
+#      - name: "Change directory"  # Have to CD here to make sure this works
+#        shell: bash
+#        run: |
+#          cd prj_${{ matrix.license }}_2_${{ env.ci-providers }}_${{ matrix.rtd }}
 
       # More info on options: https://github.com/conda-incubator/setup-miniconda
       - uses: conda-incubator/setup-miniconda@v1
         with:
           python-version: ${{ matrix.python-version }}
-          environment-file: devtools/conda-envs/test_env.yaml
+          environment-file: prj_${{ matrix.license }}_2_${{ env.ci-providers }}_${{ matrix.rtd }}/devtools/conda-envs/test_env.yaml
 
           activate-environment: test
           auto-update-conda: false
@@ -193,6 +216,7 @@ jobs:
 
         # conda setup requires this special shell
         shell: bash -l {0}
+        working-directory: prj_${{ matrix.license }}_2_${{ env.ci-providers }}_${{ matrix.rtd }}  # Nonstandard
         run: |
           python -m pip install . --no-deps
           conda list
@@ -202,14 +226,14 @@ jobs:
 
         # conda setup requires this special shell
         shell: bash -l {0}
-
+        working-directory: prj_${{ matrix.license }}_2_${{ env.ci-providers }}_${{ matrix.rtd }}  # Nonstandard
         run: |
-          pytest -v --cov=built_cookie_{ '${{ matrix.license }}' }}_2_${{ env.ci-providers }}_{{ '${{ matrix.rtd }}' }} --cov-report=xml --color=yes built_cookie_{{ '${{ matrix.license }}' }}_2_${{ env.ci-providers }}_{{ '${{ matrix.rtd }}' }}/tests/
+          pytest -v --cov=prj_${{ matrix.license }}_2_${{ env.ci-providers }}_${{ matrix.rtd }} --cov-report=xml --color=yes prj_${{ matrix.license }}_2_${{ env.ci-providers }}_${{ matrix.rtd }}/tests/
 
       - name: CodeCov
         uses: codecov/codecov-action@v1
         with:
-          file: ./coverage.xml
+          file: ./prj_${{ matrix.license }}_2_${{ env.ci-providers }}_${{ matrix.rtd }}/coverage.xml
           flags: unittests
           name: codecov-${{ matrix.os }}-py${{ matrix.python-version }}
 
@@ -219,10 +243,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:  # Approximate strategy, uses a few other options
       matrix:
-        os: [macOS-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest , macOS-latest, windows-latest]
         python-version: [3.6, 3.7]
-        license: 1  # Nonstandard
-        rtd: ${{ env.rtd }}  # Nonstandard
+        license: [1]  # Nonstandard
+        rtd: [1, 2]  # Nonstandard
 
     steps:
       # - uses: actions/checkout@v1  # This isn't necessary here
@@ -239,11 +263,17 @@ jobs:
         with:
           name: cookiecutter_outputs
 
-      - name: "Change directory"  # Have to CD here to make sure this works
-        shell: bash
-        run: |
-          cd built_cookie_{{ '${{ matrix.license }}' }}_3_${{ env.ci-providers }}_{{ '${{ matrix.rtd }}' }}
 
+#      - name: "Change directory"  # Have to CD here to make sure this works
+#        shell: bash
+#        run: |
+#          cd prj_${{ matrix.license }}_3_${{ env.ci-providers }}_${{ matrix.rtd }}
+
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
 
       - name: Testing Dependencies
         shell: bash
@@ -253,6 +283,7 @@ jobs:
       - name: Install package
 
         shell: bash
+        working-directory: prj_${{ matrix.license }}_3_${{ env.ci-providers }}_${{ matrix.rtd }}  # Nonstandard
         run: |
           python -m pip install .
 
@@ -260,13 +291,13 @@ jobs:
       - name: Run tests
 
         shell: bash
-
+        working-directory: prj_${{ matrix.license }}_3_${{ env.ci-providers }}_${{ matrix.rtd }} # Nonstandard
         run: |
-          pytest -v --cov=built_cookie_{ '${{ matrix.license }}' }}_3_${{ env.ci-providers }}_{{ '${{ matrix.rtd }}' }} --cov-report=xml --color=yes built_cookie_{{ '${{ matrix.license }}' }}_3_${{ env.ci-providers }}_{{ '${{ matrix.rtd }}' }}/tests/
+          pytest -v --cov=prj_${{ matrix.license }}_3_${{ env.ci-providers }}_${{ matrix.rtd }} --cov-report=xml --color=yes prj_${{ matrix.license }}_3_${{ env.ci-providers }}_${{ matrix.rtd }}/tests/
 
       - name: CodeCov
         uses: codecov/codecov-action@v1
         with:
-          file: ./coverage.xml
+          file: ./prj_${{ matrix.license }}_3_${{ env.ci-providers }}_${{ matrix.rtd }}/coverage.xml
           flags: unittests
           name: codecov-${{ matrix.os }}-py${{ matrix.python-version }}
