@@ -1,26 +1,26 @@
 environment:
 
   matrix:
-    - PYTHON: "C:\\Miniconda36-x64"
+    - PYTHON: "C:\\Miniconda37-x64"
       LICENSE: 1
       DEPEND_SOURCE: 1
-      PYTHON_VERSION: "3.6"
+      PYTHON_VERSION: "3.7"
       PYTHON_ARCH: "64"
       CI_PROVIDER: 2  # Travis+Appveyor
       RTD: 1
 
-    - PYTHON: "C:\\Miniconda37-x64"
+    - PYTHON: "C:\\Miniconda38-x64"
       LICENSE: 2
       DEPEND_SOURCE: 2
-      PYTHON_VERSION: "3.7"
+      PYTHON_VERSION: "3.8"
       PYTHON_ARCH: "64"
       CI_PROVIDER: 2
       RTD: 2
 
-    - PYTHON: "C:\\Python36-x64"
+    - PYTHON: "C:\\Python37-x64"
       LICENSE: 1
       DEPEND_SOURCE: 3
-      PYTHON_VERSION: "3.6"
+      PYTHON_VERSION: "3.7"
       PYTHON_ARCH: "64"
       CI_PROVIDER: 2
       RTD: 2

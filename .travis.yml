@@ -9,7 +9,7 @@ matrix:
       env:
         - LICENSE=1
         - DEPEND_SOURCE=1
-        - PYTHON_VER=3.7
+        - PYTHON_VER=3.9
         - CI_PROVIDER=2  # Travis+Appveyor
         - RTD=2
     - os: osx
@@ -17,7 +17,7 @@ matrix:
       env:
         - LICENSE=1
         - DEPEND_SOURCE=2
-        - PYTHON_VER=3.7
+        - PYTHON_VER=3.9
         - CI_PROVIDER=2
         - RTD=1
     - os: osx
@@ -25,7 +25,7 @@ matrix:
       env:
         - LICENSE=2
         - DEPEND_SOURCE=3
-        - PYTHON_VER=3.7
+        - PYTHON_VER=3.9
         - CI_PROVIDER=2
         - RTD=1
     - os: osx
@@ -33,7 +33,7 @@ matrix:
       env:
         - LICENSE=2
         - DEPEND_SOURCE=3
-        - PYTHON_VER=3.7
+        - PYTHON_VER=3.9
         - CI_PROVIDER=1  # Travis only
         - RTD=1
     - os: osx
@@ -41,7 +41,7 @@ matrix:
       env:
         - LICENSE=1
         - DEPEND_SOURCE=1
-        - PYTHON_VER=3.6
+        - PYTHON_VER=3.7
         - CI_PROVIDER=2
         - RTD=1
     - os: osx
@@ -49,7 +49,7 @@ matrix:
       env:
         - LICENSE=1
         - DEPEND_SOURCE=2
-        - PYTHON_VER=3.6
+        - PYTHON_VER=3.7
         - CI_PROVIDER=2
         - RTD=1
     - os: osx
@@ -57,52 +57,11 @@ matrix:
       env:
         - LICENSE=2
         - DEPEND_SOURCE=3
-        - PYTHON_VER=3.6
+        - PYTHON_VER=3.7
         - CI_PROVIDER=2
         - RTD=1
     - os: osx
       language: generic
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.6
-        - CI_PROVIDER=1
-        - RTD=1
-
-    # Pin Xenial for 3.7
-    - os: linux
-      dist: xenial
-      python: 3.7
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=1
-        - PYTHON_VER=3.7
-        - CI_PROVIDER=2
-        - RTD=1
-
-    - os: linux
-      dist: xenial
-      python: 3.7
-      env:
-        - LICENSE=1
-        - DEPEND_SOURCE=2
-        - PYTHON_VER=3.7
-        - CI_PROVIDER=2
-        - RTD=1
-
-    - os: linux
-      dist: xenial
-      python: 3.7
-      env:
-        - LICENSE=2
-        - DEPEND_SOURCE=3
-        - PYTHON_VER=3.7
-        - CI_PROVIDER=2
-        - RTD=1
-
-    - os: linux
-      dist: xenial
-      python: 3.7
       env:
         - LICENSE=2
         - DEPEND_SOURCE=3
@@ -111,38 +70,74 @@ matrix:
         - RTD=1
 
     - os: linux
-      python: 3.6
+      python: 3.9-dev
       env:
         - LICENSE=1
         - DEPEND_SOURCE=1
-        - PYTHON_VER=3.6
+        - PYTHON_VER=3.9
         - CI_PROVIDER=2
         - RTD=1
 
     - os: linux
-      python: 3.6
+      python: 3.9-dev
       env:
         - LICENSE=1
         - DEPEND_SOURCE=2
-        - PYTHON_VER=3.6
+        - PYTHON_VER=3.9
         - CI_PROVIDER=2
         - RTD=1
 
     - os: linux
-      python: 3.6
+      python: 3.9-dev
       env:
         - LICENSE=2
         - DEPEND_SOURCE=3
-        - PYTHON_VER=3.6
+        - PYTHON_VER=3.9
         - CI_PROVIDER=2
         - RTD=1
 
     - os: linux
-      python: 3.6
+      python: 3.9
       env:
         - LICENSE=2
         - DEPEND_SOURCE=3
-        - PYTHON_VER=3.6
+        - PYTHON_VER=3.9
+        - CI_PROVIDER=1
+        - RTD=1
+
+    - os: linux
+      python: 3.8
+      env:
+        - LICENSE=1
+        - DEPEND_SOURCE=1
+        - PYTHON_VER=3.8
+        - CI_PROVIDER=2
+        - RTD=1
+
+    - os: linux
+      python: 3.8
+      env:
+        - LICENSE=1
+        - DEPEND_SOURCE=2
+        - PYTHON_VER=3.8
+        - CI_PROVIDER=2
+        - RTD=1
+
+    - os: linux
+      python: 3.8
+      env:
+        - LICENSE=2
+        - DEPEND_SOURCE=3
+        - PYTHON_VER=3.8
+        - CI_PROVIDER=2
+        - RTD=1
+
+    - os: linux
+      python: 3.8
+      env:
+        - LICENSE=2
+        - DEPEND_SOURCE=3
+        - PYTHON_VER=3.8
         - CI_PROVIDER=1
         - RTD=1
 
