@@ -7,7 +7,6 @@ If any error is raised, the cookie cutter creation fails and crashes
 
 import os
 import subprocess as sp
-import shutil
 
 
 def decode_string(string):

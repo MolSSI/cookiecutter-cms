@@ -38,7 +38,7 @@ Features
 Requirements
 ------------
 
-* Python 3.8, or 3.9
+* Python 3.7, or 3.8
 * `Cookiecutter <http://cookiecutter.readthedocs.io/en/latest/installation.html>`_
 * `Git <https://git-scm.com/>`_
 
