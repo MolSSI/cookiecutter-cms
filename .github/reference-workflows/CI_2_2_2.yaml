@@ -38,29 +38,35 @@ jobs:
         ulimit -a
 
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+    # More info on options: https://github.com/conda-incubator/setup-miniconda
+    - uses: conda-incubator/setup-miniconda@v2
       with:
         python-version: ${{ matrix.python-version }}
+        environment-file: devtools/conda-envs/test_env.yaml
 
-    - name: Testing Dependencies
-      shell: bash
-      run: |
-        python -m pip install -U pytest pytest-cov codecov
+        channels: defaults
+
+        activate-environment: test
+        auto-update-conda: false
+        auto-activate-base: false
+        show-channel-urls: true
 
     - name: Install package
 
-      shell: bash
+      # conda setup requires this special shell
+      shell: bash -l {0}
       run: |
-        python -m pip install .
+        python -m pip install . --no-deps
+        conda list
 
 
     - name: Run tests
 
-      shell: bash
+      # conda setup requires this special shell
+      shell: bash -l {0}
 
       run: |
-        pytest -v --cov=prj_2_3_3_1 --cov-report=xml --color=yes prj_2_3_3_1/tests/
+        pytest -v --cov=prj_2_2_2 --cov-report=xml --color=yes prj_2_2_2/tests/
 
     - name: CodeCov
       uses: codecov/codecov-action@v1

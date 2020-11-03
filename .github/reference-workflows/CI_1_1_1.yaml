@@ -44,7 +44,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
         environment-file: devtools/conda-envs/test_env.yaml
 
-        channels: defaults
+        channels: conda-forge,defaults
 
         activate-environment: test
         auto-update-conda: false
@@ -66,7 +66,7 @@ jobs:
       shell: bash -l {0}
 
       run: |
-        pytest -v --cov=prj_2_2_3_2 --cov-report=xml --color=yes prj_2_2_3_2/tests/
+        pytest -v --cov=prj_1_1_1 --cov-report=xml --color=yes prj_1_1_1/tests/
 
     - name: CodeCov
       uses: codecov/codecov-action@v1

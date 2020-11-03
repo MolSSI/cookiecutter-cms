@@ -63,25 +63,13 @@ def git_init_and_tag():
               "CookieCutter files have been created in {{ cookiecutter.repo_name }} directory.")
 
 
-def select_continuous_integration_provider():
-    provider = '{{ cookiecutter.continuous_integration_provider }}'.lower()
-    if provider == "github actions (experimental)":
-        # Remove with appveyor to be a safe delete
-        os.remove("appveyor.yml")
-        os.remove(".travis.yml")
-        shutil.rmtree("devtools/travis-ci")
-    elif provider == "travis":
-        shutil.rmtree(".github/workflows")
-        os.remove("appveyor.yml")
-    elif provider == "travis+appveyor":
-        shutil.rmtree(".github/workflows")
-
 def remove_rtd():
     include_rtd = '{{ cookiecutter.include_ReadTheDocs }}'
     if include_rtd == "n":
         rtd_env = os.path.join("docs", "requirements.yaml")
         os.remove('readthedocs.yml')
         os.remove(rtd_env)
+
 
 def random_file_cleanup_removal():
     """Remove random files which can be generated under certain conditions"""
@@ -94,7 +82,7 @@ def random_file_cleanup_removal():
         except FileNotFoundError:
             pass
 
+
 remove_rtd()
-select_continuous_integration_provider()
 random_file_cleanup_removal()
 git_init_and_tag()

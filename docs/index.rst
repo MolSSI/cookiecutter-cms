@@ -24,7 +24,7 @@ Features
 --------
 * Python-centric skeletal structure with initial module files
 * Pre-configured ``setup.py`` for installation and packaging
-* Pre-configured Window, Linux, and OSX continuous integration on AppVeyor and Travis-CI
+* Pre-configured Window, Linux, and OSX continuous integration on GitHub Actions
 * Choice of dependency locations through ``conda-forge``, default ``conda``, or ``pip``
 * Basic testing structure with `PyTest <https://docs.pytest.org/en/latest/>`_
 * Automatic ``git`` initialization + tag
@@ -38,7 +38,7 @@ Features
 Requirements
 ------------
 
-* Python 3.6, or 3.7
+* Python 3.8, or 3.9
 * `Cookiecutter <http://cookiecutter.readthedocs.io/en/latest/installation.html>`_
 * `Git <https://git-scm.com/>`_
 
@@ -101,14 +101,22 @@ Tests can be run with the ``pytest -v`` command. There are a number of additiona
 
 Continuous Integration
 ^^^^^^^^^^^^^^^^^^^^^^
-Testing is accomplished with both `Appveyor <https://www.appveyor.com>`_ (for Windows testing) and
-`Travis-CI <https://travis-ci.com>`_ (for Linux testing). These frameworks are chosen as they
-are completely free for open source projects and allow you to automatically verify that your project works under a
-variety of OS's and
-Python versions. To begin please register with both Appveyor and Travis-CI and turn on the git hooks under the project
-tabs. You will also want to correct the badges which appear on the output README file to point to the correct links
 
-### Documentation
+As of version 1.3, we provide preconfigured workflows for [GitHub Actions](https://github.com/features/actions), with
+support for Linux, MacOS and Windows. Conda support is possible thanks to the excellent
+[@conda-incubator's `setup-miniconda` action](https://github.com/conda-incubator/setup-miniconda). We encourage you
+read its documentation for further details on GitHub Actions themselves.
+
+Testing is accomplished with `GitHub Actions <https://github.com/features/actions>`_ for Linux, Windows, and macOS
+testing. This frameworks is chosen as it is completely free for open source projects and allow you to automatically
+verify that your project works under a variety of OS's and
+Python versions; all within the existing GitHub Framework.
+To begin please, ensure GitHub Actions are enabled for your repository in its main settings area. This is often on by
+default, so there may not need to be any additional steps needed.
+You will also want to correct the badges which appear on the output README file to point to the correct links
+
+Documentation
+^^^^^^^^^^^^^
 Make a `ReadTheDocs <https://readthedocs.org>`_ account and turn on the git hook. Although you can manually make the
 documentation yourself through `Sphinx <http://www.sphinx-doc.org/en/master/usage/quickstart.html>`_, you can also
 `configure ReadTheDocs <https://docs.readthedocs.io/en/latest/getting_started.html>`_ to automatically build and
@@ -147,7 +155,6 @@ upon setup.
    .
    ├── LICENSE                         <- License file
    ├── README.md                       <- Description of project which GitHub will render
-   ├── appveyor.yml                    <- AppVeyor config file for Windows testing (if chosen)
    ├── {{repo_name}}
    │   ├── __init__.py                 <- Basic Python Package import file
    │   ├── {{first_module_name}}.py    <- Starting packge module
@@ -164,8 +171,8 @@ upon setup.
    │   │   ├── bld.bat
    │   │   ├── build.sh
    │   │   └── meta.yaml
-   │   └── travis-ci
-   │       └── install.sh
+   │   └── legacy-miniconda-setup
+   │       └── before_install.sh       <- A helper function script kept on hand in case its needed to configure Travis again
    ├── docs                            <- Documentation template folder with many settings already filled in
    │   ├── Makefile
    │   ├── README.md                   <- Instructions on how to build the docs
@@ -179,10 +186,11 @@ upon setup.
    ├── versioneer.py                   <- Automatic version control with Versioneer
    ├── .github                         <- GitHub hooks for user contrubtion and pull request guides
    │   ├── CONTRIBUTING.md
-   │   └── PULL_REQUEST_TEMPLATE.md
+   │   ├── PULL_REQUEST_TEMPLATE.md
+   │   └── workflows                   <- GitHub Action workflow directory. GitHub automatically looks here for Workflows to run
+   │       └── CI.yaml                 <- A Workflow File for GitHub Actions to run as CI
    ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
-   ├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding
-   └── .travis.yml                     <- Travis-CI config file for Linux and OSX testing
+   └── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding
 
 
 Additional Pages
