@@ -49,7 +49,7 @@ jobs:
         python -m pip install -U pytest pytest-cov codecov
 {% else %}
     # More info on options: https://github.com/conda-incubator/setup-miniconda
-    - uses: conda-incubator/setup-miniconda@v1
+    - uses: conda-incubator/setup-miniconda@v2
       with:
         python-version: {{ '${{ matrix.python-version }}' }}
         environment-file: devtools/conda-envs/test_env.yaml
