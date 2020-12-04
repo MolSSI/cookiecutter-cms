@@ -101,7 +101,7 @@ and ideas for improvements.
 
 ### Discontinued CI Strategies: Travis & AppVeyor 
 We **no longer recommend** projects to use [Travis-CI](https://travis-ci.com) or [AppVeyor](https://www.appveyor.com) 
-for CI services. AppVeyor had been notorious slow we have found in practice, and Travis 
+for CI services. We found the AppVeyor service to be notorious slow in practice, and Travis 
 [updated their billing model](https://blog.travis-ci.com/2020-11-02-travis-ci-new-billing) to charge for OSX testing and 
 further limit their Linux concurrency, even for fully open source software. Given the rise of 
 [GitHub Actions](https://github.com/features/actions), we feel it was appropriate to transition off these platforms as 
@@ -136,10 +136,14 @@ is an ill advised idea for two main reasons:
 
 There may be some times where the caching feature is helpful for you. One example: including test data which is too
 large to store on GitHub, but also has a slow mirror hosting it. A cache will help speed up the test since you
-wont have to download from the slower mirror. If you this sounds like a helpful feature, you can check out the
+will not have to download from the slower mirror. If you this sounds like a helpful feature, you can check out the
 links below. We do not implement them for this Cookiecutter, but they can be added to your package as needed.
 
 * [GitHub Actions Caching](https://docs.github.com/en/free-pro-team@latest/actions/guides/caching-dependencies-to-speed-up-workflows)
+
+There are caching capabilities for the `Conda-Incubator/setup-miniconda` action, if you are using it as well. 
+
+* [Setup Miniconda GHA Caching](https://github.com/conda-incubator/setup-miniconda#caching)
 
 ### Documentation
 Make a [ReadTheDocs](https://readthedocs.org) account and turn on the git hook. Although you can manually make the
@@ -287,48 +291,53 @@ upon setup.
 
 ```
 .
+├── CODE_OF_CONDUCT.md              <- Code of Conduct for developers and users
 ├── LICENSE                         <- License file
+├── MANIFEST.in                     <- Packaging information for pip
 ├── README.md                       <- Description of project which GitHub will render
-├── {{repo_name}}
-│   ├── __init__.py                 <- Basic Python Package import file
-│   ├── {{first_module_name}}.py    <- Starting packge module
-│   ├── data                        <- Sample additional data (non-code) which can be packaged
-│   │   ├── README.md
-│   │   └── look_and_say.dat
-│   ├── tests                       <- Unit test directory with sample tests
-│   │   ├── __init__.py
-│   │   └── test_{{repo_name}}.py
-│   └── _version.py                 <- Automatic version control with Versioneer
+├── {{repo_name}}                   <- Basic Python Package import file
+│   ├── {{first_module_name}}.py    <- Starting packge module
+│   ├── __init__.py                 <- Basic Python Package import file
+│   ├── _version.py                 <- Automatic version control with Versioneer
+│   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
+│   │   ├── README.md
+│   │   └── look_and_say.dat
+│   └── tests                       <- Unit test directory with sample tests
+│       ├── __init__.py
+│       └── test_{{repo_name}}.py
 ├── devtools                        <- Deployment, packaging, and CI helpers directory
 │   ├── README.md
-│   ├── conda-envs                  <- Environments for testing
-│   │   └── test_env.yaml
-│   ├── conda-recipe                <- Conda build and deployment skeleton
-│   │   ├── bld.bat                 <- Win specific file, not present if Win CI not chosen
-│   │   ├── build.sh
-│   │   └── meta.yaml
-│   └── scripts
-│       └── create_conda_env.py     <- OS anostic Helper script to make conda environments based on simple flags
+│   ├── conda-envs                  <- Conda environments for testing
+│   │   └── test_env.yaml
+│   ├── legacy-miniconda-setup      <- Legacy Travis CI Helper, will likely be removed in later version
+│   │   └── before_install.sh
+│   └── scripts
+│       └── create_conda_env.py     <- OS agnostic Helper script to make conda environments based on simple flags
 ├── docs                            <- Documentation template folder with many settings already filled in
 │   ├── Makefile
 │   ├── README.md                   <- Instructions on how to build the docs
 │   ├── _static
+│   │   └── README.md
 │   ├── _templates
+│   │   └── README.md
+│   ├── api.rst
 │   ├── conf.py
+│   ├── getting_started.rst
 │   ├── index.rst
-│   └── make.bat
+│   ├── make.bat
+│   └── requirements.yaml           <- Documenation building specific requirements. Usually a smaller set than the main program
+├── readthedocs.yml
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
 ├── versioneer.py                   <- Automatic version control with Versioneer
+├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
 ├── .github                         <- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
-│   ├── workflows
-│   │   └── CI.yaml
 │   ├── CONTRIBUTING.md
 │   ├── PULL_REQUEST_TEMPLATE.md
-│   └── workflows                   <- GitHub Action workflow directory. GitHub automatically looks here for Workflows to run
-│       └── CI.yaml                 <- A Workflow File for GitHub Actions to run as CI
-├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
-├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding
+│   └── workflows
+│       └── CI.yaml
+├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding files
+└── .lgtm.yml
 ```
 
 ## Acknowledgments

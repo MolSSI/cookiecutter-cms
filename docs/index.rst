@@ -108,7 +108,7 @@ support for Linux, MacOS and Windows. Conda support is possible thanks to the ex
 read its documentation for further details on GitHub Actions themselves.
 
 Testing is accomplished with `GitHub Actions <https://github.com/features/actions>`_ for Linux, Windows, and macOS
-testing. This frameworks is chosen as it is completely free for open source projects and allow you to automatically
+testing. This framework is chosen as it is completely free for open source projects and allow you to automatically
 verify that your project works under a variety of OS's and
 Python versions; all within the existing GitHub Framework.
 To begin please, ensure GitHub Actions are enabled for your repository in its main settings area. This is often on by
@@ -132,65 +132,14 @@ how to install your package. Each of the options in the file are commented with 
 used.
 
 
-
 Why is Python 2.X not on the supported versions?
 ------------------------------------------------
 New projects generally should not be built with Python 2.7 support in mind, see the
-`Python 3 Statement <https://python3statement.org/>`_. Although the final Python 2.7 release will be
+`Python 3 Statement <https://python3statement.org/>`_. Although the final Python 2.7 release was
 `supported through 2020 <http://legacy.python.org/dev/peps/pep-0373/>`_ and is the default on many legacy systems, Python
 3 has been released for almost a decade and projects long term usage should not be shacked by legacy methods that will
 have to be replaced in very short order as Python 2 support is retired.
 
-
-
-
-Output Skeleton
----------------
-
-This will be the skeleton made by this ``cookiecutter``, the items marked in ``{{ }}`` will be replaced by your choices
-upon setup.
-
-.. code::
-
-   .
-   ├── LICENSE                         <- License file
-   ├── README.md                       <- Description of project which GitHub will render
-   ├── {{repo_name}}
-   │   ├── __init__.py                 <- Basic Python Package import file
-   │   ├── {{first_module_name}}.py    <- Starting packge module
-   │   ├── data                        <- Sample additional data (non-code) which can be packaged
-   │   │   ├── README.md
-   │   │   └── look_and_say.dat
-   │   ├── tests                       <- Unit test directory with sample tests
-   │   │   ├── __init__.py
-   │   │   └── test\_{{repo_name}}.py
-   │   └── _version.py                 <- Automatic version control with Versioneer
-   ├── devtools                        <- Deployment, packaging, and CI helpers directory
-   │   ├── README.md
-   │   ├── conda-recipe                <- Conda build and deployment skeleton
-   │   │   ├── bld.bat
-   │   │   ├── build.sh
-   │   │   └── meta.yaml
-   │   └── legacy-miniconda-setup
-   │       └── before_install.sh       <- A helper function script kept on hand in case its needed to configure Travis again
-   ├── docs                            <- Documentation template folder with many settings already filled in
-   │   ├── Makefile
-   │   ├── README.md                   <- Instructions on how to build the docs
-   │   ├── _static
-   │   ├── _templates
-   │   ├── conf.py
-   │   ├── index.rst
-   │   └── make.bat
-   ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
-   ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
-   ├── versioneer.py                   <- Automatic version control with Versioneer
-   ├── .github                         <- GitHub hooks for user contrubtion and pull request guides
-   │   ├── CONTRIBUTING.md
-   │   ├── PULL_REQUEST_TEMPLATE.md
-   │   └── workflows                   <- GitHub Action workflow directory. GitHub automatically looks here for Workflows to run
-   │       └── CI.yaml                 <- A Workflow File for GitHub Actions to run as CI
-   ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
-   └── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding
 
 
 Additional Pages
@@ -205,8 +154,9 @@ Additional Pages
 Acknowledgments
 ===============
 
-This cookiecutter is developed by Levi N. Naden and
-Daniel G. A. Smith from the `Molecular Sciences Software Institute (MolSSI) <http://molssi.org/>`_. Copyright (c) 2018.
+This cookiecutter is developed by Levi N. Naden and Jessica Nash
+from the `Molecular Sciences Software Institute (MolSSI) <http://molssi.org/>`_; and
+Daniel G. A. Smith of `ENTOS <https://www.entos.ai/>`_. Copyright (c) 2021.
 
 Directory structure template based on recommendation from the
 `Chodera Lab's Software Development Guidelines <https://github.com/choderalab/software-development/blob/master/STRUCTURING_YOUR_PROJECT.md>`_.
