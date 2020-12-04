@@ -1,7 +1,6 @@
 # Cookiecutter for Computational Molecular Sciences (CMS) Python Packages
 [//]: # (Badges)
-[![Travis Build Status](https://travis-ci.org/MolSSI/cookiecutter-cms.svg?branch=master)](https://travis-ci.org/MolSSI/cookiecutter-cms)
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/yxb39cib8osqg41l/branch/master?svg=true)](https://ci.appveyor.com/project/Lnaden/cookiecutter-cms/branch/master)
+[![GitHub Actions Build Status](https://github.com/MolSSI/cookiecutter-cms/workflows/Pseudo%20Validate%20GHA%20Output/badge.svg)](https://github.com/MolSSI/cookiecutter-cms/actions?query=workflow%3A%22Pseudo+Validate+GHA+Output%22)
 [![Documentation Status](https://readthedocs.org/projects/cookiecutter-cms/badge/?version=latest)](https://cookiecutter-cms.readthedocs.io/en/latest/?badge=latest)
 
 
@@ -16,7 +15,7 @@ remove deployment platforms, or test with a different suite.
 ## Features
 * Python-centric skeletal structure with initial module files
 * Pre-configured `setup.py` for installation and packaging
-* Pre-configured Windows, Linux, and OSX continuous integration on AppVeyor+Travis-CI or GitHub Actions.
+* Pre-configured Windows, Linux, and OSX continuous integration on GitHub Actions.
 * Choice of dependency locations through `conda-forge`, default `conda`, or `pip`
 * Basic testing structure with [PyTest](https://docs.pytest.org/en/latest/)
 * Automatic `git` initialization + tag
@@ -28,7 +27,7 @@ remove deployment platforms, or test with a different suite.
 
 ## Requirements
 
-* Python 3.6, or 3.7
+* Python 3.7, or 3.8
 * [Cookiecutter](http://cookiecutter.readthedocs.io/en/latest/installation.html)
 * [Git](https://git-scm.com/)
 
@@ -76,30 +75,40 @@ contained within the `project/tests/` folder.
 Tests can be run with the `pytest -v` command. There are a number of additional command line arguments to
 [explore](https://docs.pytest.org/en/latest/usage.html).
 
-### Continuous Integration (Travis & AppVeyor)
-Testing is accomplished with both [Appveyor](https://www.appveyor.com) (for Windows testing) and
-[Travis-CI](https://travis-ci.com) (for Linux testing). These frameworks are chosen as they
-are completely free for open source projects and allow you to automatically verify that your project works under a
-variety of OS's and
-Python versions. To begin please register with both Appveyor and Travis-CI and turn on the git hooks under the project
-tabs. You will also want to correct the badges which appear on the output README file to point to the correct links
+### Continuous Integration (GitHub Actions)
 
-You may notice that our scripts
-[check the MD5 hash for the Miniconda installer](%7B%7Bcookiecutter.repo_name%7D%7D/devtools/travis-ci/before_install.sh)
-before installing. In general, it is often good idea to check the MD5 of any file which you are pulling from the net
-automatically,
-especially if there are mirrors, as a simple (but not fool-proof) method of ensuring you got the expected file for
-effectively free.
-However, there are a couple other reasons we check the MD5 for the Miniconda installer:
+As of version 1.3, we provide preconfigured workflows for [GitHub Actions](https://github.com/features/actions), with 
+support for Linux, MacOS and Windows. Conda support is possible thanks to the excellent 
+[@conda-incubator's `setup-miniconda` action](https://github.com/conda-incubator/setup-miniconda). We encourage you 
+read its documentation for further details on GitHub Actions themselves.
 
-* Prevent getting the wrong Miniconda version. Sometimes the Miniconda maintainers will update their download links for
-  `latest` version before updating the MD5 hashes on the site. This can lead to some unexpected behavior,
-  especially on major Conda version upgrades. Thus, the MD5 check helps trap that.
-* Should Miniconda ever change their distribution method, this check will fail and you the maintainer can find out
-  what has changed to update your code as needed.
-* Some projects may need to pin to very specific, or maximum Conda versions. This helps ensure version expectations.
-  It should be noted this is a very rare case.
+The Cookiecutter's GitHub Actions does a number of things differently than the output Actions. We detail those 
+differences below, but none of this is needed to understand the output GitHub Action Workflows, which are much simpler.
 
+The Cookiecutter ability to test GitHub Actions it generates has some limitations, but are still properly tested.
+This repository has a multi-job GitHub Action Workflow to do a few things:
+* Run the Cookiecutter and generate outputs.
+* Compare the output CI's to references.
+* Run an approximate implementation of the generated CI files.
+
+If the reference files need re-generated, there is a script to help with this.
+
+Ideally, the Cookiecutter would run the generated output files in real time. However, that is currently impossible with 
+GitHub Actions (as of October 14 2020). We Cookiecutter-CMS maintainers have also looked at reactive PR’s which 
+implement on different branches and make new PR’s and setting up dummy repositories and pushing to those and then 
+monitoring the test/return from that. This was all determined to be overly complicated, although we welcome suggestions 
+and ideas for improvements.
+
+### Discontinued CI Strategies: Travis & AppVeyor 
+We **no longer recommend** projects to use [Travis-CI](https://travis-ci.com) or [AppVeyor](https://www.appveyor.com) 
+for CI services. We found the AppVeyor service to be notorious slow in practice, and Travis 
+[updated their billing model](https://blog.travis-ci.com/2020-11-02-travis-ci-new-billing) to charge for OSX testing and 
+further limit their Linux concurrency, even for fully open source software. Given the rise of 
+[GitHub Actions](https://github.com/features/actions), we feel it was appropriate to transition off these platforms as 
+of the CMS Cookiecutter's 1.5 release.
+
+The final version of the CMS-Cookiecutter with Travis and AppVeyor support can be found 
+here: https://github.com/MolSSI/cookiecutter-cms/releases/tag/1.4 for legacy purposes.
 
 #### Pre-caching common build data
 
@@ -127,35 +136,14 @@ is an ill advised idea for two main reasons:
 
 There may be some times where the caching feature is helpful for you. One example: including test data which is too
 large to store on GitHub, but also has a slow mirror hosting it. A cache will help speed up the test since you
- wont have to download from the slower mirror. If you this sounds like a helpful feature, you can check out the
+will not have to download from the slower mirror. If you this sounds like a helpful feature, you can check out the
 links below. We do not implement them for this Cookiecutter, but they can be added to your package as needed.
 
-* [Travis-CI Caching](https://docs.travis-ci.com/user/caching/)
-* [AppVeyor Caching](https://www.appveyor.com/docs/build-cache/)
+* [GitHub Actions Caching](https://docs.github.com/en/free-pro-team@latest/actions/guides/caching-dependencies-to-speed-up-workflows)
 
-### Continuous Integration (GitHub Actions)
+There are caching capabilities for the `Conda-Incubator/setup-miniconda` action, if you are using it as well. 
 
-As of version 1.3, we provide preconfigured workflows for [GitHub Actions](https://github.com/features/actions), with 
-support for Linux, MacOS and Windows. Conda support is possible thanks to the excellent 
-[@conda-incubator's `setup-miniconda` action](https://github.com/conda-incubator/setup-miniconda). We encourage you 
-read its documentation for further details on GitHub Actions themselves.
-
-The Cookiecutter's GitHub Actions does a number of things differently than the output Actions. We detail those 
-differences below, but none of this is needed to understand the output GitHub Action Workflows, which are much simpler.
-
-The Cookiecutter ability to test GitHub Actions it generates has some limitations, but are still properly tested.
-This repository has a multi-job GitHub Action Workflow to do a few things:
-* Run the Cookiecutter and generate outputs.
-* Compare the output CI's to references.
-* Run an approximate implementation of the generated CI files.
-
-If the reference files need re-generated, there is a script to help with this.
-
-Ideally, the Cookiecutter would run the generated output files in real time. However, that is currently impossible with 
-GitHub Actions (as of October 14 2020). We Cookiecutter-CMS maintainers have also looked at reactive PR’s which 
-implement on different branches and make new PR’s and setting up dummy repositories and pushing to those and then 
-monitoring the test/return from that. This was all determined to be overly complicated, although we welcome suggestions 
-and ideas for improvements.
+* [Setup Miniconda GHA Caching](https://github.com/conda-incubator/setup-miniconda#caching)
 
 ### Documentation
 Make a [ReadTheDocs](https://readthedocs.org) account and turn on the git hook. Although you can manually make the
@@ -257,7 +245,7 @@ when you may want to build your packages yourself and upload them for developmen
 but we recommend letting others handle (and help you) with deployment.
 These are meant to serve as guides to help you get started.
 
-Deployment should not get in the way of testing. You could configure the Travis and AppVeyor scripts
+Deployment should not get in the way of testing. You could configure the GitHub Action scripts
 to handle the build stage after the test stage, but this is should only be done by advanced
 users or those looking to deploy themselves.
 
@@ -270,7 +258,7 @@ only Conda Forge's deployment tools, but also for easy access to all the other P
 been deployed on the platform. Even though they provide the deployment architecture, you need to still
 test your program's ability to be packaged through `conda-build`.
 If you choose either Conda dependency option, additional
-tests will be added to Travis and/or AppVeyor which *only* package through `conda-build`.
+tests will be added to GitHub Actions which *only* package through `conda-build`.
 
 This method relies on the conda `meta.yaml` file.
 
@@ -303,50 +291,53 @@ upon setup.
 
 ```
 .
+├── CODE_OF_CONDUCT.md              <- Code of Conduct for developers and users
 ├── LICENSE                         <- License file
+├── MANIFEST.in                     <- Packaging information for pip
 ├── README.md                       <- Description of project which GitHub will render
-├── appveyor.yml                    <- AppVeyor config file for Windows testing (if chosen)
-├── {{repo_name}}
-│   ├── __init__.py                 <- Basic Python Package import file
-│   ├── {{first_module_name}}.py    <- Starting packge module
-│   ├── data                        <- Sample additional data (non-code) which can be packaged
-│   │   ├── README.md
-│   │   └── look_and_say.dat
-│   ├── tests                       <- Unit test directory with sample tests
-│   │   ├── __init__.py
-│   │   └── test_{{repo_name}}.py
-│   └── _version.py                 <- Automatic version control with Versioneer
+├── {{repo_name}}                   <- Basic Python Package import file
+│   ├── {{first_module_name}}.py    <- Starting packge module
+│   ├── __init__.py                 <- Basic Python Package import file
+│   ├── _version.py                 <- Automatic version control with Versioneer
+│   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
+│   │   ├── README.md
+│   │   └── look_and_say.dat
+│   └── tests                       <- Unit test directory with sample tests
+│       ├── __init__.py
+│       └── test_{{repo_name}}.py
 ├── devtools                        <- Deployment, packaging, and CI helpers directory
 │   ├── README.md
-│   ├── conda-envs                  <- Environments for testing
-│   │   └── test_env.yaml
-│   ├── conda-recipe                <- Conda build and deployment skeleton
-│   │   ├── bld.bat                 <- Win specific file, not present if Win CI not chosen
-│   │   ├── build.sh
-│   │   └── meta.yaml
-│   ├── scripts
-│   │   └── create_conda_env.py     <- OS anostic Helper script to make conda environments based on simple flags
-│   └── travis-ci
-│       └── install.sh
+│   ├── conda-envs                  <- Conda environments for testing
+│   │   └── test_env.yaml
+│   ├── legacy-miniconda-setup      <- Legacy Travis CI Helper, will likely be removed in later version
+│   │   └── before_install.sh
+│   └── scripts
+│       └── create_conda_env.py     <- OS agnostic Helper script to make conda environments based on simple flags
 ├── docs                            <- Documentation template folder with many settings already filled in
 │   ├── Makefile
 │   ├── README.md                   <- Instructions on how to build the docs
 │   ├── _static
+│   │   └── README.md
 │   ├── _templates
+│   │   └── README.md
+│   ├── api.rst
 │   ├── conf.py
+│   ├── getting_started.rst
 │   ├── index.rst
-│   └── make.bat
+│   ├── make.bat
+│   └── requirements.yaml           <- Documenation building specific requirements. Usually a smaller set than the main program
+├── readthedocs.yml
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
 ├── versioneer.py                   <- Automatic version control with Versioneer
-├── .github                         <- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
-│   ├── workflows
-│   │   └── CI.yaml
-│   ├── CONTRIBUTING.md
-│   └── PULL_REQUEST_TEMPLATE.md
 ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
-├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding
-└── .travis.yml                     <- Travis-CI config file for Linux and OSX testing
+├── .github                         <- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
+│   ├── CONTRIBUTING.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows
+│       └── CI.yaml
+├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding files
+└── .lgtm.yml
 ```
 
 ## Acknowledgments

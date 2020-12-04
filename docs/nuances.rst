@@ -12,9 +12,10 @@ Continuous Integration (CI) Caveats
 -----------------------------------
 
 The parent Cookiecutter must emulate the the process of creating and running tests, while in its own tests. Since
-Travis and AppVeyor are not intended to do this, we have to do some trickery to manually process the YAML output files
-after executing the Cookiecutter. This is something you, the user of this Cookiecutter, should not have to worry about
-and can instead just use Travis and AppVeyor as those programs intend.
+GitHub Actions are not intended to do this, we have to do some trickery to approximate the YAML output files
+after executing the Cookiecutter, and then compare the real outputs to stored references.
+This is something you, the user of this Cookiecutter, should not have to worry about
+and can instead just use GitHub Actions as intend.
 
 
 Writing helpful documentation

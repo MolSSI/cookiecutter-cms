@@ -8,15 +8,14 @@ import sys
 
 project = sys.argv[1]
 lic = sys.argv[2]
-depend = sys.argv[3]
-provider = sys.argv[4]
-rtd = sys.argv[5]
+provider = sys.argv[3]
+rtd = sys.argv[4]
 try:
-    cookie_path = abspath(sys.argv[6])
+    cookie_path = abspath(sys.argv[5])
 except IndexError:
     cookie_path = "."
 
-print("Options: open_source_license=%s, dependency_source=%s, ci_provider=%s, rtd=%s" % (lic, depend, provider, rtd))
+print("Options: open_source_license=%s, ci_provider=%s, rtd=%s" % (lic, provider, rtd))
 
 # Setup the options
 options = [project,  # Repo name
@@ -26,7 +25,6 @@ options = [project,  # Repo name
            "cookiemonster@trash.can",  # Author email
            "",  # Description
            lic,  # License
-           depend,  # Dependency
            provider,  # ci_provider
            rtd] 
 

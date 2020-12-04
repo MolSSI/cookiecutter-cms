@@ -8,8 +8,8 @@ do
   do
     for RTD in 1 2
     do
-        SEQUENCE=_"$LIC"_"$DEP"_3_"$RTD"
-        python setup_cookiecutter.py prj${SEQUENCE} ${LIC} ${DEP} 3 ${RTD} ..
+        SEQUENCE=_"$LIC"_"$DEP"_"$RTD"
+        python setup_cookiecutter.py prj${SEQUENCE} ${LIC} ${DEP} ${RTD} ..
         mkdir -p CI_files
         mv prj${SEQUENCE}/.github/workflows/CI.yaml CI_files/CI${SEQUENCE}.yaml
         rm -rf prj${SEQUENCE}
