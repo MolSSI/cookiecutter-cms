@@ -154,7 +154,7 @@ Additional Pages
 Acknowledgments
 ===============
 
-This cookiecutter is developed by Levi N. Naden and Jessica Nash
+This cookiecutter is developed by Levi N. Naden and Jessica A. Nash
 from the `Molecular Sciences Software Institute (MolSSI) <http://molssi.org/>`_; and
 Daniel G. A. Smith of `ENTOS <https://www.entos.ai/>`_. Copyright (c) 2021.
 
