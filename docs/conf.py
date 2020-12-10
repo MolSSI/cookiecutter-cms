@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Computational Molecular Sciences Cookiecutter'
-copyright = '2018, Levi N. Naden, Daniel G. A. Smith'
-author = 'Levi N. Naden, Daniel G. A. Smith'
+copyright = '2021, Levi N. Naden, Jessica A. Nash, Daniel G. A. Smith'
+author = 'Levi N. Naden, Jessica A. Nash Daniel G. A. Smith'
 
 # The short X.Y version
 version = ''

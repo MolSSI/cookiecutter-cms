@@ -27,7 +27,7 @@ remove deployment platforms, or test with a different suite.
 
 ## Requirements
 
-* Python 3.8, or 3.9
+* Python 3.7, 3.8, or 3.9
 * [Cookiecutter](http://cookiecutter.readthedocs.io/en/latest/installation.html)
 * [Git](https://git-scm.com/)
 
@@ -44,6 +44,28 @@ Which fetches this repository from github automatically and prompts the user for
 package name, author(s), and licences.
 
 [![The cookiecutter in action](http://img.youtube.com/vi/_E7AlaG8zbk/0.jpg)](http://www.youtube.com/watch?v=_E7AlaG8zbk "Computational Molecular Sciences Cookieucutter Example")
+
+## Supported Python Versions
+The MolSSI Cookiecutter will strive to support the current version of Python, two minor versions before. This 
+philosophy is in align with [Conda-Forge's](https://conda-forge.org/docs/orga/guidelines.html#python) guidelines 
+and gives projects ample time to implement new features.
+
+### When to drop support for older Python versions?
+
+Project developers can freely choose when to drop support for older versions of Python, or if they don't want to support 
+as many. The general rules we recommend are: 
+* Support at least two Python versions: The most recent and the preceding minor version. E.g. 3.9 and 3.8
+* Dropping Python versions should require a minor Project Version increment.
+* New Python versions have been supported for at least one minor revision. E.g Project X.Y 
+  supports Python 3.7 and 3.8; Project X.Y+1 supports Python 3.7, 3.8 and 3.9; Project X.Y+2 supports Python 3.8 and 3.9.
+* Add deprecation warnings if features will be removed.
+
+### Why is Python 2.X not on the supported versions?
+New projects generally should not be built with Python 2.7 support in mind; see the
+[Python 3 Statement](https://python3statement.org/). Although the final Python 2.7 release will be
+[supported through 2020](http://legacy.python.org/dev/peps/pep-0373/) and is the default on many legacy systems, Python
+3 has been released for almost a decade and a project's long term usage should not be shackled by legacy methods that will
+have to be replaced in very short order as Python 2 support is retired.
 
 ## Next steps and web integrations
 The repository contains a number of "hooks" that integrate with a variety of web services. To fully integrate the project
@@ -173,14 +195,6 @@ origin v0.1`), this tag will then relect in your project: `project.__version__
 == v0.1`.  Otherwise a per-commit version is available which looks like
 `v0.3.0+81.g332bfc1`. This string shows the current git (the "g") hash `332bfc1`
 is 81 commits beyond the version 0.3 tag.
-
-
-## Why is Python 2.X not on the supported versions?
-New projects generally should not be built with Python 2.7 support in mind; see the
-[Python 3 Statement](https://python3statement.org/). Although the final Python 2.7 release will be
-[supported through 2020](http://legacy.python.org/dev/peps/pep-0373/) and is the default on many legacy systems, Python
-3 has been released for almost a decade and a project's long term usage should not be shackled by legacy methods that will
-have to be replaced in very short order as Python 2 support is retired.
 
 
 ## Conda and PyPI (`pip`)
@@ -342,8 +356,9 @@ upon setup.
 
 ## Acknowledgments
 
-This cookiecutter is developed by Levi N. Naden and
-Daniel G. A. Smith from the [Molecular Sciences Software Institute (MolSSI)](http://molssi.org/). Copyright (c) 2018-2019.
+This cookiecutter is developed by Levi N. Naden and Jessica A. Nash
+from the [Molecular Sciences Software Institute (MolSSI)](http://molssi.org/); and
+Daniel G. A. Smith of [ENTOS](https://www.entos.ai/). Copyright (c) 2021.
 
 Directory structure template based on recommendation from the
 [Chodera Lab's Software Development Guidelines](https://github.com/choderalab/software-development/blob/master/STRUCTURING_YOUR_PROJECT.md).
