@@ -1,5 +1,6 @@
 """
-{{cookiecutter.project_name}}
+short description of {{cookiecutter.project_name}}.
+
 {{cookiecutter.description}}
 """
 
