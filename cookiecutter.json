@@ -4,6 +4,7 @@
     "first_module_name": "{{ cookiecutter.repo_name.lower().replace(' ', '_') }}",
     "author_name": "Your name (or your organization/company/team)",
     "author_email": "Your email (or your organization/company/team)",
+    "short_description": "A one-line terse project description.",
     "description": "A short description of the project.",
     "open_source_license": [
 
