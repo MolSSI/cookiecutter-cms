@@ -6,7 +6,7 @@ import sys
 from setuptools import setup, find_packages
 import versioneer
 
-short_description = __doc__.split("\n")
+short_description = "{{cookiecutter.description}}".split("\n")[0]
 
 # from https://github.com/pytest-dev/pytest-runner#conditional-requirement
 needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
@@ -16,7 +16,7 @@ try:
     with open("README.md", "r") as handle:
         long_description = handle.read()
 except:
-    long_description = "\n".join(short_description[2:])
+    long_description = None
 
 
 setup(
@@ -24,7 +24,7 @@ setup(
     name='{{cookiecutter.repo_name}}',
     author='{{cookiecutter.author_name}}',
     author_email='{{cookiecutter.author_email}}',
-    description=short_description[0],
+    description=short_description,
     long_description=long_description,
     long_description_content_type="text/markdown",
     version=versioneer.get_version(),

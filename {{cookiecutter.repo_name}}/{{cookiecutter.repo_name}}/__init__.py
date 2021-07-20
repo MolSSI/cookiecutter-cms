@@ -1,8 +1,4 @@
-"""
-short description of {{cookiecutter.project_name}}.
-
-{{cookiecutter.description}}
-"""
+"""{{cookiecutter.description}}"""
 
 # Add imports here
 from .{{cookiecutter.first_module_name}} import *
