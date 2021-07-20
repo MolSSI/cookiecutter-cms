@@ -1,10 +1,4 @@
-"""
-short description of {{cookiecutter.first_module_name}}.
-
-{{cookiecutter.description}}
-
-Handles the primary functions.
-"""
+"""Provide the primary functions."""
 
 
 def canvas(with_attribution=True):
