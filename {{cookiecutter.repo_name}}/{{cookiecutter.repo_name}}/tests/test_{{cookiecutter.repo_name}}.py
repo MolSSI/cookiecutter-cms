@@ -8,5 +8,5 @@ import pytest
 import sys
 
 def test_{{cookiecutter.repo_name}}_imported():
-    """Sample test, will always pass so long as import statement worked"""
+    """Sample test, will always pass so long as import statement worked."""
     assert "{{cookiecutter.repo_name}}" in sys.modules
