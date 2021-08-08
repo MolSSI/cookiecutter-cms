@@ -2,7 +2,7 @@
 ==============================
 [//]: # (Badges)
 [![GitHub Actions Build Status](https://github.com/REPLACE_WITH_OWNER_ACCOUNT/{{cookiecutter.repo_name}}/workflows/CI/badge.svg)](https://github.com/REPLACE_WITH_OWNER_ACCOUNT/{{cookiecutter.repo_name}}/actions?query=workflow%3ACI)
-[![codecov](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/{{cookiecutter.project_name}}/branch/master/graph/badge.svg)](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/{{cookiecutter.project_name}}/branch/master)
+[![codecov](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/{{cookiecutter.project_name}}/branch/main/graph/badge.svg)](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/{{cookiecutter.project_name}}/branch/main)
 
 
 {{cookiecutter.description}}
