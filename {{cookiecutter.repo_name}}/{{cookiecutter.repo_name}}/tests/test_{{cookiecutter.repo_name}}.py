@@ -6,6 +6,7 @@ Unit and regression test for the {{cookiecutter.repo_name}} package.
 import sys
 
 import pytest
+
 import {{cookiecutter.repo_name}}
 
 
