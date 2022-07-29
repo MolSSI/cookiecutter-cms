@@ -12,8 +12,8 @@ cap.
 
 ## Including package data
 
-Modify your package's `setup.cfg` file.
-Update the [options.package_data](https://setuptools.pypa.io/en/latest/userguide/declarative_config.html#options)
+Modify your package's `pyproject.toml` file.
+Update the [tool.setuptools.package_data](https://setuptools.pypa.io/en/latest/userguide/datafiles.html#package-data)
 and point it at the correct files.
 Paths are relative to `package_dir`.
 
