@@ -14,7 +14,7 @@ remove deployment platforms, or test with a different suite.
 
 ## Features
 * Python-centric skeletal structure with initial module files
-* Pre-configured `setup.py` for installation and packaging
+* Pre-configured `pyproject.toml` and `setup.cfg` for installation and packaging
 * Pre-configured Windows, Linux, and OSX continuous integration on GitHub Actions.
 * Choice of dependency locations through `conda-forge`, default `conda`, or `pip`
 * Basic testing structure with [PyTest](https://docs.pytest.org/en/latest/)
@@ -179,21 +179,23 @@ Make a [LGTM](https://lgtm.com) account and add your project. If desired you can
 
 Static code analysis dramatically enhances the quality of your code by finding a large number of common mistakes that both novice and advanced programmers make. There are many static analysis codes on the market, but we have seen that LGTM is a delicate balance between verbosity and catching true errors.
 
-### Additional Python Settings in `setup.py`
+### Additional Python Settings in `setup.cfg`
 
 This Cookiecutter generates the package, but there are a several package-specific Python settings you can tune to your
-package's installation needs. These are settings in the `setup.py` file which contains instructions for Python on
-how to install your package. Each of the options in the file are commented with what it does and when it should be
+package's installation needs.
+These are settings in the `setup.cfg` file,
+which contains instructions for Python on how to install your package.
+Each of the options in the file are commented with what it does and when it should be
 used.
 
 ### Versioneer
 Versioneer automatically provides a version string based on the `git` tag and
 commit hash which is exposed through a `project.__version__` attribute in your
 `project/__init__.py`. For example, if you mint a tag (a release) for a project
-through `git tag -a v0.1 -m "Release v0.1."` (push to GitHub through `git push
-origin v0.1`), this tag will then relect in your project: `project.__version__
-== v0.1`.  Otherwise a per-commit version is available which looks like
-`v0.3.0+81.g332bfc1`. This string shows the current git (the "g") hash `332bfc1`
+through `git tag -a 0.1 -m "Release 0.1."` (push to GitHub through `git push
+origin 0.1`), this tag will then reflect in your project: `project.__version__
+== 0.1`.  Otherwise a per-commit version is available which looks like
+`0.3.0+81.g332bfc1`. This string shows the current git (the "g") hash `332bfc1`
 is 81 commits beyond the version 0.3 tag.
 
 
@@ -316,6 +318,7 @@ upon setup.
 │   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
 │   │   └── look_and_say.dat
+│   ├── py.typed                    <- Marker file indicating PEP 561 type hinting.
 │   └── tests                       <- Unit test directory with sample tests
 │       ├── __init__.py
 │       └── test_{{repo_name}}.py
@@ -340,6 +343,7 @@ upon setup.
 │   ├── index.rst
 │   ├── make.bat
 │   └── requirements.yaml           <- Documenation building specific requirements. Usually a smaller set than the main program
+├── pyproject.toml                  <- Generic Python build system configuration (PEP-517).
 ├── readthedocs.yml
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
 ├── setup.py                        <- Your package's setup file for installing with additional options that can be set
