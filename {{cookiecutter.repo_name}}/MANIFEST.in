@@ -1,7 +1,4 @@
-include LICENSE
-include MANIFEST.in
 include CODE_OF_CONDUCT.md
 include versioneer.py
 
-graft {{cookiecutter.repo_name}}
 global-exclude *.py[cod] __pycache__ *.so

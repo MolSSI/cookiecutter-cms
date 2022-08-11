@@ -23,7 +23,7 @@ remove deployment platforms, or test with a different suite.
 Features
 --------
 * Python-centric skeletal structure with initial module files
-* Pre-configured ``setup.py`` for installation and packaging
+* Pre-configured ``pyproject.toml`` and ``setup.cfg`` for installation and packaging
 * Pre-configured Window, Linux, and OSX continuous integration on GitHub Actions
 * Choice of dependency locations through ``conda-forge``, default ``conda``, or ``pip``
 * Basic testing structure with `PyTest <https://docs.pytest.org/en/latest/>`_
@@ -34,6 +34,8 @@ Features
 * Basic documentation structure powered by `Sphinx <http://www.sphinx-doc.org/en/master/>`_
 * Automatic license file inclusion from several common Open Source licenses (optional)
 
+.. versionchanged:: 1.7
+    Added support for :pep:`517` and :pep:`561`.
 
 Requirements
 ------------
@@ -123,11 +125,11 @@ documentation yourself through `Sphinx <http://www.sphinx-doc.org/en/master/usag
 publish the documentation for you. The initial skeleton of the documentation can be found in the ``docs`` folder
 of your output.
 
-Additional Python Settings in ``setup.py``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Additional Python Settings in ``setup.cfg``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This Cookiecutter generates the package, but there are a several package-specific Python settings you can tune to your
-package's installation needs. These are settings in the ``setup.py`` file which contains instructions for Python on
+package's installation needs. These are settings in the ``setup.cfg`` file which contains instructions for Python on
 how to install your package. Each of the options in the file are commented with what it does and when it should be
 used.
 
