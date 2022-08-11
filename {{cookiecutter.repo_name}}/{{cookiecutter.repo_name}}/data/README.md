@@ -12,10 +12,9 @@ cap.
 
 ## Including package data
 
-Modify your package's `setup.cfg` file.
-Update the [options.package_data](https://setuptools.pypa.io/en/latest/userguide/declarative_config.html#options)
-and point it at the correct files.
-Paths are relative to `package_dir`.
+Modify your package's `setup.py` file and the `setup()` command. Include the 
+[`package_data`](http://setuptools.readthedocs.io/en/latest/setuptools.html#basic-use) keyword and point it at the 
+correct files.
 
 ## Manifest
 
