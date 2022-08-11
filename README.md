@@ -20,7 +20,7 @@ remove deployment platforms, or test with a different suite.
 * Basic testing structure with [PyTest](https://docs.pytest.org/en/latest/)
 * Automatic `git` initialization + tag
 * GitHub Hooks
-* Automatic package version control with [Versioneer](https://github.com/warner/python-versioneer)
+* Automatic package version control with [Versioningit](https://versioningit.readthedocs.io/en/stable/)
 * Sample data inclusion with packaging instructions
 * Basic documentation structure powered by [Sphinx](http://www.sphinx-doc.org/en/master/)
 * Automatic license file inclusion from several common Open Source licenses (optional)
@@ -188,13 +188,13 @@ which contains instructions for Python on how to install your package.
 Each of the options in the file are commented with what it does and when it should be
 used.
 
-### Versioneer
-Versioneer automatically provides a version string based on the `git` tag and
-commit hash which is exposed through a `project.__version__` attribute in your
+### Versioningit
+Versioninggit automatically provides a version string based on the `git` tag and
+commit hash, which is then exposed through a `project.__version__` attribute in your
 `project/__init__.py`. For example, if you mint a tag (a release) for a project
 through `git tag -a 0.1 -m "Release 0.1."` (push to GitHub through `git push
 origin 0.1`), this tag will then reflect in your project: `project.__version__
-== 0.1`.  Otherwise a per-commit version is available which looks like
+== 0.1`.  Otherwise, a per-commit version is available which looks like
 `0.3.0+81.g332bfc1`. This string shows the current git (the "g") hash `332bfc1`
 is 81 commits beyond the version 0.3 tag.
 
@@ -262,7 +262,7 @@ but we recommend letting others handle (and help you) with deployment.
 These are meant to serve as guides to help you get started.
 
 Deployment should not get in the way of testing. You could configure the GitHub Action scripts
-to handle the build stage after the test stage, but this is should only be done by advanced
+to handle the build stage after the test stage, but this should only be done by advanced
 users or those looking to deploy themselves.
 
 
@@ -314,7 +314,7 @@ upon setup.
 ├── {{repo_name}}                   <- Basic Python Package import file
 │   ├── {{first_module_name}}.py    <- Starting packge module
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── _version.py                 <- Automatic version control with Versioneer
+│   ├── _version.py                 <- Version control with Versioningit (generated during packaging)
 │   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
 │   │   └── look_and_say.dat
@@ -346,8 +346,6 @@ upon setup.
 ├── pyproject.toml                  <- Generic Python build system configuration (PEP-517).
 ├── readthedocs.yml
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
-├── setup.py                        <- Your package's setup file for installing with additional options that can be set
-├── versioneer.py                   <- Automatic version control with Versioneer
 ├── .codecov.yml                    <- Codecov config to help reduce its verbosity to more reasonable levels
 ├── .github                         <- GitHub hooks for user contribution, pull request guides and GitHub Actions CI
 │   ├── CONTRIBUTING.md
