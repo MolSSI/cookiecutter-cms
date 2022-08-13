@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel", "versioningit~=2.0"]
+build-backend = "setuptools.build_meta"
+
+# Self-descriptive entries which should always be present
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/
+[project]
+name = "{{cookiecutter.repo_name}}"
+description = "{{cookiecutter.description}}"
+dynamic = ["version"]
+readme = "README.md"
+authors = [
+    { name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}" }
+]
+license = { text = "{{cookiecutter.open_source_license}}" }
+# See https://pypi.org/classifiers/
+classifiers = [{% if cookiecutter.open_source_license == 'MIT' %}
+    "License :: OSI Approved :: MIT License",{% elif cookiecutter.open_source_license == 'BSD-3-Clause' %}
+    "License :: OSI Approved :: BSD License",{% elif cookiecutter.open_source_license == 'LGPLv3' %}
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",{% endif %}
+    "Programming Language :: Python :: 3",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "importlib-resources; python_version<'3.10'",
+]
+
+# Update the urls once the hosting is set up.
+#[project.urls]
+#"Source" = "https://github.com/<username>/{{cookiecutter.repo_name}}"
+#"Documentation" = "https://{{cookiecutter.repo_name}}.readthedocs.io/"
+
+[project.optional-dependencies]
+test = [
+  "pytest>=6.1.2",
+  "pytest-runner"
+]
+
+# Let setuptools discover the package in the current directory,
+# but be explicit about non-Python files.
+# See also:
+#   https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#setuptools-specific-configuration
+# Note that behavior is currently evolving with respect to how to interpret the
+# "data" and "tests" subdirectories. As of setuptools 63, both are automatically
+# included if namespaces is true (default), even if the package is named explicitly
+# (instead of using 'find'). With 'find', the 'tests' subpackage is discovered
+# recursively because of its __init__.py file, but the data subdirectory is excluded
+# with include-package-data = false and namespaces = false.
+[tool.setuptools]
+include-package-data = false
+[tool.setuptools.packages.find]
+namespaces = false
+where = ["."]
+
+# Ref https://setuptools.pypa.io/en/latest/userguide/datafiles.html#package-data
+[tool.setuptools.package-data]
+{{cookiecutter.repo_name}} = [
+    "py.typed"
+]
+
+[tool.versioningit]
+default-version = "1+unknown"
+
+[tool.versioningit.format]
+distance = "{base_version}+{distance}.{vcs}{rev}"
+dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
+distance-dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
+
+[tool.versioningit.vcs]
+# The method key:
+method = "git"  # <- The method name
+# Parameters to pass to the method:
+match = ["*"]
+default-tag = "1.0.0"
+
+[tool.versioningit.write]
+file = "{{cookiecutter.repo_name}}/_version.py"
