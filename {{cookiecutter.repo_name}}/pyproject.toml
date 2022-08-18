@@ -1,6 +1,72 @@
 [build-system]
-requires = ["setuptools>=42.0", "wheel", "versioningit~=2.0"]
+requires = ["setuptools>=61.0", "versioningit~=2.0"]
 build-backend = "setuptools.build_meta"
+
+# Self-descriptive entries which should always be present
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/
+[project]
+name = "{{cookiecutter.repo_name}}"
+description = "{{cookiecutter.description}}"
+dynamic = ["version"]
+readme = "README.md"
+authors = [
+    { name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}" }
+]
+license = { text = "{{cookiecutter.open_source_license}}" }
+# See https://pypi.org/classifiers/
+classifiers = [{% if cookiecutter.open_source_license == 'MIT' %}
+    "License :: OSI Approved :: MIT License",{% elif cookiecutter.open_source_license == 'BSD-3-Clause' %}
+    "License :: OSI Approved :: BSD License",{% elif cookiecutter.open_source_license == 'LGPLv3' %}
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",{% endif %}
+    "Programming Language :: Python :: 3",
+]
+requires-python = ">=3.8"
+# Declare any run-time dependencies that should be installed with the package.
+#dependencies = [
+#    "importlib-resources;python_version<'3.10'",
+#]
+
+# Update the urls once the hosting is set up.
+#[project.urls]
+#"Source" = "https://github.com/<username>/{{cookiecutter.repo_name}}/"
+#"Documentation" = "https://{{cookiecutter.repo_name}}.readthedocs.io/"
+
+[project.optional-dependencies]
+test = [
+  "pytest>=6.1.2",
+  "pytest-runner"
+]
+
+[tool.setuptools]
+# This subkey is a beta stage development and keys may change in the future, see https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html for more details
+#
+# As of version 0.971, mypy does not support type checking of installed zipped
+# packages (because it does not actually import the Python packages).
+# We declare the package not-zip-safe so that our type hints are also available
+# when checking client code that uses our (installed) package.
+# Ref:
+# https://mypy.readthedocs.io/en/stable/installed_packages.html?highlight=zip#using-installed-packages-with-mypy-pep-561
+zip-safe = false
+# Let setuptools discover the package in the current directory,
+# but be explicit about non-Python files.
+# See also:
+#   https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#setuptools-specific-configuration
+# Note that behavior is currently evolving with respect to how to interpret the
+# "data" and "tests" subdirectories. As of setuptools 63, both are automatically
+# included if namespaces is true (default), even if the package is named explicitly
+# (instead of using 'find'). With 'find', the 'tests' subpackage is discovered
+# recursively because of its __init__.py file, but the data subdirectory is excluded
+# with include-package-data = false and namespaces = false.
+include-package-data = false
+[tool.setuptools.packages.find]
+namespaces = false
+where = ["."]
+
+# Ref https://setuptools.pypa.io/en/latest/userguide/datafiles.html#package-data
+[tool.setuptools.package-data]
+{{cookiecutter.repo_name}} = [
+    "py.typed"
+]
 
 [tool.versioningit]
 default-version = "1+unknown"
