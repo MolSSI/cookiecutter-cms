@@ -2,21 +2,18 @@ name: CI
 
 on:
   # GitHub has started calling new repo's first branch "main" https://github.com/github/renaming
-  # Existing codes likely still have "master" as the primary branch
-  # Both are tracked here to keep legacy and new codes working
+  # The cookiecutter uses the "--initial-branch" flag when it runs git-init
   push:
     branches:
-      - "master"
       - "main"
   pull_request:
     branches:
-      - "master"
       - "main"
   schedule:
-    # Nightly tests run on master by default:
+    # Weekly tests run on main by default:
     #   Scheduled workflows run on the latest commit on the default or base branch.
     #   (from https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule)
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * 0"
 
 jobs:
   test:
@@ -28,7 +25,7 @@ jobs:
         python-version: [3.8, 3.9, "3.10"]
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
     - name: Additional info about the build
       shell: bash

@@ -11,13 +11,6 @@ conda installation, and other development tools not directly related to the codi
 You should test your code, but do not feel compelled to use these specific programs. You also may not need Unix and 
 Windows testing if you only plan to deploy on specific platforms. These are just to help you get started.
 
-The items in this directory have been left for legacy purposes since the change to GitHub Actions, 
-They will likely be removed in a future version.
-
-* `legacy-miniconda-setup`: A preserved copy of a helper directory which made Linux and OSX based testing through [Travis-CI](https://about.travis-ci.com/) simpler
-  * `before_install.sh`: Pip/Miniconda pre-package installation script for Travis. No longer needed thanks to 
-    [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions) and the [conda-incubator/setup-miniconda Action](https://github.com/conda-incubator/setup-miniconda)
-
 ### Conda Environment:
 
 This directory contains the files to setup the Conda environment for testing purposes

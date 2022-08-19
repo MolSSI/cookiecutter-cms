@@ -3,14 +3,13 @@
 [![GitHub Actions Build Status](https://github.com/MolSSI/cookiecutter-cms/workflows/Pseudo%20Validate%20GHA%20Output/badge.svg)](https://github.com/MolSSI/cookiecutter-cms/actions?query=workflow%3A%22Pseudo+Validate+GHA+Output%22)
 [![Documentation Status](https://readthedocs.org/projects/cookiecutter-cms/badge/?version=latest)](https://cookiecutter-cms.readthedocs.io/en/latest/?badge=latest)
 
+A [cookiecutter](https://github.com/cookiecutter/cookiecutter) template for those interested in developing computational
+molecular packages in Python. Skeletal starting repositories can be created from this template to create the file
+structure semi-autonomously so you can focus on what's important: the science!
 
-A [cookiecutter](https://github.com/audreyr/cookiecutter) template for those interested in developing computational
-molecular packages in Python. Skeletal starting repositories can be created from this template to create the
-file structure semi-autonomously so you can focus on what's important: the science!
-
-The skeletal structure is designed to help you get started, but do not feel limited by the skeleton's features
-included here. Just to name a few things you can alter to suit your needs: change continuous integration options,
-remove deployment platforms, or test with a different suite.
+The skeletal structure is designed to help you get started, but do not feel limited by the skeleton's features included
+here. Just to name a few things you can alter to suit your needs: change continuous integration options, remove
+deployment platforms, or test with a different suite.
 
 ## Features
 * Python-centric skeletal structure with initial module files
@@ -27,7 +26,7 @@ remove deployment platforms, or test with a different suite.
 
 ## Requirements
 
-* Python 3.7, 3.8, or 3.9
+* Python 3.8, 3.9, or 3.10
 * [Cookiecutter](http://cookiecutter.readthedocs.io/en/latest/installation.html)
 * [Git](https://git-scm.com/)
 
@@ -52,35 +51,42 @@ and gives projects ample time to implement new features.
 
 ### When to drop support for older Python versions?
 
-Project developers can freely choose when to drop support for older versions of Python, or if they don't want to support 
-as many. The general rules we recommend are: 
+Project developers can freely choose when to drop support for older versions of Python, or if they don't want to support
+as many. The general rules we recommend are:
+
 * Support at least two Python versions: The most recent and the preceding minor version. E.g. 3.9 and 3.8
 * Dropping Python versions should require a minor Project Version increment.
-* New Python versions have been supported for at least one minor revision. E.g Project X.Y 
-  supports Python 3.7 and 3.8; Project X.Y+1 supports Python 3.7, 3.8 and 3.9; Project X.Y+2 supports Python 3.8 and 3.9.
+* New Python versions have been supported for at least one minor revision. E.g Project X.Y supports Python 3.8 and 3.9;
+  Project X.Y+1 supports Python 3.8, 3.9 and 3.10; Project X.Y+2 supports Python 3.9 and 3.10.
 * Add deprecation warnings if features will be removed.
 
-### Why is Python 2.X not on the supported versions?
-New projects generally should not be built with Python 2.7 support in mind; see the
-[Python 3 Statement](https://python3statement.org/). Although the final Python 2.7 release will be
-[supported through 2020](http://legacy.python.org/dev/peps/pep-0373/) and is the default on many legacy systems, Python
-3 has been released for almost a decade and a project's long term usage should not be shackled by legacy methods that will
-have to be replaced in very short order as Python 2 support is retired.
+### Where is setup.py?
+
+For a long time, many Python projects relied on one of the libraries `distutils` or `setuptools` and a corresponding
+meta-data defining file often called `setup.py`. These dependencies required python to run, and by its nature limited
+how much configuration could be done. `setup.py` has since been superseded by a new file called `pyproject.toml`, which
+is a build-system agnostic file which serves much of the same purpose, but can be extended to any number of tools, many
+of which can be retrieved from the internet simply by defining it in the `pyproject.toml` file. Many of the features
+which were in `setup.py` can be replaced by equivalent keys in the `pyproject.toml`. By default, the cookiecutter uses
+the `setuptools` backend anyways, just with the modernized install specification.
 
 ## Next steps and web integrations
-The repository contains a number of "hooks" that integrate with a variety of web services. To fully integrate the project
-with these web services and to get started developing your project please proceed through the following directions.
+
+The repository contains a number of "hooks" that integrate with a variety of web services. To fully integrate the
+project with these web services and to get started developing your project please proceed through the following
+directions.
 
 ### Local installation
-For development work it is often recommended to do a "local" python install via `pip install -e .`. This command will insert your
-new project into your Python site-packages folder so that it can be found in any directory on your computer.
+
+For development work it is often recommended to do a "local" python install via `pip install -e .`. This command will
+insert your new project into your Python site-packages folder so that it can be found in any directory on your computer.
 
 ### Setting up with GitHub
-Upon creation, this project will initialize the output as a `git` repository compatible with
-[Versioneer](https://github.com/warner/python-versioneer). However, this does not automatically register the
-repository with GitHub. To do this, follow the instructions for
-[Adding an existing project to GitHub using the command line](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/).
-Follow the first step to create the repository on GitHub, but ignore the warnings about the README, license, and
+
+Upon creation, this project will initialize the output as a `git` repository. However, this does not automatically
+register the repository with GitHub. To do this, follow the instructions for
+[Adding an existing project to GitHub using the command line](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/)
+. Follow the first step to create the repository on GitHub, but ignore the warnings about the README, license, and
 `.gitignore` files as this repo creates them. From there, you can skip to after the "first commit" instructions and
 proceed from there.
 
@@ -189,12 +195,13 @@ Each of the options in the file are commented with what it does and when it shou
 used.
 
 ### Versioningit
-Versioninggit automatically provides a version string based on the `git` tag and
-commit hash, which is then exposed through a `project.__version__` attribute in your
+
+Versioningit automatically provides a version string based on the `git` tag and commit hash, which is then exposed
+through a `project.__version__` attribute in your
 `project/__init__.py`. For example, if you mint a tag (a release) for a project
-through `git tag -a 0.1 -m "Release 0.1."` (push to GitHub through `git push
-origin 0.1`), this tag will then reflect in your project: `project.__version__
-== 0.1`.  Otherwise, a per-commit version is available which looks like
+through `git tag -a 0.1 -m "Release 0.1."` (push to GitHub through `git push origin 0.1`), this tag will then reflect in
+your project: `project.__version__
+== 0.1`. Otherwise, a per-commit version is available which looks like
 `0.3.0+81.g332bfc1`. This string shows the current git (the "g") hash `332bfc1`
 is 81 commits beyond the version 0.3 tag.
 
@@ -289,9 +296,9 @@ This method relies on the conda `meta.yaml` file.
 
 ### Deployment Method 3: Upload package to PyPi
 
-The [Python Package Index (PyPi)](https://pypi.org/) is another place to manage your package and have
-dependencies resolve. This option typically relies on `pip` to create your packages and dependencies
-must be specified in your `setup.py` file to resolve correctly.
+The [Python Package Index (PyPi)](https://pypi.org/) is another place to manage your package and have dependencies
+resolve. This option typically relies on `pip` to create your packages and dependencies must be specified in
+your `pyproject.toml` file to resolve correctly.
 
 ### Deployment Method 4: Manually upload your package to some source
 
@@ -314,7 +321,7 @@ upon setup.
 ├── {{repo_name}}                   <- Basic Python Package import file
 │   ├── {{first_module_name}}.py    <- Starting packge module
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── _version.py                 <- Version control with Versioningit (generated during packaging)
+│   ├── _version.py                 <- Generated file from VersionInGit. Created on package install, not initilization.
 │   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
 │   │   └── look_and_say.dat
@@ -326,8 +333,6 @@ upon setup.
 │   ├── README.md
 │   ├── conda-envs                  <- Conda environments for testing
 │   │   └── test_env.yaml
-│   ├── legacy-miniconda-setup      <- Legacy Travis CI Helper, will likely be removed in later version
-│   │   └── before_install.sh
 │   └── scripts
 │       └── create_conda_env.py     <- OS agnostic Helper script to make conda environments based on simple flags
 ├── docs                            <- Documentation template folder with many settings already filled in
@@ -353,17 +358,20 @@ upon setup.
 │   └── workflows
 │       └── CI.yaml
 ├── .gitignore                      <- Stock helper file telling git what file name patterns to ignore when adding files
+├── .gitattributes                  <- Stock helper file telling GitHub how to bundle files in the tarball, should not need to be touched most times
 └── .lgtm.yml
 ```
 
 ## Acknowledgments
 
-This cookiecutter is developed by Levi N. Naden and Jessica A. Nash
-from the [Molecular Sciences Software Institute (MolSSI)](http://molssi.org/); and
-Daniel G. A. Smith of [ENTOS](https://www.entos.ai/). Copyright (c) 2021.
+This cookiecutter is developed by Levi N. Naden and Jessica A. Nash from
+the [Molecular Sciences Software Institute (MolSSI)](http://molssi.org/); and Daniel G. A. Smith
+of [ENTOS](https://www.entos.ai/). Additional major development has been provided by M. Eric Irrgang. Copyright (c)
+2022.
 
 Directory structure template based on recommendation from the
-[Chodera Lab's Software Development Guidelines](https://github.com/choderalab/software-development/blob/master/STRUCTURING_YOUR_PROJECT.md).
+[Chodera Lab's Software Development Guidelines](https://github.com/choderalab/software-development/blob/master/STRUCTURING_YOUR_PROJECT.md)
+.
 
 Original hosting of repository owned by the [Chodera Lab](https://github.com/choderalab)
 

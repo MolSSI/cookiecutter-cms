@@ -3,21 +3,18 @@ name: Pseudo Validate GHA Output
 # Approximation of the GHA "on" block
 on:
   # GitHub has started calling new repo's first branch "main" https://github.com/github/renaming
-  # Existing codes likely still have "master" as the primary branch
-  # Both are tracked here to keep legacy and new codes working
+  # The cookiecutter uses the "--initial-branch" flag when it runs git-init
   push:
     branches:
-      - "master"
       - "main"
   pull_request:
     branches:
-      - "master"
       - "main"
   schedule:
-    # Nightly tests run on master by default:
+    # Nightly tests run on main by default:
     #   Scheduled workflows run on the latest commit on the default or base branch.
     #   (from https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule)
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * 0"
 
 # Custom global env block (Has to be recreated in each matrix, can't pass sequences to this)
 env:  # I want to share these between jobs, but I can't access the env from inside matrix, has to be on the steps.
@@ -33,9 +30,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        python-version: [3.7, 3.8, 3.9]
+        python-version: [ 3.8, 3.9, "3.10" ]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -110,11 +107,11 @@ jobs:
     strategy:  # Approximate strategy, uses a few other options
       matrix:
         os: [ubuntu-latest , macOS-latest, windows-latest]
-        python-version: [3.7, 3.8, 3.9]
+        python-version: [ 3.8, 3.9, "3.10" ]
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
     steps:
-      # - uses: actions/checkout@v1  # This isn't necessary here
+      # - uses: actions/checkout@v3  # This isn't necessary here
 
       - name: "Fetch Artifacts"
         uses: actions/download-artifact@v2
@@ -179,12 +176,12 @@ jobs:
     strategy:  # Approximate strategy, uses a few other options
       matrix:
         os: [ubuntu-latest , macOS-latest, windows-latest]
-        python-version: [3.7, 3.8, 3.9]
+        python-version: [ 3.8, 3.9, "3.10" ]
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
 
     steps:
-      # - uses: actions/checkout@v1  # This isn't necessary here
+      # - uses: actions/checkout@v3  # This isn't necessary here
 
       - name: Additional info about the build
         shell: bash
@@ -246,12 +243,12 @@ jobs:
     strategy:  # Approximate strategy, uses a few other options
       matrix:
         os: [ubuntu-latest , macOS-latest, windows-latest]
-        python-version: [3.7, 3.8, 3.9]
+        python-version: [ 3.8, 3.9, "3.10" ]
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
 
     steps:
-      # - uses: actions/checkout@v1  # This isn't necessary here
+      # - uses: actions/checkout@v3  # This isn't necessary here
 
       - name: Additional info about the build
         shell: bash
