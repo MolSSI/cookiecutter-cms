@@ -3,14 +3,13 @@
 [![GitHub Actions Build Status](https://github.com/MolSSI/cookiecutter-cms/workflows/Pseudo%20Validate%20GHA%20Output/badge.svg)](https://github.com/MolSSI/cookiecutter-cms/actions?query=workflow%3A%22Pseudo+Validate+GHA+Output%22)
 [![Documentation Status](https://readthedocs.org/projects/cookiecutter-cms/badge/?version=latest)](https://cookiecutter-cms.readthedocs.io/en/latest/?badge=latest)
 
+A [cookiecutter](https://github.com/cookiecutter/cookiecutter) template for those interested in developing computational
+molecular packages in Python. Skeletal starting repositories can be created from this template to create the file
+structure semi-autonomously so you can focus on what's important: the science!
 
-A [cookiecutter](https://github.com/audreyr/cookiecutter) template for those interested in developing computational
-molecular packages in Python. Skeletal starting repositories can be created from this template to create the
-file structure semi-autonomously so you can focus on what's important: the science!
-
-The skeletal structure is designed to help you get started, but do not feel limited by the skeleton's features
-included here. Just to name a few things you can alter to suit your needs: change continuous integration options,
-remove deployment platforms, or test with a different suite.
+The skeletal structure is designed to help you get started, but do not feel limited by the skeleton's features included
+here. Just to name a few things you can alter to suit your needs: change continuous integration options, remove
+deployment platforms, or test with a different suite.
 
 ## Features
 * Python-centric skeletal structure with initial module files
@@ -63,13 +62,13 @@ as many. The general rules we recommend are:
 
 ### Where is setup.py?
 
-For a long time, many Python projects relied on the library called `setuptools`. This dependency required python to run,
-and by its nature limited how much configuration could be done. `setup.py` has since been superseded by a new file
-called `pyproject.toml`, which is a build-system agnostic file which serves much of the same purpose, but can be
-extended to any number of tools, many of which can be retrieved from the internet simply by defining it in
-the `pyproject.toml` file. Many of the features which were in `setup.py` can be replaced by equivalent keys in
-the `pyproject.toml`. By default, the cookiecutter uses the `setuptools` backend anyways, just with the modernized
-install specification.
+For a long time, many Python projects relied on one of the libraries `distutils` or `setuptools` and a corresponding
+meta-data defining file often called `setup.py`. These dependencies required python to run, and by its nature limited
+how much configuration could be done. `setup.py` has since been superseded by a new file called `pyproject.toml`, which
+is a build-system agnostic file which serves much of the same purpose, but can be extended to any number of tools, many
+of which can be retrieved from the internet simply by defining it in the `pyproject.toml` file. Many of the features
+which were in `setup.py` can be replaced by equivalent keys in the `pyproject.toml`. By default, the cookiecutter uses
+the `setuptools` backend anyways, just with the modernized install specification.
 
 ## Next steps and web integrations
 
@@ -83,11 +82,11 @@ For development work it is often recommended to do a "local" python install via 
 insert your new project into your Python site-packages folder so that it can be found in any directory on your computer.
 
 ### Setting up with GitHub
-Upon creation, this project will initialize the output as a `git` repository compatible with
-[Versioneer](https://github.com/warner/python-versioneer). However, this does not automatically register the
-repository with GitHub. To do this, follow the instructions for
-[Adding an existing project to GitHub using the command line](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/).
-Follow the first step to create the repository on GitHub, but ignore the warnings about the README, license, and
+
+Upon creation, this project will initialize the output as a `git` repository. However, this does not automatically
+register the repository with GitHub. To do this, follow the instructions for
+[Adding an existing project to GitHub using the command line](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/)
+. Follow the first step to create the repository on GitHub, but ignore the warnings about the README, license, and
 `.gitignore` files as this repo creates them. From there, you can skip to after the "first commit" instructions and
 proceed from there.
 
@@ -196,12 +195,13 @@ Each of the options in the file are commented with what it does and when it shou
 used.
 
 ### Versioningit
-Versioninggit automatically provides a version string based on the `git` tag and
-commit hash, which is then exposed through a `project.__version__` attribute in your
+
+Versioningit automatically provides a version string based on the `git` tag and commit hash, which is then exposed
+through a `project.__version__` attribute in your
 `project/__init__.py`. For example, if you mint a tag (a release) for a project
-through `git tag -a 0.1 -m "Release 0.1."` (push to GitHub through `git push
-origin 0.1`), this tag will then reflect in your project: `project.__version__
-== 0.1`.  Otherwise, a per-commit version is available which looks like
+through `git tag -a 0.1 -m "Release 0.1."` (push to GitHub through `git push origin 0.1`), this tag will then reflect in
+your project: `project.__version__
+== 0.1`. Otherwise, a per-commit version is available which looks like
 `0.3.0+81.g332bfc1`. This string shows the current git (the "g") hash `332bfc1`
 is 81 commits beyond the version 0.3 tag.
 
@@ -321,6 +321,7 @@ upon setup.
 ├── {{repo_name}}                   <- Basic Python Package import file
 │   ├── {{first_module_name}}.py    <- Starting packge module
 │   ├── __init__.py                 <- Basic Python Package import file
+│   ├── _version.py                 <- Generated file from VersionInGit. Created on package install, not initilization.
 │   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
 │   │   └── look_and_say.dat
@@ -365,8 +366,8 @@ upon setup.
 
 This cookiecutter is developed by Levi N. Naden and Jessica A. Nash from
 the [Molecular Sciences Software Institute (MolSSI)](http://molssi.org/); and Daniel G. A. Smith
-of [ENTOS](https://www.entos.ai/). Copyright (c) 2022. Additional major development has been provided by M. Eric
-Irrgang.
+of [ENTOS](https://www.entos.ai/). Additional major development has been provided by M. Eric Irrgang. Copyright (c)
+2022.
 
 Directory structure template based on recommendation from the
 [Chodera Lab's Software Development Guidelines](https://github.com/choderalab/software-development/blob/master/STRUCTURING_YOUR_PROJECT.md)

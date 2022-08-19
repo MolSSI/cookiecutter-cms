@@ -12,7 +12,7 @@ Cookiecutter for Computational Molecular Sciences Python Packages
    Feel free to borrow from this example and consider splitting the docs into multiple pages!
 
 
-A `cookiecutter <https://github.com/audreyr/cookiecutter>`_ template for those interested in developing computational
+A `cookiecutter <https://github.com/cookiecutter/cookiecutter>`_ template for those interested in developing computational
 molecular sciences packages in Python. Skeletal starting repositories can be created from this template to create the
 file structure semi-autonomously so you can focus on what's important: the science!
 
@@ -41,10 +41,13 @@ Features
     Switch from Versioneer to Versioningit for :pep:`517`-only builds.
     ``setup.py`` file is no longer generated.
 
+.. versionchanged:: 1.9
+    Added support for :pep:`621`. Update to Python 3.10
+
 Requirements
 ------------
 
-* Python 3.8, or 3.9
+* Python 3.8, 3.9, or 3.10
 * `Cookiecutter <http://cookiecutter.readthedocs.io/en/latest/installation.html>`_
 * `Git <https://git-scm.com/>`_
 
@@ -164,7 +167,8 @@ Acknowledgments
 
 This cookiecutter is developed by Levi N. Naden and Jessica A. Nash
 from the `Molecular Sciences Software Institute (MolSSI) <http://molssi.org/>`_; and
-Daniel G. A. Smith of `ENTOS <https://www.entos.ai/>`_. Copyright (c) 2021.
+Daniel G. A. Smith of `ENTOS <https://www.entos.ai/>`_. Additional major development has been provided by M. Eric Irrgang.
+Copyright (c) 2022.
 
 Directory structure template based on recommendation from the
 `Chodera Lab's Software Development Guidelines <https://github.com/choderalab/software-development/blob/master/STRUCTURING_YOUR_PROJECT.md>`_.

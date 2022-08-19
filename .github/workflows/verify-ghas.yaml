@@ -11,7 +11,7 @@ on:
     branches:
       - "main"
   schedule:
-    # Nightly tests run on master by default:
+    # Nightly tests run on main by default:
     #   Scheduled workflows run on the latest commit on the default or base branch.
     #   (from https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule)
     - cron: "0 0 * * 0"
