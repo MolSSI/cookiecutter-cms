@@ -33,55 +33,55 @@ jobs:
           uname -a
           df -h
           ulimit -a
-  { % if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' % }
-- name: Set up Python {{ '${{ matrix.python-version }}' }}
-  uses: actions/setup-python@v2
-  with:
-    python-version: { { '${{ matrix.python-version }}' } }
+{% if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+      - name: Set up Python {{ '${{ matrix.python-version }}' }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: {{ '${{ matrix.python-version }}' }}
 
-- name: Testing Dependencies
-  shell: bash
-  run: |
-    python -m pip install -U pytest pytest-cov codecov
-  { % else % }
-# More info on options: https://github.com/marketplace/actions/provision-with-micromamba
-- uses: mamba-org/provision-with-micromamba@main
-  with:
-    environment-file: devtools/conda-envs/test_env.yaml
-    environment-name: test
-  { %- if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' % }
-channels: conda-forge,defaults
-  { %- elif cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback' % }
-channels: defaults
-  { %- endif % }
-extra-specs: |
-  python={{ '${{ matrix.python-version }}' }}
-  { % endif % }
-- name: Install package
-  { %- if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' % }
-shell: bash
-run: |
-  python -m pip install .
-  { % else % }
-# conda setup requires this special shell
-shell: bash -l {0}
-run: |
-  python -m pip install . --no-deps
-  micromamba list
-  { % endif % }
-- name: Run tests
-  { %- if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' % }
-shell: bash
-  { % else % }
-# conda setup requires this special shell
-shell: bash -l {0}
-  { %- endif % }
-run: |
-  pytest -v --cov={{ cookiecutter.repo_name }} --cov-report=xml --color=yes {{ cookiecutter.repo_name }}/tests/
+      - name: Testing Dependencies
+        shell: bash
+        run: |
+          python -m pip install -U pytest pytest-cov codecov
+{% else %}
+      # More info on options: https://github.com/marketplace/actions/provision-with-micromamba
+      - uses: mamba-org/provision-with-micromamba@main
+        with:
+          environment-file: devtools/conda-envs/test_env.yaml
+          environment-name: test
+{%- if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
+          channels: conda-forge,defaults
+{%- elif cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback' %}
+          channels: defaults
+{%- endif %}
+          extra-specs: |
+            python={{ '${{ matrix.python-version }}' }}
+{% endif %}
+      - name: Install package
+{%- if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+        shell: bash
+        run: |
+          python -m pip install .
+{% else %}
+        # conda setup requires this special shell
+        shell: bash -l {0}
+        run: |
+          python -m pip install . --no-deps
+          micromamba list
+{% endif %}
+      - name: Run tests
+{%- if cookiecutter.dependency_source == 'Dependencies from pip only (no conda)' %}
+        shell: bash
+{% else %}
+        # conda setup requires this special shell
+        shell: bash -l {0}
+{%- endif %}
+        run: |
+          pytest -v --cov={{ cookiecutter.repo_name }} --cov-report=xml --color=yes {{ cookiecutter.repo_name }}/tests/
 
-- name: CodeCov
-  uses: codecov/codecov-action@v1
-  with:
-    file: ./coverage.xml
-    flags: unittests
-    name: codecov-{{ '${{ matrix.os }}' }}-py{{ '${{ matrix.python-version }}' }}
+      - name: CodeCov
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-{{ '${{ matrix.os }}' }}-py{{ '${{ matrix.python-version }}' }}
