@@ -79,7 +79,7 @@ jobs:
         rtd: [1, 2]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
       - name: "Fetch Artifacts"
         uses: actions/download-artifact@v2
@@ -125,23 +125,19 @@ jobs:
           df -h
           ulimit -a
 
-#      - name: "Change directory"  # Have to CD here to make sure this works
-#        shell: bash
-#        run: |
+      #      - name: "Change directory"  # Have to CD here to make sure this works
+      #        shell: bash
+      #        run: |
       #          cd prj_${{ matrix.license }}_1_${{ matrix.rtd }}
 
-      # More info on options: https://github.com/conda-incubator/setup-miniconda
-      - uses: conda-incubator/setup-miniconda@v2
+      # More info on options: https://github.com/marketplace/actions/provision-with-micromamba
+      - uses: mamba-org/provision-with-micromamba@main
         with:
-          python-version: ${{ matrix.python-version }}
           environment-file: prj_${{ matrix.license }}_1_${{ matrix.rtd }}/devtools/conda-envs/test_env.yaml
-
+          environment-name: test
           channels: conda-forge,defaults
-
-          activate-environment: test
-          auto-update-conda: false
-          auto-activate-base: false
-          show-channel-urls: true
+          extra-specs: |
+            python=${{ matrix.python-version }}
 
       - name: Install package
 
@@ -150,7 +146,7 @@ jobs:
         working-directory: prj_${{ matrix.license }}_1_${{ matrix.rtd }}  # Nonstandard
         run: |
           python -m pip install . --no-deps
-          conda list
+          micromamba list
 
 
       - name: Run tests
@@ -195,21 +191,19 @@ jobs:
         with:
           name: cookiecutter_outputs
 
-#      - name: "Change directory"  # Have to CD here to make sure this works
-#        shell: bash
-#        run: |
+      #      - name: "Change directory"  # Have to CD here to make sure this works
+      #        shell: bash
+      #        run: |
       #          cd prj_${{ matrix.license }}_2_${{ matrix.rtd }}
 
-      # More info on options: https://github.com/conda-incubator/setup-miniconda
-      - uses: conda-incubator/setup-miniconda@v2
+      # More info on options: https://github.com/marketplace/actions/provision-with-micromamba
+      - uses: mamba-org/provision-with-micromamba@main
         with:
-          python-version: ${{ matrix.python-version }}
           environment-file: prj_${{ matrix.license }}_2_${{ matrix.rtd }}/devtools/conda-envs/test_env.yaml
-
-          activate-environment: test
-          auto-update-conda: false
-          auto-activate-base: false
-          show-channel-urls: true
+          environment-name: test
+          channels: defaults
+          extra-specs: |
+            python=${{ matrix.python-version }}
 
       - name: Install package
 
@@ -218,7 +212,7 @@ jobs:
         working-directory: prj_${{ matrix.license }}_2_${{ matrix.rtd }}  # Nonstandard
         run: |
           python -m pip install . --no-deps
-          conda list
+          micromamba list
 
 
       - name: Run tests

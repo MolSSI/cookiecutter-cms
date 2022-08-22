@@ -27,41 +27,32 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-    - name: Additional info about the build
-      shell: bash
-      run: |
-        uname -a
-        df -h
-        ulimit -a
+      - name: Additional info about the build
+        shell: bash
+        run: |
+          uname -a
+          df -h
+          ulimit -a
 
+      # More info on options: https://github.com/marketplace/actions/provision-with-micromamba
+      - uses: mamba-org/provision-with-micromamba@main
+        with:
+          environment-file: devtools/conda-envs/test_env.yaml
+          environment-name: test
+          channels: conda-forge,defaults
+          extra-specs: |
+            python=${{ matrix.python-version }}
 
-    # More info on options: https://github.com/conda-incubator/setup-miniconda
-    - uses: conda-incubator/setup-miniconda@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-        environment-file: devtools/conda-envs/test_env.yaml
-
-        channels: conda-forge,defaults
-
-        activate-environment: test
-        auto-update-conda: false
-        auto-activate-base: false
-        show-channel-urls: true
-
-    - name: Install package
-
-      # conda setup requires this special shell
-      shell: bash -l {0}
+      - name: Install package
+        # conda setup requires this special shell
+        shell: bash -l {0}
       run: |
         python -m pip install . --no-deps
-        conda list
-
+        micromamba list
 
     - name: Run tests
-
       # conda setup requires this special shell
       shell: bash -l {0}
-
       run: |
         pytest -v --cov=prj_1_1_1 --cov-report=xml --color=yes prj_1_1_1/tests/
 
