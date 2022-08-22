@@ -46,19 +46,19 @@ jobs:
       - name: Install package
         # conda setup requires this special shell
         shell: bash -l {0}
-      run: |
-        python -m pip install . --no-deps
-        micromamba list
+        run: |
+          python -m pip install . --no-deps
+          micromamba list
 
-    - name: Run tests
-      # conda setup requires this special shell
-      shell: bash -l {0}
-      run: |
-        pytest -v --cov=prj_1_2_1 --cov-report=xml --color=yes prj_1_2_1/tests/
+      - name: Run tests
+        # conda setup requires this special shell
+        shell: bash -l {0}
+        run: |
+          pytest -v --cov=prj_1_2_1 --cov-report=xml --color=yes prj_1_2_1/tests/
 
-    - name: CodeCov
-      uses: codecov/codecov-action@v1
-      with:
-        file: ./coverage.xml
-        flags: unittests
-        name: codecov-${{ matrix.os }}-py${{ matrix.python-version }}
+      - name: CodeCov
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-${{ matrix.os }}-py${{ matrix.python-version }}
