@@ -5,7 +5,7 @@
 
 A [cookiecutter](https://github.com/cookiecutter/cookiecutter) template for those interested in developing computational
 molecular packages in Python. Skeletal starting repositories can be created from this template to create the file
-structure semi-autonomously so you can focus on what's important: the science!
+structure semi-autonomously, so you can focus on what's important: the science!
 
 The skeletal structure is designed to help you get started, but do not feel limited by the skeleton's features included
 here. Just to name a few things you can alter to suit your needs: change continuous integration options, remove
@@ -105,12 +105,12 @@ Tests can be run with the `pytest -v` command. There are a number of additional 
 
 ### Continuous Integration (GitHub Actions)
 
-As of version 1.3, we provide preconfigured workflows for [GitHub Actions](https://github.com/features/actions), with 
-support for Linux, MacOS and Windows. Conda support is possible thanks to the excellent 
-[@conda-incubator's `setup-miniconda` action](https://github.com/conda-incubator/setup-miniconda). We encourage you 
-read its documentation for further details on GitHub Actions themselves.
+As of version 1.3, we provide preconfigured workflows for [GitHub Actions](https://github.com/features/actions), with
+support for Linux, MacOS and Windows. Conda support is possible thanks to the excellent
+[@mamba-org's `provision-with-micromamba` action](https://github.com/marketplace/actions/provision-with-micromamba). We
+encourage you read its documentation for further details on GitHub Actions themselves.
 
-The Cookiecutter's GitHub Actions does a number of things differently than the output Actions. We detail those 
+The Cookiecutter's GitHub Actions does a number of things differently than the output Actions. We detail those
 differences below, but none of this is needed to understand the output GitHub Action Workflows, which are much simpler.
 
 The Cookiecutter ability to test GitHub Actions it generates has some limitations, but are still properly tested.
@@ -169,9 +169,9 @@ links below. We do not implement them for this Cookiecutter, but they can be add
 
 * [GitHub Actions Caching](https://docs.github.com/en/free-pro-team@latest/actions/guides/caching-dependencies-to-speed-up-workflows)
 
-There are caching capabilities for the `Conda-Incubator/setup-miniconda` action, if you are using it as well. 
+There are caching capabilities for the `mamba-org/provision-with-micromamba` action, if you are using it as well.
 
-* [Setup Miniconda GHA Caching](https://github.com/conda-incubator/setup-miniconda#caching)
+* [Setup Micromamba GHA Caching](https://github.com/mamba-org/provision-with-micromamba#cache-downloads)
 
 ### Documentation
 Make a [ReadTheDocs](https://readthedocs.org) account and turn on the git hook. Although you can manually make the

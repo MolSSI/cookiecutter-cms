@@ -27,41 +27,37 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-    - name: Additional info about the build
-      shell: bash
-      run: |
-        uname -a
-        df -h
-        ulimit -a
+      - name: Additional info about the build
+        shell: bash
+        run: |
+          uname -a
+          df -h
+          ulimit -a
 
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Testing Dependencies
+        shell: bash
+        run: |
+          python -m pip install -U pytest pytest-cov codecov
 
-    - name: Testing Dependencies
-      shell: bash
-      run: |
-        python -m pip install -U pytest pytest-cov codecov
+      - name: Install package
+        shell: bash
+        run: |
+          python -m pip install .
 
-    - name: Install package
+      - name: Run tests
+        shell: bash
 
-      shell: bash
-      run: |
-        python -m pip install .
+        run: |
+          pytest -v --cov=prj_2_3_2 --cov-report=xml --color=yes prj_2_3_2/tests/
 
-
-    - name: Run tests
-
-      shell: bash
-
-      run: |
-        pytest -v --cov=prj_2_3_2 --cov-report=xml --color=yes prj_2_3_2/tests/
-
-    - name: CodeCov
-      uses: codecov/codecov-action@v1
-      with:
-        file: ./coverage.xml
-        flags: unittests
-        name: codecov-${{ matrix.os }}-py${{ matrix.python-version }}
+      - name: CodeCov
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-${{ matrix.os }}-py${{ matrix.python-version }}

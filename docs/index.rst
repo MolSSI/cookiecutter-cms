@@ -44,6 +44,9 @@ Features
 .. versionchanged:: 1.9
     Added support for :pep:`621`. Update to Python 3.10
 
+.. versionchanged:: 1.10
+    Switched to Micromamba as CI conda source.
+
 Requirements
 ------------
 
