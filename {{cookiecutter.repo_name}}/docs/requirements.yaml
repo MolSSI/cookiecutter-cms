@@ -1,13 +1,23 @@
 name: docs
 channels:
+{% if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
+  - conda-forge
+{% endif %}
+  - defaults
 dependencies:
     # Base depends
   - python
   - pip
+  {% if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
+  - pydata-sphinx-theme
+  - sphinx-design
+{% endif %}
 
 {% if cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback' %}
   # Pip-only installs
   - pip:
+    - pydata-sphinx-theme
+    - sphinx-design
 {% else %}
 
     # Pip-only installs

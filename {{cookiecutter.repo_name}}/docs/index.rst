@@ -6,18 +6,59 @@
 Welcome to {{cookiecutter.project_name}}'s documentation!
 =========================================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+.. grid:: 2
 
-   getting_started
-   api
+    .. grid-item-card:: Getting Started
+      
+      Learn the basics of using {{cookiecutter.project_name}}.
 
+      .. button-link:: ./getting_started.html
+         :color: primary
+         :outline:
+         :expand:
 
+         To the Getting Started Guide
 
-Indices and tables
-==================
+      --------------------------------
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+    .. grid-item-card::  User Guide
+      
+      An in-depth guide for users
+
+      .. button-link:: ./user_guide.html
+         :color: primary
+         :outline:
+         :expand:
+
+         To the User Guide
+      
+      --------------------------
+
+.. grid:: 2
+
+    .. grid-item-card:: API Reference
+      
+      How to use the API of {{cookiecutter.project_name}}.
+
+      .. button-link:: ./api.html
+         :color: primary
+         :outline:
+         :expand:
+
+         To the API Reference.
+
+      --------------------------------
+
+    .. grid-item-card::  Developer Guide
+      
+      How to contribute to {{cookiecutter.project_name}}
+
+      .. button-link:: ./developer_guide.html
+         :color: primary
+         :outline:
+         :expand:
+
+         To the Developer Guide
+      
+      --------------------------
+
