@@ -13,7 +13,7 @@ def parse_yaml(filename, key):
     """
 
     with open(filename, "r") as infile:
-        ret = yaml.load(infile) 
+        ret = yaml.safe_load(infile)
 
     return ret[key]
 
