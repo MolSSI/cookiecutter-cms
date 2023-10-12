@@ -18,13 +18,9 @@ def decode_string(string):
 
 
 def invoke_shell(command, expected_error=True, print_output=True):
-
     try:
         output = sp.check_output(command, shell=True, stderr=sp.STDOUT)
     except sp.CalledProcessError as e:
-        # Trap and print the output in a helpful way
-        print(decode_string(e.output), decode_string(e.returncode))
-        print(e.output)
         output = e.output
         if not expected_error:
             raise e
