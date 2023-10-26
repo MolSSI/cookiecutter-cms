@@ -130,14 +130,17 @@ jobs:
       #        run: |
       #          cd prj_${{ matrix.license }}_1_${{ matrix.rtd }}
 
-      # More info on options: https://github.com/marketplace/actions/provision-with-micromamba
-      - uses: mamba-org/provision-with-micromamba@main
+      # More info on options: https://github.com/marketplace/actions/setup-micromamba
+      - uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: prj_${{ matrix.license }}_1_${{ matrix.rtd }}/devtools/conda-envs/test_env.yaml
           environment-name: test
-          channels: conda-forge,defaults
-          extra-specs: |
+          create-args: >- 
             python=${{ matrix.python-version }}
+          condarc: |
+            channels:
+              - conda-forge
+              - defaults
 
       - name: Install package
 
@@ -196,14 +199,16 @@ jobs:
       #        run: |
       #          cd prj_${{ matrix.license }}_2_${{ matrix.rtd }}
 
-      # More info on options: https://github.com/marketplace/actions/provision-with-micromamba
-      - uses: mamba-org/provision-with-micromamba@main
+      # More info on options: https://github.com/marketplace/actions/setup-micromamba
+      - uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: prj_${{ matrix.license }}_2_${{ matrix.rtd }}/devtools/conda-envs/test_env.yaml
           environment-name: test
-          channels: defaults
-          extra-specs: |
+          create-args: >- 
             python=${{ matrix.python-version }}
+          condarc: |
+            channels:
+              - defaults
 
       - name: Install package
 
