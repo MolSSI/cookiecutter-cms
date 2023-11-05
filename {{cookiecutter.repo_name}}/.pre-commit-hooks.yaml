@@ -1,0 +1,88 @@
+#   https://github.com/pre-commit/pre-commit-hooks/blob/main/.pre-commit-hooks.yaml
+
+-   id: trailing-whitespace
+    name: trim trailing whitespace
+    description: trims trailing whitespace.
+    entry: trailing-whitespace-fixer
+    language: python
+    types: [text]
+    # exclude: ^(book|devtools|docs|doc)/
+    stages: [commit, push, manual]
+
+-   id: sort-simple-yaml
+    name: sort simple yaml files
+    description: sorts simple yaml files which consist only of top-level keys, preserving comments and blocks.
+    language: python
+    entry: sort-simple-yaml
+    files: '^$'
+
+-   id: black
+    name: black
+    description: "Black: The uncompromising Python code formatter"
+    entry: black
+    language: python
+    minimum_pre_commit_version: 3.4.0
+    require_serial: true
+    types_or: [python, pyi]
+
+-   id: check-toml
+    name: check toml
+    description: checks toml files for parseable syntax.
+    entry: check-toml
+    language: python
+    types: [toml]
+
+-   id: check-yaml
+    name: check yaml
+    description: checks yaml files for parseable syntax.
+    entry: check-yaml
+    language: python
+    types: [yaml]
+
+-   id: requirements-txt-fixer
+    name: fix requirements.txt
+    description: sorts entries in requirements.txt.
+    entry: requirements-txt-fixer
+    language: python
+    files: (requirements|constraints).*\.txt$
+
+-   id: mixed-line-ending
+    name: mixed line ending
+    description: replaces or checks mixed line ending.
+    entry: mixed-line-ending
+    language: python
+    types: [text]
+
+-   id: end-of-file-fixer
+    name: fix end of files
+    description: ensures that a file is either empty, or ends with one newline.
+    entry: end-of-file-fixer
+    language: python
+    types: [python]
+    stages: [commit, push, manual]
+
+-   id: debug-statements
+    name: debug statements (python)
+    description: checks for debugger imports and py37+ `breakpoint()` calls in python source.
+    entry: debug-statement-hook
+    language: python
+    types: [python]
+
+-   id: check-merge-conflict
+    name: check for merge conflicts
+    description: checks for files that contain merge conflict strings.
+    entry: check-merge-conflict
+    language: python
+    types: [text]
+
+-   id: check-ast
+    name: check python ast
+    description: simply checks whether the files parse as valid python.
+    entry: check-ast
+    language: python
+    types: [python]
+
+
+{% if cookiecutter.include_pre_commit_hooks == "n" %}
+# Additional hooks and configuration when pre-commit hooks are not selected
+{% endif %}
