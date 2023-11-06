@@ -37,6 +37,10 @@ test = [
   "pytest-runner"
 ]
 
+{%- if cookiecutter.install_precommit_hooks == 'y' %}
+    pre-commit = {version = "^3.4.0", optional = true}
+{%- endif %}
+
 [tool.setuptools]
 # This subkey is a beta stage development and keys may change in the future, see https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html for more details
 #

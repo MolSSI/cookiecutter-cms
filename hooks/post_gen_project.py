@@ -18,7 +18,6 @@ def decode_string(string):
 
 
 def invoke_shell(command, expected_error=True, print_output=True):
-
     try:
         output = sp.check_output(command, shell=True, stderr=sp.STDOUT)
     except sp.CalledProcessError as e:
@@ -38,35 +37,41 @@ def git_init_and_tag():
     Invoke the initial git and tag with 0.0.0 to make an initial version for
     Versioneer to ID if not already in a git repository.
     """
-    
+
     # Check if we are in a git repository
-    directory_status = invoke_shell("git status", expected_error=True, print_output=False)
+    directory_status = invoke_shell(
+        "git status", expected_error=True, print_output=False
+    )
     # Create a repository and commit if not in one.
-    if 'fatal' in directory_status:
+    if "fatal" in directory_status:
         # Initialize git
         invoke_shell("git init --initial-branch=main")
 
-        # Add files created by cookiecutter 
+        # Add files created by cookiecutter
         invoke_shell("git add .")
         invoke_shell(
-            "git commit -m \"Initial commit after CMS Cookiecutter creation, version {}\"".format(
-                '{{ cookiecutter._cms_cc_version }}'))
-        
+            'git commit -m "Initial commit after CMS Cookiecutter creation, version {}"'.format(
+                "{{ cookiecutter._cms_cc_version }}"
+            )
+        )
+
         # Check for a tag
         version = invoke_shell("git tag", expected_error=True)
         # Tag if no tag exists
         if not version:
             invoke_shell("git tag 0.0.0")
     else:
-        print("\ngit repository detected. "
-              "CookieCutter files have been created in {{ cookiecutter.repo_name }} directory.")
+        print(
+            "\ngit repository detected. "
+            "CookieCutter files have been created in {{ cookiecutter.repo_name }} directory."
+        )
 
 
 def remove_rtd():
-    include_rtd = '{{ cookiecutter.include_ReadTheDocs }}'
+    include_rtd = "{{ cookiecutter.include_ReadTheDocs }}"
     if include_rtd == "n":
         rtd_env = os.path.join("docs", "requirements.yaml")
-        os.remove('readthedocs.yml')
+        os.remove("readthedocs.yml")
         os.remove(rtd_env)
 
 
@@ -82,6 +87,23 @@ def random_file_cleanup_removal():
             pass
 
 
-remove_rtd()
-random_file_cleanup_removal()
-git_init_and_tag()
+def install_pre_commit_hooks():
+    """Install pre-commit hooks"""
+    invoke_shell("python -m pip install pre-commit")
+    invoke_shell("python -m pre-commit install")
+
+
+if __name__ == "__main__":
+    remove_rtd()
+    random_file_cleanup_removal()
+    git_init_and_tag()
+
+    if "{{ cookiecutter.install_precommit_hooks }}" == "y":
+        try:
+            install_pre_commit_hooks()
+        except Exception as e:
+            print(str(e))
+            print(
+                "Failed to install pre-commit hooks. "
+                "For more on pre-commit, please refer to https://pre-commit.com"
+            )
