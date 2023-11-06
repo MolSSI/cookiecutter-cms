@@ -83,6 +83,6 @@
     types: [python]
 
 
-{% if cookiecutter.include_pre_commit_hooks == "n" %}
+{% if cookiecutter.install_precommit_hooks == "n" %}
 # Additional hooks and configuration when pre-commit hooks are not selected
 {% endif %}

@@ -19,7 +19,6 @@
     ],
 
     "include_ReadTheDocs": ["y", "n"],
-    "_extensions": ["pre-commit"],
-    "include_pre_commit_hooks": "n",
+    "install_precommit_hooks": ["y", "n"],
     "_cms_cc_version": 1.10
 }
