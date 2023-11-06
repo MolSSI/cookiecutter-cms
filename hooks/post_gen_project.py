@@ -17,19 +17,20 @@ def decode_string(string):
         return string
 
 
-def invoke_shell(command, expected_error=True, print_output=True):
+def invoke_shell(command, error_ok=False, print_output=True):
+    
+    return_code = 0 # Successful return code
+
     try:
         output = sp.check_output(command, shell=True, stderr=sp.STDOUT)
     except sp.CalledProcessError as e:
-        # Trap and print the output in a helpful way
-        print(decode_string(e.output), decode_string(e.returncode))
-        print(e.output)
         output = e.output
-        if not expected_error:
+        return_code = e.returncode
+        if not error_ok:
             raise e
     if print_output:
         print(decode_string(output))
-    return decode_string(output)
+    return decode_string(output), return_code
 
 
 def git_init_and_tag():
@@ -37,15 +38,18 @@ def git_init_and_tag():
     Invoke the initial git and tag with 0.0.0 to make an initial version for
     Versioneer to ID if not already in a git repository.
     """
-
-    # Check if we are in a git repository
-    directory_status = invoke_shell(
-        "git status", expected_error=True, print_output=False
-    )
+    
+    # Check if we are in a git repository - calling `git status` outside of a git repository will return 128
+    _, return_code = invoke_shell("git status", error_ok=True, print_output=False)
     # Create a repository and commit if not in one.
-    if "fatal" in directory_status:
+    if return_code == 128:
         # Initialize git
-        invoke_shell("git init --initial-branch=main")
+        invoke_shell("git init")
+
+        # change default branch name to main
+        # safer than --init-branch=main
+        # because it works with older versions of git
+        invoke_shell("git branch -M main")
 
         # Add files created by cookiecutter
         invoke_shell("git add .")
@@ -56,7 +60,7 @@ def git_init_and_tag():
         )
 
         # Check for a tag
-        version = invoke_shell("git tag", expected_error=True)
+        version = invoke_shell("git tag", error_ok=True)
         # Tag if no tag exists
         if not version:
             invoke_shell("git tag 0.0.0")
