@@ -51,27 +51,31 @@ def git_init_and_tag():
         # because it works with older versions of git
         invoke_shell("git branch -M main")
 
-        # Add files created by cookiecutter 
+        # Add files created by cookiecutter
         invoke_shell("git add .")
         invoke_shell(
-            "git commit -m \"Initial commit after CMS Cookiecutter creation, version {}\"".format(
-                '{{ cookiecutter._cms_cc_version }}'))
-        
+            'git commit -m "Initial commit after CMS Cookiecutter creation, version {}"'.format(
+                "{{ cookiecutter._cms_cc_version }}"
+            )
+        )
+
         # Check for a tag
         version = invoke_shell("git tag", error_ok=True)
         # Tag if no tag exists
         if not version:
             invoke_shell("git tag 0.0.0")
     else:
-        print("\ngit repository detected. "
-              "CookieCutter files have been created in {{ cookiecutter.repo_name }} directory.")
+        print(
+            "\ngit repository detected. "
+            "CookieCutter files have been created in {{ cookiecutter.repo_name }} directory."
+        )
 
 
 def remove_rtd():
-    include_rtd = '{{ cookiecutter.include_ReadTheDocs }}'
+    include_rtd = "{{ cookiecutter.include_ReadTheDocs }}"
     if include_rtd == "n":
         rtd_env = os.path.join("docs", "requirements.yaml")
-        os.remove('readthedocs.yml')
+        os.remove("readthedocs.yml")
         os.remove(rtd_env)
 
 
@@ -87,6 +91,23 @@ def random_file_cleanup_removal():
             pass
 
 
-remove_rtd()
-random_file_cleanup_removal()
-git_init_and_tag()
+def install_pre_commit_hooks():
+    """Install pre-commit hooks"""
+    invoke_shell("python -m pip install pre-commit")
+    invoke_shell("python -m pre-commit install")
+
+
+if __name__ == "__main__":
+    remove_rtd()
+    random_file_cleanup_removal()
+    git_init_and_tag()
+
+    if "{{ cookiecutter.install_precommit_hooks }}" == "y":
+        try:
+            install_pre_commit_hooks()
+        except Exception as e:
+            print(str(e))
+            print(
+                "Failed to install pre-commit hooks. "
+                "For more on pre-commit, please refer to https://pre-commit.com"
+            )

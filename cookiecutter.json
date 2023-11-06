@@ -17,7 +17,8 @@
         "Prefer default anaconda channel with pip fallback",
         "Dependencies from pip only (no conda)"
     ],
-    
+
     "include_ReadTheDocs": ["y", "n"],
-  "_cms_cc_version": 1.10
+    "install_precommit_hooks": ["y", "n"],
+    "_cms_cc_version": 1.10
 }
