@@ -31,9 +31,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        python-version: [ 3.8, 3.9, "3.10" ]
+        python-version: [3.9, "3.10", "3.11"]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
@@ -80,7 +80,7 @@ jobs:
         rtd: [1, 2]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: "Fetch Artifacts"
         uses: actions/download-artifact@v2
@@ -108,11 +108,11 @@ jobs:
     strategy:  # Approximate strategy, uses a few other options
       matrix:
         os: [ubuntu-latest , macOS-latest, windows-latest]
-        python-version: [ 3.8, 3.9, "3.10" ]
+        python-version: [3.9, "3.10", "3.11"]
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
     steps:
-      # - uses: actions/checkout@v3  # This isn't necessary here
+      # - uses: actions/checkout@v4  # This isn't necessary here
 
       - name: "Fetch Artifacts"
         uses: actions/download-artifact@v2
@@ -176,12 +176,12 @@ jobs:
     strategy:  # Approximate strategy, uses a few other options
       matrix:
         os: [ubuntu-latest , macOS-latest, windows-latest]
-        python-version: [ 3.8, 3.9, "3.10" ]
+        python-version: [3.9, "3.10", "3.11"]
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
 
     steps:
-      # - uses: actions/checkout@v3  # This isn't necessary here
+      # - uses: actions/checkout@v4  # This isn't necessary here
 
       - name: Additional info about the build
         shell: bash
@@ -243,12 +243,12 @@ jobs:
     strategy:  # Approximate strategy, uses a few other options
       matrix:
         os: [ubuntu-latest , macOS-latest, windows-latest]
-        python-version: [ 3.8, 3.9, "3.10" ]
+        python-version: [3.9, "3.10", "3.11"]
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
 
     steps:
-      # - uses: actions/checkout@v3  # This isn't necessary here
+      # - uses: actions/checkout@v4  # This isn't necessary here
 
       - name: Additional info about the build
         shell: bash
