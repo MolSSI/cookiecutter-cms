@@ -46,16 +46,17 @@ def git_init_and_tag():
         # Initialize git
         invoke_shell("git init")
 
-        # change default branch name to main
-        # safer than --init-branch=main
-        # because it works with older versions of git
-        invoke_shell("git branch -M main")
 
         # Add files created by cookiecutter 
         invoke_shell("git add .")
         invoke_shell(
             "git commit -m \"Initial commit after CMS Cookiecutter creation, version {}\"".format(
                 '{{ cookiecutter._cms_cc_version }}'))
+        
+        # change default branch name to main
+        # safer than --init-branch=main
+        # because it works with older versions of git
+        invoke_shell("git branch -M main")
         
         # Check for a tag
         version = invoke_shell("git tag", error_ok=True)
