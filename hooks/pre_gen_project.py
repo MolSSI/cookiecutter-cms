@@ -10,12 +10,12 @@ import sys
 MODULE_REGEX = r'^[_a-zA-Z][_a-zA-Z0-9]+$'
 EMAIL_REGEX = r'[^@]+@[^@]+\.[^@]+'
 
-repo_name = '{{ cookiecutter.repo_name }}'
+package_name = '{{ cookiecutter.package_name }}'
 module_name = '{{ cookiecutter.first_module_name }}'
 
 author_email = '{{ cookiecutter.author_email }}'
 
-for key in [repo_name, module_name]:
+for key in [package_name, module_name]:
     if not re.match(MODULE_REGEX, key):
         print(key, re.match(MODULE_REGEX, key))
         print('ERROR: "{}" is not a valid Python module name!'.format(key))
