@@ -95,6 +95,19 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# Pycharm settings
+.idea
+*.iml
+*.iws
+*.ipr
+
+# Ignore Sublime Text settings
+*.sublime-workspace
+*.sublime-project
+
+# vim swap
+*.swp
+
 # mkdocs documentation
 /site
 
@@ -107,3 +120,5 @@ ENV/
 
 # In-tree generated files
 */_version.py
+# Cookiecutter-CMS Test Artifacts
+/tests/CI_files
