@@ -49,11 +49,10 @@ jobs:
         with:
           environment-file: devtools/conda-envs/test_env.yaml
           environment-name: test
-{%- if cookiecutter.dependency_source == 'Prefer conda-forge over the default anaconda channel with pip fallback' %}
+{%- if cookiecutter.dependency_source == 'Prefer conda-forge with pip fallback' %}
           condarc: |
             channels:
               - conda-forge
-              - defaults
 {%- elif cookiecutter.dependency_source == 'Prefer default anaconda channel with pip fallback' %}
           condarc: |
             channels:
