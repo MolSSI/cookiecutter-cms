@@ -13,7 +13,7 @@
         "Not Open Source"
     ],
     "dependency_source": [
-        "Prefer conda-forge over the default anaconda channel with pip fallback",
+        "Prefer conda-forge with pip fallback",
         "Prefer default anaconda channel with pip fallback",
         "Dependencies from pip only (no conda)"
     ],

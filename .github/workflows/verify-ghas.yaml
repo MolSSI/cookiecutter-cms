@@ -141,7 +141,6 @@ jobs:
           condarc: |
             channels:
               - conda-forge
-              - defaults
 
       - name: Install package
 
