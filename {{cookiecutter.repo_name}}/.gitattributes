@@ -1,1 +1,1 @@
-{{cookiecutter.repo_name}}/_version.py export-subst
+{{cookiecutter.package_name}}/_version.py export-subst

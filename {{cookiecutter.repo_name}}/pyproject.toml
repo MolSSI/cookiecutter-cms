@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 # Self-descriptive entries which should always be present
 # https://packaging.python.org/en/latest/specifications/declaring-project-metadata/
 [project]
-name = "{{cookiecutter.repo_name}}"
+name = "{{cookiecutter.package_name}}"
 description = "{{cookiecutter.description}}"
 dynamic = ["version"]
 readme = "README.md"
@@ -63,7 +63,7 @@ where = ["."]
 
 # Ref https://setuptools.pypa.io/en/latest/userguide/datafiles.html#package-data
 [tool.setuptools.package-data]
-{{cookiecutter.repo_name}} = [
+{{cookiecutter.package_name}} = [
     "py.typed"
 ]
 
@@ -83,4 +83,4 @@ match = ["*"]
 default-tag = "1.0.0"
 
 [tool.versioningit.write]
-file = "{{cookiecutter.repo_name}}/_version.py"
+file = "{{cookiecutter.package_name}}/_version.py"

@@ -17,7 +17,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
 
-import {{cookiecutter.repo_name}}
+import {{cookiecutter.package_name}}
 
 
 # -- Project information -----------------------------------------------------

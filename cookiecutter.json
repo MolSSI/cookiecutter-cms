@@ -1,7 +1,8 @@
 {
     "project_name": "ProjectName",
-    "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
-    "first_module_name": "{{ cookiecutter.repo_name.lower().replace(' ', '_') }}",
+    "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}", 
+    "package_name": "{{ cookiecutter.repo_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "first_module_name": "{{ cookiecutter.package_name }}",    
     "author_name": "Your name (or your organization/company/team)",
     "author_email": "Your email (or your organization/company/team)",
     "description": "A short description of the project (less than one line).",
