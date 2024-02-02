@@ -94,8 +94,18 @@ ENV/
 # Rope project settings
 .ropeproject
 
-# Other IDE project settings
+# Pycharm settings
 .idea
+*.iml
+*.iws
+*.ipr
+
+# Ignore Sublime Text settings
+*.sublime-workspace
+*.sublime-project
+
+# vim swap
+*.swp
 
 # mkdocs documentation
 /site
