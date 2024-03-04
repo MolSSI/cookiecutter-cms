@@ -56,7 +56,7 @@ def git_init_and_tag():
         version = invoke_shell("git tag", expected_error=True)
         # Tag if no tag exists
         if not version:
-            invoke_shell("git tag 0.0.0")
+            invoke_shell("git tag 0.0.0 -m \"Initial commit from MolSSI cookie cutter\"")
     else:
         print("\ngit repository detected. "
               "CookieCutter files have been created in {{ cookiecutter.repo_name }} directory.")
