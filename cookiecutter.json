@@ -19,5 +19,5 @@
     ],
     
     "include_ReadTheDocs": ["y", "n"],
-  "_cms_cc_version": 1.10
+  "_cms_cc_version": 2.0
 }
