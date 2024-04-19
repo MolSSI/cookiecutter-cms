@@ -189,7 +189,7 @@ jobs:
           ulimit -a
 
       - name: "Fetch Artifacts"
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: cookiecutter_outputs
 
