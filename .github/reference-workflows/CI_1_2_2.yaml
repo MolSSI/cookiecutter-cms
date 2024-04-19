@@ -22,10 +22,10 @@ jobs:
     strategy:
       matrix:
         os: [macOS-latest, ubuntu-latest, windows-latest]
-        python-version: [3.8, 3.9, "3.10"]
+        python-version: [3.9, "3.10", "3.11"]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Additional info about the build
         shell: bash
@@ -34,13 +34,15 @@ jobs:
           df -h
           ulimit -a
 
-      # More info on options: https://github.com/marketplace/actions/provision-with-micromamba
-      - uses: mamba-org/provision-with-micromamba@main
+      # More info on options: https://github.com/marketplace/actions/setup-micromamba
+      - uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: devtools/conda-envs/test_env.yaml
           environment-name: test
-          channels: defaults
-          extra-specs: |
+          condarc: |
+            channels:
+              - defaults
+          create-args: >- 
             python=${{ matrix.python-version }}
 
       - name: Install package

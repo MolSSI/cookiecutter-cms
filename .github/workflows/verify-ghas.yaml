@@ -31,12 +31,12 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        python-version: [ 3.8, 3.9, "3.10" ]
+        python-version: [3.9, "3.10", "3.11"]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -80,7 +80,7 @@ jobs:
         rtd: [1, 2]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: "Fetch Artifacts"
         uses: actions/download-artifact@v2
@@ -108,11 +108,11 @@ jobs:
     strategy:  # Approximate strategy, uses a few other options
       matrix:
         os: [ubuntu-latest , macOS-latest, windows-latest]
-        python-version: [ 3.8, 3.9, "3.10" ]
+        python-version: [3.9, "3.10", "3.11"]
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
     steps:
-      # - uses: actions/checkout@v3  # This isn't necessary here
+      # - uses: actions/checkout@v4  # This isn't necessary here
 
       - name: "Fetch Artifacts"
         uses: actions/download-artifact@v2
@@ -131,14 +131,16 @@ jobs:
       #        run: |
       #          cd prj_${{ matrix.license }}_1_${{ matrix.rtd }}
 
-      # More info on options: https://github.com/marketplace/actions/provision-with-micromamba
-      - uses: mamba-org/provision-with-micromamba@main
+      # More info on options: https://github.com/marketplace/actions/setup-micromamba
+      - uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: prj_${{ matrix.license }}_1_${{ matrix.rtd }}/devtools/conda-envs/test_env.yaml
           environment-name: test
-          channels: conda-forge,defaults
-          extra-specs: |
+          create-args: >- 
             python=${{ matrix.python-version }}
+          condarc: |
+            channels:
+              - conda-forge
 
       - name: Install package
 
@@ -173,12 +175,12 @@ jobs:
     strategy:  # Approximate strategy, uses a few other options
       matrix:
         os: [ubuntu-latest , macOS-latest, windows-latest]
-        python-version: [ 3.8, 3.9, "3.10" ]
+        python-version: [3.9, "3.10", "3.11"]
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
 
     steps:
-      # - uses: actions/checkout@v3  # This isn't necessary here
+      # - uses: actions/checkout@v4  # This isn't necessary here
 
       - name: Additional info about the build
         shell: bash
@@ -197,14 +199,16 @@ jobs:
       #        run: |
       #          cd prj_${{ matrix.license }}_2_${{ matrix.rtd }}
 
-      # More info on options: https://github.com/marketplace/actions/provision-with-micromamba
-      - uses: mamba-org/provision-with-micromamba@main
+      # More info on options: https://github.com/marketplace/actions/setup-micromamba
+      - uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: prj_${{ matrix.license }}_2_${{ matrix.rtd }}/devtools/conda-envs/test_env.yaml
           environment-name: test
-          channels: defaults
-          extra-specs: |
+          create-args: >- 
             python=${{ matrix.python-version }}
+          condarc: |
+            channels:
+              - defaults
 
       - name: Install package
 
@@ -238,12 +242,12 @@ jobs:
     strategy:  # Approximate strategy, uses a few other options
       matrix:
         os: [ubuntu-latest , macOS-latest, windows-latest]
-        python-version: [ 3.8, 3.9, "3.10" ]
+        python-version: [3.9, "3.10", "3.11"]
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
 
     steps:
-      # - uses: actions/checkout@v3  # This isn't necessary here
+      # - uses: actions/checkout@v4  # This isn't necessary here
 
       - name: Additional info about the build
         shell: bash
@@ -265,7 +269,7 @@ jobs:
 
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
 
