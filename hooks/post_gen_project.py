@@ -72,7 +72,7 @@ def remove_rtd():
     include_rtd = '{{ cookiecutter.include_ReadTheDocs }}'
     if include_rtd == "n":
         rtd_env = os.path.join("docs", "requirements.yaml")
-        os.remove('readthedocs.yml')
+        os.remove('.readthedocs.yaml')
         os.remove(rtd_env)
 
 
