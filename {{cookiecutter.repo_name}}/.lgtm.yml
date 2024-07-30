@@ -6,7 +6,6 @@ extraction:
       version: 3  # Specify Version 3
 path_classifiers:
   library:
-    - versioneer.py  # Set Versioneer.py to an external "library" (3rd party code)
     - devtools/*
   generated:
     - {{cookiecutter.repo_name}}/_version.py

@@ -44,8 +44,8 @@ This directory contains OS agnostic helper scripts which don't fall in any of th
    *  `git tag -a X.Y.Z [latest pushed commit] && git push --follow-tags`
 - [ ] Get the PR merged in
 
-## Versioneer Auto-version
-[Versioneer](https://github.com/warner/python-versioneer) will automatically infer what version 
+## versioningit Auto-version
+[versioningit](https://pypi.org/project/versioningit) will automatically infer what version 
 is installed by looking at the `git` tags and how many commits ahead this version is. The format follows 
 [PEP 440](https://www.python.org/dev/peps/pep-0440/) and has the regular expression of:
 ```regexp
