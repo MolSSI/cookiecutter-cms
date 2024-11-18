@@ -31,7 +31,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        python-version: [3.9, "3.10", "3.11"]
+        python-version: ["3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
 
@@ -108,7 +108,7 @@ jobs:
     strategy:  # Approximate strategy, uses a few other options
       matrix:
         os: [ubuntu-latest , macOS-latest, windows-latest]
-        python-version: [3.9, "3.10", "3.11"]
+        python-version: ["3.11", "3.12", "3.13"]
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
     steps:
@@ -175,7 +175,7 @@ jobs:
     strategy:  # Approximate strategy, uses a few other options
       matrix:
         os: [ubuntu-latest , macOS-latest, windows-latest]
-        python-version: [3.9, "3.10", "3.11"]
+        python-version: ["3.11", "3.12", "3.13"]
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
 
@@ -242,7 +242,7 @@ jobs:
     strategy:  # Approximate strategy, uses a few other options
       matrix:
         os: [ubuntu-latest , macOS-latest, windows-latest]
-        python-version: [3.9, "3.10", "3.11"]
+        python-version: ["3.11", "3.12", "3.13"]
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
 
