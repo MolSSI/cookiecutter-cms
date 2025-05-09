@@ -59,7 +59,7 @@ jobs:
           pytest -v --cov=prj_2_1_2 --cov-report=xml --color=yes prj_2_1_2/tests/
 
       - name: CodeCov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v5
         with:
           file: ./coverage.xml
           flags: unittests
