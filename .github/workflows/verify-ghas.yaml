@@ -163,7 +163,7 @@ jobs:
       - name: CodeCov
         uses: codecov/codecov-action@v5
         with:
-          file: ./prj_${{ matrix.license }}_1_${{ matrix.rtd }}/coverage.xml
+          files: ./prj_${{ matrix.license }}_1_${{ matrix.rtd }}/coverage.xml
           flags: unittests
           name: codecov-${{ matrix.os }}-py${{ matrix.python-version }}
 
@@ -231,7 +231,7 @@ jobs:
       - name: CodeCov
         uses: codecov/codecov-action@v5
         with:
-          file: ./prj_${{ matrix.license }}_2_${{ matrix.rtd }}/coverage.xml
+          files: ./prj_${{ matrix.license }}_2_${{ matrix.rtd }}/coverage.xml
           flags: unittests
           name: codecov-${{ matrix.os }}-py${{ matrix.python-version }}
 
@@ -296,6 +296,6 @@ jobs:
       - name: CodeCov
         uses: codecov/codecov-action@v5
         with:
-          file: ./prj_${{ matrix.license }}_3_${{ matrix.rtd }}/coverage.xml
+          files: ./prj_${{ matrix.license }}_3_${{ matrix.rtd }}/coverage.xml
           flags: unittests
           name: codecov-${{ matrix.os }}-py${{ matrix.python-version }}
