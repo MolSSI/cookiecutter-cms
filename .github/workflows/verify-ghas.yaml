@@ -132,7 +132,7 @@ jobs:
       #          cd prj_${{ matrix.license }}_1_${{ matrix.rtd }}
 
       # More info on options: https://github.com/marketplace/actions/setup-micromamba
-      - uses: mamba-org/setup-micromamba@v1
+      - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: prj_${{ matrix.license }}_1_${{ matrix.rtd }}/devtools/conda-envs/test_env.yaml
           environment-name: test
@@ -200,7 +200,7 @@ jobs:
       #          cd prj_${{ matrix.license }}_2_${{ matrix.rtd }}
 
       # More info on options: https://github.com/marketplace/actions/setup-micromamba
-      - uses: mamba-org/setup-micromamba@v1
+      - uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: prj_${{ matrix.license }}_2_${{ matrix.rtd }}/devtools/conda-envs/test_env.yaml
           environment-name: test
