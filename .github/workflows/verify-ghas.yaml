@@ -161,7 +161,7 @@ jobs:
           pytest -v --cov=prj_${{ matrix.license }}_1_${{ matrix.rtd }} --cov-report=xml --color=yes prj_${{ matrix.license }}_1_${{ matrix.rtd }}/tests/
 
       - name: CodeCov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v5
         with:
           file: ./prj_${{ matrix.license }}_1_${{ matrix.rtd }}/coverage.xml
           flags: unittests
@@ -229,7 +229,7 @@ jobs:
           pytest -v --cov=prj_${{ matrix.license }}_2_${{ matrix.rtd }} --cov-report=xml --color=yes prj_${{ matrix.license }}_2_${{ matrix.rtd }}/tests/
 
       - name: CodeCov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v5
         with:
           file: ./prj_${{ matrix.license }}_2_${{ matrix.rtd }}/coverage.xml
           flags: unittests
@@ -294,7 +294,7 @@ jobs:
           pytest -v --cov=prj_${{ matrix.license }}_3_${{ matrix.rtd }} --cov-report=xml --color=yes prj_${{ matrix.license }}_3_${{ matrix.rtd }}/tests/
 
       - name: CodeCov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v5
         with:
           file: ./prj_${{ matrix.license }}_3_${{ matrix.rtd }}/coverage.xml
           flags: unittests
