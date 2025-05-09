@@ -10,7 +10,7 @@ import subprocess as sp
 
 
 def decode_string(string):
-    """Helper function to covert byte-string to string, but allows normal strings"""
+    """Helper function to convert byte-string to string, but allows normal strings"""
     try:
         return string.decode()
     except AttributeError:
