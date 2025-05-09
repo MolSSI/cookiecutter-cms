@@ -26,7 +26,7 @@ deployment platforms, or test with a different suite.
 
 ## Requirements
 
-* Python 3.8, 3.9, or 3.10
+* Python 3.11, 3.12, or 3.13
 * [Cookiecutter](http://cookiecutter.readthedocs.io/en/latest/installation.html)
 * [Git](https://git-scm.com/)
 
@@ -54,10 +54,10 @@ and gives projects ample time to implement new features.
 Project developers can freely choose when to drop support for older versions of Python, or if they don't want to support
 as many. The general rules we recommend are:
 
-* Support at least two Python versions: The most recent and the preceding minor version. E.g. 3.9 and 3.8
+* Support at least two Python versions: The most recent and the preceding minor version. E.g. 3.11 and 3.12
 * Dropping Python versions should require a minor Project Version increment.
-* New Python versions have been supported for at least one minor revision. E.g Project X.Y supports Python 3.8 and 3.9;
-  Project X.Y+1 supports Python 3.8, 3.9 and 3.10; Project X.Y+2 supports Python 3.9 and 3.10.
+* New Python versions have been supported for at least one minor revision. E.g Project X.Y supports Python 3.11 and 3.12;
+  Project X.Y+1 supports Python 3.11, 3.12 and 3.13; Project X.Y+2 supports Python 3.11 and 3.12.
 * Add deprecation warnings if features will be removed.
 
 ### Where is setup.py?
