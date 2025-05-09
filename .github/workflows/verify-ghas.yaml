@@ -10,7 +10,6 @@ on:
   pull_request:
     branches:
       - "main"
-      - "review23"
   schedule:
     # Nightly tests run on main by default:
     #   Scheduled workflows run on the latest commit on the default or base branch.
@@ -63,11 +62,12 @@ jobs:
           done
 
       - name: "Upload artifacts"
-        if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == 3.9 }}  # Upload only if ubuntu and latest python (only need to run once)
-        uses: actions/upload-artifact@v2
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == 3.12 }}  # Upload only if ubuntu and latest python (only need to run once)
+        uses: actions/upload-artifact@v4
         with:
           name: cookiecutter_outputs
           path: artifact_upload
+          include-hidden-files: true
 
   compare-action-output:
     name: "Compare GHA Output"
@@ -83,7 +83,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: "Fetch Artifacts"
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: cookiecutter_outputs
 
@@ -115,7 +115,7 @@ jobs:
       # - uses: actions/checkout@v4  # This isn't necessary here
 
       - name: "Fetch Artifacts"
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: cookiecutter_outputs
 
@@ -190,7 +190,7 @@ jobs:
           ulimit -a
 
       - name: "Fetch Artifacts"
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: cookiecutter_outputs
 
@@ -257,7 +257,7 @@ jobs:
           ulimit -a
 
       - name: "Fetch Artifacts"
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: cookiecutter_outputs
 
