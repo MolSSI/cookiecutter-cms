@@ -1,5 +1,8 @@
 name: CI
 
+permissions:
+  contents: read
+
 on:
   # GitHub has started calling new repo's first branch "main" https://github.com/github/renaming
   # The cookiecutter uses the "--initial-branch" flag when it runs git-init
