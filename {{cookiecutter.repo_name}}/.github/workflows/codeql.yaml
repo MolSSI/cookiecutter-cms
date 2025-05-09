@@ -16,7 +16,7 @@ jobs:
     #   - https://gh.io/supported-runners-and-hardware-resources
     #   - https://gh.io/using-larger-runners (GitHub.com only)
     # Consider using larger runners or machines with greater resources for possible analysis time improvements.
-    runs-on: {{ '${{ (matrix.language == \"swift\" && \"macos-latest\") || \"ubuntu-latest\" }}' }}
+    runs-on: {{ '${{ (matrix.language == \'swift\' && \'macos-latest\') || \'ubuntu-latest\' }}' }}
     permissions:
       # required for all workflows
       security-events: write
@@ -73,7 +73,7 @@ jobs:
     # to build your code.
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-    - if: {{ '${{ matrix.build-mode == \'manual\' }}' }}
+    - if: matrix.build-mode == 'manual'
       shell: bash
       run: |
         echo 'If you are using a "manual" build mode for one or more of the' \
