@@ -13,6 +13,7 @@ authors = [
     { name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}" }
 ]
 license = "{{cookiecutter.open_source_license}}"
+license-files = ["LICENSE"]
 # See https://pypi.org/classifiers/
 classifiers = [
     "Programming Language :: Python :: 3",
