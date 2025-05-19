@@ -12,12 +12,9 @@ readme = "README.md"
 authors = [
     { name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}" }
 ]
-license = { text = "{{cookiecutter.open_source_license}}" }
+license = "{{cookiecutter.open_source_license}}"
 # See https://pypi.org/classifiers/
-classifiers = [{% if cookiecutter.open_source_license == 'MIT' %}
-    "License :: OSI Approved :: MIT License",{% elif cookiecutter.open_source_license == 'BSD-3-Clause' %}
-    "License :: OSI Approved :: BSD License",{% elif cookiecutter.open_source_license == 'LGPLv3' %}
-    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",{% endif %}
+classifiers = [
     "Programming Language :: Python :: 3",
 ]
 requires-python = ">=3.8"
