@@ -23,6 +23,7 @@ options = [project,  # Repo name
            project,  # First module name
            "cookie monster",  # Author name
            "cookiemonster@trash.can",  # Author email
+           "cookie_monster", #Author github username
            "",  # Description
            lic,  # License
            provider,  # ci_provider
