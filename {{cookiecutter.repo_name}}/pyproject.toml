@@ -26,7 +26,7 @@ requires-python = ">=3.8"
 
 # Update the urls once the hosting is set up.
 #[project.urls]
-#"Source" = "https://github.com/<username>/{{cookiecutter.repo_name}}/"
+#"Source" = "https://github.com/{{cookiecutter.owner_account}}/{{cookiecutter.repo_name}}/"
 #"Documentation" = "https://{{cookiecutter.repo_name}}.readthedocs.io/"
 
 [project.optional-dependencies]
