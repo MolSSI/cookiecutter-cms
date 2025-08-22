@@ -319,9 +319,9 @@ upon setup.
 ├── MANIFEST.in                     <- Packaging information for pip
 ├── README.md                       <- Description of project which GitHub will render
 ├── {{repo_name}}                   <- Basic Python Package import file
-│   ├── {{first_module_name}}.py    <- Starting packge module
+│   ├── {{first_module_name}}.py    <- Starting package module
 │   ├── __init__.py                 <- Basic Python Package import file
-│   ├── _version.py                 <- Generated file from VersionInGit. Created on package install, not initilization.
+│   ├── _version.py                 <- Generated file from VersionInGit. Created on package install, not initialization.
 │   ├── data                        <- Sample additional data (non-code) which can be packaged. Just an example, delete in production
 │   │   ├── README.md
 │   │   └── look_and_say.dat
@@ -347,7 +347,7 @@ upon setup.
 │   ├── getting_started.rst
 │   ├── index.rst
 │   ├── make.bat
-│   └── requirements.yaml           <- Documenation building specific requirements. Usually a smaller set than the main program
+│   └── requirements.yaml           <- Documentation building specific requirements. Usually a smaller set than the main program
 ├── pyproject.toml                  <- Generic Python build system configuration (PEP-517).
 ├── readthedocs.yml
 ├── setup.cfg                       <- Near-master config file to make house INI-like settings for Coverage, Flake8, YAPF, etc.
