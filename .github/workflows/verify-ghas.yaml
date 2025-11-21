@@ -32,7 +32,7 @@ jobs:
         os: [ubuntu-latest, macOS-latest, windows-latest]
         python-version: ["3.11", "3.12", "3.13"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
@@ -80,7 +80,7 @@ jobs:
         rtd: [1, 2]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: "Fetch Artifacts"
         uses: actions/download-artifact@v4
@@ -112,7 +112,7 @@ jobs:
         license: [1]  # Nonstandard
         rtd: [1, 2]  # Nonstandard
     steps:
-      # - uses: actions/checkout@v4  # This isn't necessary here
+      # - uses: actions/checkout@v6  # This isn't necessary here
 
       - name: "Fetch Artifacts"
         uses: actions/download-artifact@v4
@@ -180,7 +180,7 @@ jobs:
         rtd: [1, 2]  # Nonstandard
 
     steps:
-      # - uses: actions/checkout@v4  # This isn't necessary here
+      # - uses: actions/checkout@v6  # This isn't necessary here
 
       - name: Additional info about the build
         shell: bash
@@ -247,7 +247,7 @@ jobs:
         rtd: [1, 2]  # Nonstandard
 
     steps:
-      # - uses: actions/checkout@v4  # This isn't necessary here
+      # - uses: actions/checkout@v6  # This isn't necessary here
 
       - name: Additional info about the build
         shell: bash
