@@ -63,7 +63,7 @@ jobs:
 
       - name: "Upload artifacts"
         if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == 3.12 }}  # Upload only if ubuntu and latest python (only need to run once)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: cookiecutter_outputs
           path: artifact_upload
